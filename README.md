@@ -1,2 +1,207 @@
 # Gait-Project-Pipeline
-This project is for high spatiotemporal resolution pressure sensor platform designed for gait analysis, it includes both data acquisition and analysis pipeline. 
+
+Acquisition and analysis code for a high-spatiotemporal-resolution pressure-sensing runway for rodent gait analysis, from *A 16 kilotaxel platform for high-resolution spatiotemporal gait analysis in freely walking rodents* (Lu, Slepyan, Perkins, Ascani Orsini, Quinn, Thakor). **TODO: journal reference and DOI.**
+
+The platform is a 64 × 256 piezoresistive array (four 64 × 64 boards, 16,384 taxels, 2 mm pitch) under a walking surface, recorded together with overhead cameras. This repository records the runway and takes each recording from raw sensor packets to paw-labeled (FL/FR/HL/HR) stance events and mass-equivalent loading.
+
+## Repository layout
+
+```
+acquisition/   record_runway.py         four boards + two overhead cameras on one clock -> .mat + .mp4
+               live_view_runway.py      live pressure map (no recording)
+               firmware/                readout-board firmware (Teensy 4.x; set BOARD_ID per board)
+pipeline/      gait_config.m            paths and study settings (edit this first)
+               s1_prepare_recordings.m  background models; video choice and platform corners for new data
+               s2_detect_contacts.m     tail-base CNN + contact detector -> pressure movie, contacts
+               segmentation_peak_seed_refined_runway.m   the contact detector (called by s2)
+               s3_find_mobile_bouts.m   whole-animal COP trace and walking bouts (+ review window)
+               s4_label_paws.m          FL/FR/HL/HR stance events inside the walking bouts (+ labeled video)
+               s5_calibrate_to_grams.m  summed taxel response -> mass-equivalent grams
+tailbase/      tailbase_cnn.py          tail-base localiser: annotate / train / predict
+demo/          run_demo.m               runs the pipeline on the demo recording and checks the result
+               expected/                expected walking windows and stance events
+data/          tailbase_model/          trained tail-base CNN (best_tail_detector.pt) and its training history
+               calibration_0_450/       per-board calibration curves (calibration_0_450.json)
+               platform_sheet_template.mat   sensor position relative to the platform corners
+```
+
+## Demo
+
+The demo package is `demo_2-24-2026_rat4.zip` in the data deposit on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364) (415 MB download, 1.36 GB unzipped). It holds one complete recording, rat 4 on 24 Feb 2026 (sciatic nerve pinch group, two weeks before surgery): an 85-s session with five runway crossings. It contains the raw pressure packets (1.0 GB), the overhead video (334 MB) and that recording's annotations, in the same layout as the full data deposit. Extracting it to `C:\` gives `C:\gait_demo\data`.
+
+```matlab
+setenv('GAIT_PYTHON', 'C:\path\to\python.exe')   % Python with PyTorch, if not on the PATH
+addpath('<repo>/demo')
+run_demo('C:\gait_demo\data', 'C:\gait_demo\work')
+```
+
+It runs s1 (background model), s2, s3 and s4 and writes to `work/demo_results/`:
+
+- `walking_windows.csv`: the 5 walking windows
+- `stance_events.csv`: the 58 labeled stance events (paw, start and end time, position)
+- `labeled_walking_windows.mp4`: the overhead camera and pressure map of each walking window, every stance circled and labeled FL/FR/HL/HR (37 MB, about 0.25× real time)
+
+The two tables are compared with `demo/expected/`; a successful run ends with `DEMO PASSED`. Typical run time is about 9 minutes on a desktop workstation (32 logical cores), with or without a GPU: about 6 minutes for the s2 contact detector and 2.5 minutes to render the video.
+
+## Requirements
+
+- **MATLAB** (tested on R2023b) with the Image Processing, Signal Processing, and Statistics and Machine Learning toolboxes.
+- **Python 3** for the tail-base CNN: `pip install -r requirements.txt` (tested with Python 3.12, NumPy 2.4, OpenCV 4.13, PyTorch 2.12 CPU and 2.11 CUDA). Install time is a few minutes.
+- **A GPU is not needed.** On the demo recording a CPU-only run took the same time and gave the same labeled stance events. Tail-base positions agreed on all but 1 of 1,376 frames, which changed the camera votes of 1 of 197 detector contacts and no label.
+- **Disk:** about 60 MB of output per recording, two thirds of it tail-base frame images.
+- **Recording only:** the readout boards and firmware (`acquisition/firmware/`), a computer with four USB ports and the overhead cameras, plus `pyserial` and `scipy`.
+
+## Data
+
+The recordings and the study annotations are on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364) (CC BY 4.0), as one zip per recording (`<M-D-YYYY>_ratN.zip`, 85 files, about 380 MB each) plus `annotations.zip`. Extract all of them into the same folder and point `GAIT_DATA_ROOT` at it:
+
+```
+<data_root>/
+  <M-D-YYYY>/runway/ratN/runway_tactile_data_*.mat   raw pressure packets (+ camera frame timestamps)
+  <M-D-YYYY>/runway/ratN/camera_*.mp4                 overhead video
+  annotations/
+    recordings.csv               the 85 analyzed recordings (paths relative to data_root)
+    homographies/                camera -> sensor projective transform, one per recording
+    blind_labels/                manual FL/FR/HL/HR labels (blinded to the algorithm)
+    mobile_bout_windows.csv      manually selected walking windows
+    cop_trajectory_corrections.csv   keep/trim decisions that produced those windows
+    corrected_contacts.csv       manually reviewed contacts over whole recordings, including standing
+    mass.csv                     body mass by rat and date
+```
+
+## Setup
+
+Set these environment variables before starting MATLAB, or edit the top of `pipeline/gait_config.m`:
+
+| Variable | Meaning |
+|---|---|
+| `GAIT_DATA_ROOT` | the downloaded data folder above |
+| `GAIT_WORK_ROOT` | where outputs are written |
+| `GAIT_PYTHON` | Python executable with PyTorch (default `python`) |
+| `GAIT_ANNOTATIONS_ROOT` | optional; defaults to `<data_root>/annotations` |
+
+Two things to know about `GAIT_WORK_ROOT`:
+
+- **Keep the path short (under about 100 characters).** Detector outputs are MATLAB v7.3 files, and on Windows a full output path over 260 characters fails to save.
+- **Put it outside cloud-synced folders** (OneDrive, Dropbox). The pipeline writes tens of thousands of small files. For the same reason, keep `GAIT_DATA_ROOT` on local disk: cloud-only files are downloaded the first time they are read.
+
+Then add the code to the MATLAB path:
+
+```matlab
+addpath('<repo>/pipeline')
+```
+
+## Recording
+
+`acquisition/record_runway.py` runs on the acquisition computer (macOS) with the four readout boards on USB serial (115,200 baud). It sends each board its settings, then releases the board and camera threads from one shared start time, and saves `runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat` plus one `camera_<K>_<time>.mp4` per camera. The paper's recordings used 90 s, M = 200, threshold 700, digital potentiometer 100, and two cameras at 1920 × 1080 (30 fps target; about 25-27 fps achieved, so use the saved per-frame timestamps). Edit the serial ports and camera indices at the bottom of the script. Each board streams about 880 frames per second; see `acquisition/firmware/README.md` for the sampling scheme and packet format. `live_view_runway.py` shows the live pressure map.
+
+## Running the pipeline
+
+Every stage takes an optional list of recordings (`output_name` values from `recordings.csv`) and skips work that already exists.
+
+```matlab
+[cfg, R] = gait_config();            % R = recording list with absolute paths
+rec = R.output_name(R.rat == 6);     % e.g. one animal
+
+s1_prepare_recordings("backgrounds", rec)  % background image of each overhead video
+s2_detect_contacts(rec)                    % ~6 min per recording
+s3_find_mobile_bouts("extract", rec)       % COP traces and candidate walking bouts
+s4_label_paws(rec)                         % paw-labeled stance events in the walking windows
+```
+
+**s1, prepare recordings.** `"backgrounds"` builds the pixel-wise median background image of each overhead video listed in `recordings.csv`; s2 needs it. For a new recording set, `"pick"` chooses the overhead video for each tactile file, `"corners"` asks you to click the four visible platform corners in each video (the sensor corners are inferred from the platform template and a homography is saved), and `"background"` builds the background images and writes a new recording list to `work_root/setup/`.
+
+**s2, detect contacts.** Overhead frames (30 fps) are background-subtracted, warped into the 256 × 64 board space with the body mask, and passed to the tail-base CNN. The detector then reconstructs the 64 × 256 pressure movie from the board packets, segments pressure contacts, and accumulates camera body-quadrant votes (FL/FR/HL/HR) for each contact. Output: `work_root/dynamics/<recording>/`.
+
+**s3, walking bouts.** The whole-animal centre of pressure is computed at ~100 Hz, with each board rendered from its nearest packet by timestamp. Candidate walking bouts are proposed from its speed. `"correct"` opens a review window to keep, reject or trim each candidate; `"stats"` and `"export"` write the per-bout table and the walking windows. The paper used candidates reviewed by hand (the deposit's `mobile_bout_windows.csv`).
+
+An improved automatic detector, `detect_walking_bouts` (actions `"review_new"` / `"export_new"`), is included but was **not** used in the paper. It proposes bouts for the same review window. On the 81 labeled recordings, 95% of the 2,469 manually labeled walking prints have their stance midpoint inside one of its proposed bouts. The proposals add time to review: about 1,000 s of proposed bouts against 619 s of manually selected walking windows.
+
+**s4, paw labels.** Inside each walking window, stance contacts are re-segmented from the pressure movie. Each is assigned FL/FR/HL/HR from its position relative to the smoothed whole-animal COP and walking direction, plus 0.3 × log of the camera votes; left/right is decoded in onset order (Viterbi), and back-to-back pieces of one stance are merged. In the manually selected walking windows of 81 recordings, 2,303 of 2,469 manually labeled prints (93.3%) were found and given the correct paw. Output: `work_root/mobile_contacts/<recording>_mobile_contacts.mat`. With `s4_label_paws(rec, struct('video', true))` it also writes `<recording>_paw_labels.mp4`: camera and pressure map for each walking window, every stance labeled, and "human: XX" where a manual label exists and disagrees. These are the final paw labels; s2's provisional labels from camera votes are not used downstream.
+
+**s5, grams.** `s5_calibrate_to_grams(pixel_sum, centroid_x)` converts a summed taxel response with the curve of the board the contact lies on (boards ordered 4-3-2-1 left to right). Values above the calibrated range (~410-421 g) return NaN. See `data/calibration_0_450/README.md`.
+
+## Outputs
+
+Everything is written under `GAIT_WORK_ROOT`. Conventions used by all stages:
+
+- **Time:** seconds on the recording's shared clock, starting at the first pressure sample. Detector times, walking windows and stance events are all on this base.
+- **Position:** taxel coordinates on the 64 × 256 runway. `centroid_x` is the column along the runway (1-256; boards 4, 3, 2, 1 from left to right) and `centroid_y` the row across it (1-64). One taxel is 2 mm; COP traces in s3 are already in mm.
+- **Pressure:** raw readout counts (12-bit, 0-4095; larger values are readout glitches). Summed responses such as `dynamic_peak_total_pressure` are sums of counts. Convert sums to grams with `s5_calibrate_to_grams`.
+
+| Stage | File (under `GAIT_WORK_ROOT`) | Contents |
+|---|---|---|
+| s1 | `background_models/<recording>_background_model.mat` | `bg_model`: 1080 × 1920 × 3 uint8 background image (rotated like the analysis frames); `frame_transform`, `source_video`, `n_background_frames` |
+| s2 | `dynamics/<recording>/square_tailbase_predictions.csv` | one row per sampled camera frame (30 fps): `frame_index`, `time_s`, `tailbase_x_px`, `tailbase_y_px` (board coordinates, 0-255 × 0-63), `tailbase_confidence` |
+| s2 | `dynamics/<recording>/<tactile file>_peak_seed_footstep_dynamics.mat` | the detector output, below |
+| s3 | `cop_trajectory/cop_trajectory_raw.mat` | `raw_results`, one element per recording, below |
+| s3 | `cop_trajectory/cop_tortuosity_by_bout.csv` | one row per candidate bout: `keep`, `trim_start_idx`/`trim_end_idx` (from the review), `duration_s`, `path_length_mm`, `displacement_mm`, `tortuosity`, `mean_speed_mm_s`, `net_speed_mm_s`, and the same for the video body centroid (`geom_centroid_*`) |
+| s3 | `cop_trajectory/mobile_bout_windows.csv` | walking windows: `recording`, `bout_index`, `t_start`, `t_end` |
+| s4 | `mobile_contacts/<recording>_mobile_contacts.mat` | `contacts` (the stance events), `bout_windows` (N × 2, s), `info`, below |
+| s4 | `mobile_contacts/<recording>_paw_labels.mp4` | labeled video, with `struct('video', true)` |
+
+**s2 detector output** (`*_peak_seed_footstep_dynamics.mat`):
+
+- `pressure_movie_frames`: 64 × 256 × T uint16, the reconstructed pressure movie (about 120 frames per second).
+- `pressure_movie_times`: T × 1, the time of each frame.
+- `footstep_events`: the detector's contacts. Fields used downstream are:
+  - `start_time`, `end_time`, `duration`, `start_frame`, `end_frame`
+  - `centroid_x`, `centroid_y`
+  - `quad_votes`: 1 × 4 camera body-quadrant votes for FL, FR, HL, HR
+  - `label`: provisional, FL/FR/HL/HR or `noise`; superseded by s4
+  - `valid_stance`
+  - `dynamic_roi`: crop box `x1`, `x2`, `y1`, `y2`
+  - `roi_frames`: the pressure crop over the stance
+  - `dynamic_peak_total_pressure`
+- `body_axis_trace`: the camera-derived body axis over time (`time`, body centroid `cx`, `cy`, unit vectors `head_ax_*` and `right_ax_*`, `reliable`).
+- `clean_gait_events`, `export_params`, `export_source`: bookkeeping and the detector settings used.
+
+**s3 COP trace** (`raw_results`): one element per recording, with:
+
+- the recording's metadata
+- `t` (s, ~100 Hz) and `source_t`
+- `cop_x_mm`, `cop_y_mm`: smoothed whole-animal COP (`raw_cop_*` unsmoothed)
+- `geom_centroid_*`: the unweighted centroid of the active taxels
+- `total_pressure`, `n_active_px`, `velocity_mm_s`
+- `is_moving`, `bout_starts`, `bout_ends`: candidate bouts, as indices into `t`
+
+**s4 stance events** (`contacts`): one element per contact, sorted by start time. Use the ones with `mobile_valid = true`; contacts with `mobile_duplicate = true` are fragments of another stance. Per stance event:
+
+| Field | Meaning |
+|---|---|
+| `label` | FL, FR, HL or HR (final) |
+| `start_time`, `end_time`, `duration` | stance timing (s) |
+| `start_frame`, `end_frame` | frame indices into `pressure_movie_frames` |
+| `centroid_x`, `centroid_y` | contact position (taxels) |
+| `dynamic_peak_total_pressure` | peak summed response during stance (counts) |
+| `bout_index` | row of `bout_windows` the stance lies in |
+| `mobile_margin` | assignment confidence: the smaller of the \|log-odds\| for left vs right and for fore vs hind (0 = coin flip) |
+| `quad_votes` | camera votes borrowed from the nearest s2 contact |
+| `track` | the frame-by-frame track behind the contact |
+
+`demo/run_demo.m` shows how to turn the valid contacts into a simple table (`stance_events.csv`).
+
+## Known limitations
+
+- **Camera timestamps for camera-0 recordings.** For recordings whose analyzed video is `camera_0` (25 of the 85), s2 and s3's review window time the video with the `camera1_frame_timestamps`. This affects the tail-base predictions, the camera votes and the body axis, by up to several seconds in a few recordings; the cameras also pause for 3-16 s per recording during disk-write stalls. s4's stance events and paw labels come from the pressure data, with the camera votes as a minor term, and the labeled video uses the matching camera.
+
+## Verification
+
+On the 17 sessions of one animal (rat 6, pre- and post-surgery), s2-s4 reproduce the outputs behind the paper exactly:
+
+- tail-base predictions
+- every detector contact and every pressure-movie frame
+- COP traces and candidate bouts
+- all 671 paw-labeled contacts, field by field
+
+The demo recording reproduces the same outputs exactly, from the background model through the s3 bout table (including the video-derived body-centroid speed) to all 58 labeled stance events.
+
+## Not included
+
+- **The calibration and sensor-characterization scripts.** These were run against our reference force plate. The resulting curves are in `data/calibration_0_450/`, and the procedure is described there and in the paper's Methods. The scripts are available from the authors on request.
+- **The training images for the tail-base CNN.** The trained model and its training history are included.
+- **The paper's statistical analyses and figures.**
+
+## License and citation
+
+**TODO: license (e.g. MIT or BSD-3-Clause) and citation.**

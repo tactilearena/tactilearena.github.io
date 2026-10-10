@@ -1,0 +1,20 @@
+# pipeline outputs and data (they live in GAIT_WORK_ROOT / GAIT_DATA_ROOT, never in the repo)
+gait_outputs/
+gait_data/
+demo_results/
+tailbase_inputs/
+runway_tactile_data_*.mat
+camera_*.mp4
+*_footstep_dynamics.mat
+
+# MATLAB / Python / editor clutter
+*.asv
+*.m~
+__pycache__/
+*.pyc
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

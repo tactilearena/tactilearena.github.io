@@ -181,27 +181,6 @@ Everything is written under `GAIT_WORK_ROOT`. Conventions used by all stages:
 
 `demo/run_demo.m` shows how to turn the valid contacts into a simple table (`stance_events.csv`).
 
-## Known limitations
-
-- **Camera timestamps for camera-0 recordings.** For recordings whose analyzed video is `camera_0` (25 of the 85), s2 and s3's review window time the video with the `camera1_frame_timestamps`. This affects the tail-base predictions, the camera votes and the body axis, by up to several seconds in a few recordings; the cameras also pause for 3-16 s per recording during disk-write stalls. s4's stance events and paw labels come from the pressure data, with the camera votes as a minor term, and the labeled video uses the matching camera.
-
-## Verification
-
-On the 17 sessions of one animal (rat 6, pre- and post-surgery), s2-s4 reproduce the outputs behind the paper exactly:
-
-- tail-base predictions
-- every detector contact and every pressure-movie frame
-- COP traces and candidate bouts
-- all 671 paw-labeled contacts, field by field
-
-The demo recording reproduces the same outputs exactly, from the background model through the s3 bout table (including the video-derived body-centroid speed) to all 58 labeled stance events.
-
-## Not included
-
-- **The calibration and sensor-characterization scripts.** These were run against our reference force plate. The resulting curves are in `data/calibration_0_450/`, and the procedure is described there and in the paper's Methods. The scripts are available from the authors on request.
-- **The training images for the tail-base CNN.** The trained model and its training history are included.
-- **The paper's statistical analyses and figures.**
-
 ## License and citation
 
-**TODO: license (e.g. MIT or BSD-3-Clause) and citation.**
+MIT License; see [LICENSE](LICENSE). If you use this code, please cite the paper above.

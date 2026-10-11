@@ -1,6 +1,6 @@
 # Gait-Project-Pipeline
 
-Acquisition and analysis code for a high-spatiotemporal-resolution pressure-sensing runway for rodent gait analysis, from *A 16 kilotaxel platform for high-resolution spatiotemporal gait analysis in freely walking rodents* (Lu, Slepyan, Perkins, Ascani Orsini, Quinn, Thakor). **TODO: journal reference and DOI.**
+Acquisition and analysis code for a high-spatiotemporal-resolution pressure-sensing runway for rodent gait analysis, from *A 16 kilotaxel platform for high-resolution spatiotemporal gait analysis in freely walking rodents* (Lu, Slepyan, Perkins, Ascani Orsini, Quinn, Thakor).
 
 The platform is a 64 × 256 piezoresistive array (four 64 × 64 boards, 16,384 taxels, 2 mm pitch) under a walking surface, recorded together with overhead cameras. This repository records the runway and takes each recording from raw sensor packets to paw-labeled (FL/FR/HL/HR) stance events and mass-equivalent loading.
 

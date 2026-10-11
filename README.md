@@ -80,11 +80,6 @@ Set these environment variables before starting MATLAB, or edit the top of `pipe
 | `GAIT_PYTHON` | Python executable with PyTorch (default `python`) |
 | `GAIT_ANNOTATIONS_ROOT` | optional; defaults to `<data_root>/annotations` |
 
-Two things to know about `GAIT_WORK_ROOT`:
-
-- **Keep the path short (under about 100 characters).** Detector outputs are MATLAB v7.3 files, and on Windows a full output path over 260 characters fails to save.
-- **Put it outside cloud-synced folders** (OneDrive, Dropbox). The pipeline writes tens of thousands of small files. For the same reason, keep `GAIT_DATA_ROOT` on local disk: cloud-only files are downloaded the first time they are read.
-
 Then add the code to the MATLAB path:
 
 ```matlab

@@ -1,23 +1,4 @@
 % ============================================================================
-% RUNWAY-ONLY FORK. This is NOT used for the square platform.
-%
-% Forked from segmentation_peak_seed_refined.m (the square-platform
-% detector) so runway-specific tuning can diverge without touching square's
-% validated pipeline. Run it through pipeline/s2_detect_contacts.m, which
-% sets the SEGMENTATION_* input variables and runs this script.
-%
-% Runway-specific change vs the square original: build_clean_gait_events's
-% same-label conflict branch ("else" case: candidates whose time gap and
-% centroid distance don't both clearly indicate "same stance" or "separate
-% stance") no longer drops the losing candidate outright
-% (clean_status='clean_rejected'). Confirmed on a real recording that this
-% discarded an event the operator visually identified as a genuine HR
-% footstep. Both candidates are now kept as separate 'kept' events instead
-% of picking one winner by n_obs and silently dropping the other -- this
-% may over-keep some genuine same-label duplicates that the square tuning
-% correctly collapsed, so downstream event counts should be sanity-checked
-% against manual review, not assumed correct by construction.
-% ============================================================================
 clc; close all;
 % Peak-seed segmentation variant.
 % This script intentionally detects only high-confidence footprint cores

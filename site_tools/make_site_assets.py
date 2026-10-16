@@ -41,8 +41,14 @@ def photos():
     save_jpg(get("image50.jpeg"), f"{A}/photos/runway_rat_raw.jpg", 1600)   # rat on the runway (raw photo)
     save_png(get("image55.png"), f"{A}/photos/module.png", 1400)            # one 64x64 sensor + readout board
     save_png(get("image56.png"), f"{A}/photos/modules_2x2.png", 1400)       # four modules tiled 2x2
-    save_jpg(get("image179.jpeg"), f"{A}/photos/readout_board.jpg", 1400)   # readout board with Teensy 4.1
-    save_jpg(get("image180.jpeg"), f"{A}/photos/sensor_array.jpg", 1400)    # bare 64x64 flex sensor
+    # The 64x64 readout board, cropped from the module photo (same image as the manuscript's overview figure).
+    # Note: the deck's other close-ups (image179/image180) are the 32x32 design, not this project's hardware.
+    mod = get("image55.png").convert("RGBA")
+    bg = Image.new("RGBA", mod.size, (11, 8, 16, 255)); mod = Image.alpha_composite(bg, mod)
+    save_jpg(mod.crop((90, 460, 760, 1290)), f"{A}/photos/readout_64x64.jpg", 1000)
+    # The assembled runway: four modules under the cloth, four readout boards along one side (NER 2025 poster).
+    zp = zipfile.ZipFile(os.path.join(TESTING, "NER_2025_poster.pptx"))
+    save_jpg(Image.open(io.BytesIO(zp.read("ppt/media/image10.png"))), f"{A}/photos/runway_assembled.jpg", 1200)
 
 
 # (file, page, trim in bp: left, bottom, right, top) as in main 4.0.tex, plus output name

@@ -35,12 +35,12 @@ open field (a [demonstration](index.md#beyond) not analysed in the paper).
 
 <div class="ta-cards" markdown>
 <figure class="ta-card" markdown>
-![The bare 64 x 64 sensor: a square grid of gold electrode pads on orange polyimide.](assets/photos/sensor_array.jpg){ loading=lazy }
-<figcaption>A bare sensor module: 4,096 electrode pairs on a flex circuit.</figcaption>
+![The assembled runway: a pink acrylic base with four green readout boards along one side, white and magenta walls, and a cloth-covered sensing floor with a toy mouse on it.](assets/photos/runway_assembled.jpg){ loading=lazy }
+<figcaption>The assembled runway: four modules under the cloth between the walls, their four readout boards along one side (toy mouse for scale).</figcaption>
 </figure>
 <figure class="ta-card" markdown>
-![The readout board: a Teensy 4.1 on a green PCB with the flex connector for the sensor tail.](assets/photos/readout_board.jpg){ loading=lazy }
-<figcaption>A readout board: Teensy 4.1, multiplexers and ADCs, and the connector for the sensor's tail.</figcaption>
+<div class="ta-media" markdown>![A 64 by 64 readout board: Teensy 4.1, eight shift-register chips, two multiplexers, two ADCs and two flex connectors holding the sensor's tails.](assets/photos/readout_64x64.jpg){ loading=lazy }</div>
+<figcaption>A readout board: a Teensy 4.1, shift registers that drive the rows, multiplexers and ADCs that read the columns, and two connectors for the sensor's tails.</figcaption>
 </figure>
 <figure class="ta-card" markdown>
 <div class="ta-media ta-media--contain" markdown>![Four sensor modules tiled two by two with their four readout boards.](assets/photos/modules_2x2.png){ loading=lazy }</div>

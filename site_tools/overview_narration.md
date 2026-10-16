@@ -22,4 +22,4 @@ Timed to overview.mp4; the on-screen captions carry the same text.
 - **01:34** Contact shape changed too: the injured paw's print became smaller and more elongated (blue boxes).
 - **01:41** Because the floor is modular, the same four modules tile other arenas: here, three rats in a square open field.
 - **01:46** Possible next steps: pose tracking, neural recordings, contact-triggered experiments, shear sensing.
-- **01:51** Open: build guide, firmware, analysis code and 85 recordings. tactilearena.github.io
+- **01:51** Open: hardware design files, firmware, analysis code and 85 recordings. tactilearena.github.io

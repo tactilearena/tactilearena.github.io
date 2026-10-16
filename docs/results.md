@@ -73,13 +73,13 @@ systems with lower sampling rates would struggle to capture.
 <div class="grid" markdown>
 <figure class="ta-media" markdown>
 <span class="ta-badge">Before surgery · 0.25× speed</span>
-<video controls muted playsinline preload="none" data-poster="assets/video/pre-surgery.jpg" aria-label="Annotated recording before surgery: overhead camera with labelled paw contacts above 3D pressure surfaces for each paw">
+<video width="1280" height="1000" controls muted playsinline preload="none" data-poster="assets/video/pre-surgery.jpg" aria-label="Annotated recording before surgery: overhead camera with labelled paw contacts above 3D pressure surfaces for each paw">
   <source src="assets/video/pre-surgery.mp4" type="video/mp4">
 </video>
 </figure>
 <figure class="ta-media" markdown>
 <span class="ta-badge">After surgery · 0.25× speed</span>
-<video controls muted playsinline preload="none" data-poster="assets/video/post-surgery.jpg" aria-label="Annotated recording after surgery: overhead camera with labelled paw contacts above 3D pressure surfaces for each paw">
+<video width="1280" height="1000" controls muted playsinline preload="none" data-poster="assets/video/post-surgery.jpg" aria-label="Annotated recording after surgery: overhead camera with labelled paw contacts above 3D pressure surfaces for each paw">
   <source src="assets/video/post-surgery.mp4" type="video/mp4">
 </video>
 </figure>

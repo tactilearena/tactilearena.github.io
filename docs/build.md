@@ -66,7 +66,7 @@ The video (93&nbsp;s) shows steps 2&ndash;6.
 
 </div>
 <figure class="ta-media" markdown style="max-width:22rem">
-<video controls preload="none" playsinline data-poster="assets/video/assembly.jpg" aria-label="Assembly video: connecting sensors to readout boards, aligning four arrays, covering with piezoresistive film, connecting to the computer">
+<video width="720" height="1280" controls preload="none" playsinline data-poster="assets/video/assembly.jpg" aria-label="Assembly video: connecting sensors to readout boards, aligning four arrays, covering with piezoresistive film, connecting to the computer">
   <source src="assets/video/assembly.mp4" type="video/mp4">
   <track kind="chapters" src="assets/video/assembly_chapters.vtt" srclang="en" label="Steps">
 </video>

@@ -1,0 +1,65 @@
+WEBVTT
+
+00:00:01.000 --> 00:00:08.600
+We turned the ground into a sensor.
+
+00:00:15.800 --> 00:00:19.900
+From above, a walking rat hides its paws under its body.
+
+00:00:20.100 --> 00:00:23.900
+The floor sees each one: where it lands, how long it stays down, and how hard it presses.
+
+00:00:24.100 --> 00:00:26.800
+Labels are automatic paw identities: left/right, fore/hind (FL, FR, HL, HR).
+
+00:00:27.300 --> 00:00:32.000
+Four 64 × 64 sensor modules make a 512 × 128 mm runway: 16,384 taxels at 2 mm pitch.
+
+00:00:32.500 --> 00:00:37.200
+Each module is a flex circuit of electrodes under a piezoresistive film, read by its own Teensy-based board.
+
+00:00:37.600 --> 00:00:42.800
+Plug each sensor into its board, line the four up, cover with film and a waterproof cloth.
+
+00:00:43.300 --> 00:00:47.600
+Reading 16,384 taxels one by one would be slow. Each board reads only 200 per frame.
+
+00:00:47.800 --> 00:00:53.800
+It follows last frame's contacts, scans the module coarse-to-fine, and reads every neighbour of anything pressed.
+
+00:00:54.300 --> 00:00:59.600
+The real boards, frame by frame: each paw is read in full, the empty floor only sparsely.
+
+00:00:59.800 --> 00:01:04.800
+That is how 16,384 taxels run at about 1,000 frames per second.
+
+00:01:05.300 --> 00:01:11.600
+With video on the same clock, each contact is assigned to a paw: 93.3% of 2,469 hand-labelled contacts were correct.
+
+00:01:11.800 --> 00:01:18.700
+Every paw's load is then measured about 1,000 times per second, through every step.
+
+00:01:19.300 --> 00:01:23.400
+After a sciatic nerve pinch, rats kept stepping on the injured hind paw...
+
+00:01:23.500 --> 00:01:26.800
+...but its share of the load fell by about 60%, nearly twice the drop in its share of stance time.
+
+00:01:27.300 --> 00:01:30.600
+Three injured and two sham rats over two weeks: both ratios fell, then recovered toward baseline.
+
+00:01:30.800 --> 00:01:33.800
+The injured paw's peak load dropped 27%; the opposite hind paw took up 18–21% more.
+
+00:01:34.300 --> 00:01:40.700
+Contact shape changed too: the injured paw's print became smaller and more elongated (blue boxes).
+
+00:01:41.300 --> 00:01:45.900
+Because the floor is modular, the same four modules tile other arenas: here, three rats in a square open field.
+
+00:01:46.100 --> 00:01:50.700
+Possible next steps: pose tracking, neural recordings, contact-triggered experiments, shear sensing.
+
+00:01:51.500 --> 00:01:59.600
+Open: build guide, firmware, analysis code and 85 recordings. tactilearena.github.io
+

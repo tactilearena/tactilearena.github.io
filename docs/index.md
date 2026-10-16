@@ -37,7 +37,7 @@ across a single paw during a step.
 </div>
 <figure class="ta-media" markdown>
 <span class="ta-badge">Real data · 0.25× speed</span>
-<video data-loop muted loop playsinline preload="none" data-poster="assets/loops/camera_floor.jpg"
+<video width="1920" height="1084" data-loop muted loop playsinline preload="none" data-poster="assets/loops/camera_floor.jpg"
        aria-label="Top: overhead camera view of a walking rat whose paws are hidden under its body. Bottom: the same moment on the tactile floor, where each paw is a distinct, labelled pressure contact.">
   <source src="assets/loops/camera_floor.mp4" type="video/mp4">
 </video>
@@ -114,7 +114,7 @@ own readout board, tile the 512&nbsp;mm runway.
 </div>
 <div class="ta-card" markdown>
 <div class="ta-media" markdown>
-<video data-loop muted loop playsinline preload="none" data-poster="assets/loops/sampling.jpg" aria-label="Animation of the taxels a module reads in successive frames: a sparse, shifting background scan plus dense patches around each paw.">
+<video width="512" height="512" data-loop muted loop playsinline preload="none" data-poster="assets/loops/sampling.jpg" aria-label="Animation of the taxels a module reads in successive frames: a sparse, shifting background scan plus dense patches around each paw.">
   <source src="assets/loops/sampling.mp4" type="video/mp4">
 </video>
 </div>
@@ -150,10 +150,10 @@ contacts were found and given the right paw.
 <section class="ta-section" id="overview" markdown>
 <p class="ta-kicker">Overview video</p>
 
-## TactileArena in three minutes
+## TactileArena in two minutes
 
 <figure class="ta-media" markdown>
-<video controls preload="none" playsinline data-poster="assets/video/overview.jpg"
+<video width="1920" height="1080" controls preload="none" playsinline data-poster="assets/video/overview.jpg"
        aria-label="Overview video of TactileArena with on-screen captions">
   <source src="assets/video/overview.mp4" type="video/mp4">
   <track kind="captions" src="assets/video/overview.vtt" srclang="en" label="English">
@@ -222,7 +222,7 @@ Possible next steps, none of which the paper has tested yet:
 </div>
 <figure class="ta-media" markdown>
 <span class="ta-badge">Demonstration · not analysed in the paper</span>
-<video data-loop muted loop playsinline preload="none" data-poster="assets/video/arena_multi.jpg"
+<video width="1600" height="900" data-loop muted loop playsinline preload="none" data-poster="assets/video/arena_multi.jpg"
        aria-label="Three rats on a square tactile arena built from four modules; left, the live tactile map with their paw contacts; right, the overhead camera.">
   <source src="assets/video/arena_multi.mp4" type="video/mp4">
 </video>

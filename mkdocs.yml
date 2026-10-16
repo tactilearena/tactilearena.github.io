@@ -72,8 +72,6 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-  - pymdownx.arithmatex:
-      generic: true
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true

@@ -657,7 +657,7 @@ def main():
         fh.write("WEBVTT\n\n")
         for a, b, txt in cues:
             fh.write(f"{vtt_time(a)} --> {vtt_time(b)}\n{txt}\n\n")
-    poster(out, out.replace(".mp4", ".jpg"), t=27.0)
+    poster(out, out.replace(".mp4", ".jpg"), t=21.5)
     with open(os.path.join(WORK, "overview_script.md"), "w") as fh:
         fh.write("# TactileArena overview: narration script\n\nTimed to overview.mp4; the on-screen captions carry the same text.\n\n")
         for a, b, txt in cues:

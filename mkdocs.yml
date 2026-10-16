@@ -1,0 +1,95 @@
+site_name: TactileArena
+site_description: >-
+  A modular, high-density tactile floor that measures where, when and how hard freely moving animals press on
+  the ground: 16,384 taxels at 2 mm pitch, about 1,000 frames per second, synchronized with video.
+site_url: https://tactilearena.github.io/
+repo_url: https://github.com/tactilearena/tactilearena.github.io
+repo_name: tactilearena/tactilearena.github.io
+edit_uri: edit/main/docs/
+docs_dir: docs
+copyright: "TactileArena. Code MIT; website text, figures and media CC BY 4.0."
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+
+extra_css:
+  - stylesheets/tactilearena.css
+extra_javascript:
+  - javascripts/tactilearena.js
+
+extra:
+  generator: false
+  paper_title: >-
+    Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/tactilearena/tactilearena.github.io
+      name: TactileArena on GitHub
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - How it works: how-it-works.md
+  - Results: results.md
+  - Build: build.md
+  - Software: software.md
+  - Data: data.md
+  - Paper: paper.md

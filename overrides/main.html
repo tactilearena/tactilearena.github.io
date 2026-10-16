@@ -1,0 +1,42 @@
+{#-
+  Every page: share previews (Open Graph and Twitter/X card tags) and PNG icons for browsers that do not use
+  the SVG favicon. The card image is assets/social.jpg (1200 x 630). The description is the page's
+  front-matter `description`, or the site description.
+-#}
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {%- if page and page.is_homepage -%}
+    {%- set og_title = config.extra.paper_title -%}
+  {%- elif page and page.meta and page.meta.title -%}
+    {%- set og_title = page.meta.title ~ " - " ~ config.site_name -%}
+  {%- elif page and page.title -%}
+    {%- set og_title = (page.title | striptags) ~ " - " ~ config.site_name -%}
+  {%- else -%}
+    {%- set og_title = config.site_name -%}
+  {%- endif -%}
+  {%- if page and page.meta and page.meta.description -%}
+    {%- set og_desc = page.meta.description -%}
+  {%- else -%}
+    {%- set og_desc = config.site_description -%}
+  {%- endif -%}
+  {%- set og_image = config.site_url ~ "assets/social.jpg" -%}
+  {%- set og_alt = "Overhead video of a rat on the runway above the tactile floor's pressure map, with each paw contact labelled." -%}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ og_title | e }}">
+  <meta property="og:description" content="{{ og_desc | e }}">
+  {%- if page and page.canonical_url %}
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  {%- endif %}
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ og_alt | e }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title | e }}">
+  <meta name="twitter:description" content="{{ og_desc | e }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/favicon-32.png' | url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ 'assets/apple-touch-icon.png' | url }}">
+{% endblock %}

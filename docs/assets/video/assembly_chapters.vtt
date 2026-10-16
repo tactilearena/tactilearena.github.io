@@ -1,0 +1,19 @@
+WEBVTT
+
+00:00.000 --> 00:04.000
+The readout board
+
+00:04.000 --> 00:22.000
+Plug each sensor's flex tail into its readout board
+
+00:22.000 --> 00:54.000
+Line the four sensor arrays up edge to edge
+
+00:54.000 --> 01:14.000
+Cover the arrays with piezoresistive film
+
+01:14.000 --> 01:32.000
+Connect the readout boards to the computer
+
+01:32.000 --> 01:34.000
+Run the live view and check that the board LEDs light up

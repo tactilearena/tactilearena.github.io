@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use TactileArena's code, data or hardware, please cite it as below."
+title: "TactileArena: scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals"
+type: software
+authors:
+  - family-names: "Lu"
+    given-names: "Weiwen"
+  - family-names: "Slepyan"
+    given-names: "Ariel"
+  - family-names: "Perkins"
+    given-names: "Pierce"
+  - family-names: "Ascani Orsini"
+    given-names: "Alessandro"
+  - family-names: "Quinn"
+    given-names: "Kiara"
+  - family-names: "Thakor"
+    given-names: "Nitish V."
+repository-code: "https://github.com/tactilearena/tactilearena.github.io"
+url: "https://tactilearena.github.io"
+license: MIT
+date-released: "2026-10-16"

@@ -1,8 +1,14 @@
-# Gait-Project-Pipeline
+# TactileArena
 
-Acquisition and analysis code for a high-spatiotemporal-resolution pressure-sensing runway for rodent gait analysis, from *A 16 kilotaxel platform for high-resolution spatiotemporal gait analysis in freely walking rodents* (Lu, Slepyan, Perkins, Ascani Orsini, Quinn, Thakor).
+**Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals**
+Weiwen Lu\*, Ariel Slepyan\*, Pierce Perkins, Alessandro Ascani Orsini, Kiara Quinn, Nitish V. Thakor (\*equal contribution).
+Johns Hopkins University and MIT. Manuscript in preparation.
 
-The platform is a 64 × 256 piezoresistive array (four 64 × 64 boards, 16,384 taxels, 2 mm pitch) under a walking surface, recorded together with overhead cameras. This repository records the runway and takes each recording from raw sensor packets to paw-labeled (FL/FR/HL/HR) stance events and mass-equivalent loading.
+**Website: <https://tactilearena.github.io>** · [How it works](https://tactilearena.github.io/how-it-works/) · [Build guide](https://tactilearena.github.io/build/) · [Data](https://tactilearena.github.io/data/)
+
+TactileArena turns the floor into a sensor. A modular surface of 16,384 pressure-sensing taxels (2 mm pitch, 512 × 128 mm, nominal 1 kHz) records where, when and how hard a freely moving animal presses on the ground, synchronized with overhead video and with nothing attached to the animal. Each readout board reads only 200 of its module's 4,096 taxels per frame, concentrating its measurements around active contacts (adaptive compressive sampling), which is what makes this combination of area, density and speed possible.
+
+The runway is a 64 × 256 piezoresistive array (four 64 × 64 modules, each with its own readout board) under a walking surface, recorded together with overhead cameras. This repository holds the readout firmware, the synchronized recording code, the pipeline that takes each recording from raw sensor packets to paw-labeled (FL/FR/HL/HR) stance events and mass-equivalent loading, and the project website (`docs/`).
 
 ## Repository layout
 
@@ -23,11 +29,13 @@ demo/          run_demo.m               runs the pipeline on the demo recording 
 data/          tailbase_model/          trained tail-base CNN (best_tail_detector.pt) and its training history
                calibration_0_450/       per-board calibration curves (calibration_0_450.json)
                platform_sheet_template.mat   sensor position relative to the platform corners
+docs/          the website (MkDocs Material; mkdocs.yml at the root, published by .github/workflows/pages.yml)
+site_tools/    Python scripts that make the website's videos and sampling explainers from a raw recording
 ```
 
 ## Demo
 
-The demo package is `demo_2-24-2026_rat4.zip` in the data deposit on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364) (415 MB download, 1.36 GB unzipped). It holds one complete recording, rat 4 on 24 Feb 2026 (sciatic nerve pinch group, two weeks before surgery): an 85-s session with five runway crossings. It contains the raw pressure packets (1.0 GB), the overhead video (334 MB) and that recording's annotations, in the same layout as the full data deposit. Extracting it to `C:\` gives `C:\gait_demo\data`.
+The demo package is `demo_2-24-2026_rat4.zip` in the data deposit on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364) (the DOI resolves once the deposit is published) (415 MB download, 1.36 GB unzipped). It holds one complete recording, rat 4 on 24 Feb 2026 (sciatic nerve pinch group, two weeks before surgery): an 85-s session with five runway crossings. It contains the raw pressure packets (1.0 GB), the overhead video (334 MB) and that recording's annotations, in the same layout as the full data deposit. Extracting it to `C:\` gives `C:\gait_demo\data`.
 
 ```matlab
 setenv('GAIT_PYTHON', 'C:\path\to\python.exe')   % Python with PyTorch, if not on the PATH
@@ -178,4 +186,8 @@ Everything is written under `GAIT_WORK_ROOT`. Conventions used by all stages:
 
 ## License and citation
 
-MIT License; see [LICENSE](LICENSE). If you use this code, please cite the paper above.
+Code: MIT License; see [LICENSE](LICENSE). Website text, figures and media in `docs/`: CC BY 4.0; see [LICENSE-docs](LICENSE-docs). The recordings are released separately under CC BY 4.0.
+
+If you use this code or data, please cite the paper (manuscript in preparation; see [CITATION.cff](CITATION.cff) and the [website](https://tactilearena.github.io/paper/)).
+
+This repository started as [victorlu2220/Gait-Project-Pipeline](https://github.com/victorlu2220/Gait-Project-Pipeline); its history is preserved here.

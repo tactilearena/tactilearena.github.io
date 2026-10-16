@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="TactileArena">
+  <!-- A 5x5 patch of taxels with one paw print pressed into it (inferno colours). -->
+  <rect width="32" height="32" rx="7" fill="#170f22"/>
+  <g transform="translate(3.1 3.1)">
+    <g fill="#33283f">
+      <rect x="0" y="0" width="4.6" height="4.6" rx="1"/><rect x="5.2" y="0" width="4.6" height="4.6" rx="1"/>
+      <rect x="10.4" y="0" width="4.6" height="4.6" rx="1"/><rect x="15.6" y="0" width="4.6" height="4.6" rx="1"/>
+      <rect x="20.8" y="0" width="4.6" height="4.6" rx="1"/>
+      <rect x="0" y="5.2" width="4.6" height="4.6" rx="1"/><rect x="20.8" y="5.2" width="4.6" height="4.6" rx="1"/>
+      <rect x="0" y="10.4" width="4.6" height="4.6" rx="1"/><rect x="20.8" y="10.4" width="4.6" height="4.6" rx="1"/>
+      <rect x="0" y="15.6" width="4.6" height="4.6" rx="1"/><rect x="20.8" y="15.6" width="4.6" height="4.6" rx="1"/>
+      <rect x="0" y="20.8" width="4.6" height="4.6" rx="1"/><rect x="5.2" y="20.8" width="4.6" height="4.6" rx="1"/>
+      <rect x="15.6" y="20.8" width="4.6" height="4.6" rx="1"/><rect x="20.8" y="20.8" width="4.6" height="4.6" rx="1"/>
+    </g>
+    <!-- toes -->
+    <rect x="5.2" y="5.2" width="4.6" height="4.6" rx="1" fill="#bc3754"/>
+    <rect x="10.4" y="5.2" width="4.6" height="4.6" rx="1" fill="#f98e09"/>
+    <rect x="15.6" y="5.2" width="4.6" height="4.6" rx="1" fill="#bc3754"/>
+    <!-- pad -->
+    <rect x="5.2" y="10.4" width="4.6" height="4.6" rx="1" fill="#f98e09"/>
+    <rect x="10.4" y="10.4" width="4.6" height="4.6" rx="1" fill="#fcffa4"/>
+    <rect x="15.6" y="10.4" width="4.6" height="4.6" rx="1" fill="#f98e09"/>
+    <rect x="5.2" y="15.6" width="4.6" height="4.6" rx="1" fill="#57106e"/>
+    <rect x="10.4" y="15.6" width="4.6" height="4.6" rx="1" fill="#f98e09"/>
+    <rect x="15.6" y="15.6" width="4.6" height="4.6" rx="1" fill="#57106e"/>
+    <rect x="10.4" y="20.8" width="4.6" height="4.6" rx="1" fill="#57106e"/>
+  </g>
+</svg>

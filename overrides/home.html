@@ -1,0 +1,75 @@
+{#-
+  Home page: a full-width hero (title, authors, the one-line idea and a real recording) above the tabs'
+  content, then the page's own Markdown (docs/index.md) as the story. Text people may want to edit lives in
+  docs/index.md; only the hero is here.
+-#}
+{% extends "main.html" %}
+
+{% block htmltitle %}
+  <title>{{ config.site_name }}: the ground as a sensor</title>
+{% endblock %}
+
+{% block tabs %}
+  {{ super() }}
+  <section class="ta-hero" aria-labelledby="ta-hero-title">
+    <div class="ta-hero__inner md-grid">
+      <h1 id="ta-hero-title" class="ta-hero__name">TactileArena</h1>
+      <p class="ta-hero__title">{{ config.extra.paper_title }}</p>
+      {#- (name, website or "", affiliations, mark) in the manuscript's order. -#}
+      {%- set authors = [
+        ("Weiwen Lu", "", "1", "*"),
+        ("Ariel Slepyan", "https://arielslepyan.me/", "2,3", "*"),
+        ("Pierce Perkins", "", "1", ""),
+        ("Alessandro Ascani Orsini", "", "4", ""),
+        ("Kiara Quinn", "", "1", ""),
+        ("Nitish V. Thakor", "https://neuroengineering.bme.jhu.edu/", "1", ""),
+      ] %}
+      <p class="ta-hero__authors">
+        {%- for name, url, aff, mark in authors %}
+        <span class="ta-author">{% if url %}<a href="{{ url }}">{{ name }}</a>{% else %}{{ name }}{% endif %}<sup>{{ aff }}{{ mark }}</sup></span>{% if not loop.last %},{% endif %}
+        {%- endfor %}
+      </p>
+      <p class="ta-hero__affil">
+        <span class="ta-author"><sup>1</sup>Johns Hopkins University, Biomedical Engineering</span>
+        <span class="ta-author"><sup>2</sup>MIT, Electrical Engineering and Computer Science</span>
+        <span class="ta-author"><sup>3</sup>MIT, Brain and Cognitive Sciences</span>
+        <span class="ta-author"><sup>4</sup>Johns Hopkins University, Electrical Engineering</span>
+        <span class="ta-author"><sup>*</sup>Equal contribution</span>
+      </p>
+      <p class="ta-hero__lede">We turned the ground into a sensor.</p>
+      <p class="ta-hero__sub">
+        TactileArena is a modular floor of 16,384 pressure-sensing taxels at 2&nbsp;mm pitch. It records where,
+        when and how hard a freely moving animal presses on the ground, about a thousand times per second,
+        alongside ordinary video and with nothing attached to the animal.
+      </p>
+      <div class="ta-hero__buttons">
+        <a class="ta-btn ta-btn--primary" href="#overview">Watch the overview</a>
+        <a class="ta-btn" href="{{ 'how-it-works/' | url }}">How it works</a>
+        <a class="ta-btn" href="{{ 'build/' | url }}">Build one</a>
+        <a class="ta-btn" href="{{ config.repo_url }}">Code</a>
+        <a class="ta-btn" href="{{ 'data/' | url }}">Data</a>
+      </div>
+    </div>
+    <div class="ta-hero__media">
+      <video data-loop muted loop playsinline autoplay preload="auto" poster="{{ 'assets/loops/hero.jpg' | url }}"
+             aria-label="A rat walks along the runway seen from above; the squares of floor under each paw light up as it presses, and fade after it lifts">
+        <source src="{{ 'assets/loops/hero.mp4' | url }}" type="video/mp4">
+      </video>
+    </div>
+    <p class="ta-hero__caption">
+      <strong>A real recording, at 0.25&times; speed.</strong> A rat crosses the 512&nbsp;&times;&nbsp;128&nbsp;mm
+      runway, seen by the overhead camera after registration to the sensor grid. Each glowing square is a
+      2&nbsp;mm taxel loaded at that instant; <span class="ta-dot" style="background:#aa2878"></span>magenta
+      marks where a paw has just lifted off.
+    </p>
+  </section>
+{% endblock %}
+
+{% block content %}
+  {{ page.content }}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>document.body.classList.add("ta-home");</script>
+{% endblock %}

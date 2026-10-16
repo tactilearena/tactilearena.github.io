@@ -1,0 +1,46 @@
+{
+ "t0": 34.85,
+ "t1": 35.45,
+ "recording": "2026-02-24, rat 4 (nerve-pinch group, two weeks before surgery), runway",
+ "M": 200,
+ "threshold": 700,
+ "value_scale": 16,
+ "boards": [
+  {
+   "hid": 4,
+   "n": 605,
+   "taxels": 121000,
+   "ts": 0,
+   "count": 2420,
+   "idx": 3632,
+   "val": 245632
+  },
+  {
+   "hid": 3,
+   "n": 598,
+   "taxels": 119600,
+   "ts": 366632,
+   "count": 369024,
+   "idx": 370220,
+   "val": 609420
+  },
+  {
+   "hid": 2,
+   "n": 598,
+   "taxels": 119600,
+   "ts": 729020,
+   "count": 731412,
+   "idx": 732608,
+   "val": 971808
+  },
+  {
+   "hid": 1,
+   "n": 609,
+   "taxels": 121800,
+   "ts": 1091408,
+   "count": 1093844,
+   "idx": 1095064,
+   "val": 1338664
+  }
+ ]
+}

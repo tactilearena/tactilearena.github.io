@@ -26,7 +26,8 @@
       ] %}
       <p class="ta-hero__authors">
         {%- for name, url, aff, mark in authors %}
-        <span class="ta-author">{% if url %}<a href="{{ url }}">{{ name }}</a>{% else %}{{ name }}{% endif %}<sup>{{ aff }}{{ mark }}</sup></span>{% if not loop.last %},{% endif %}
+        {%- set label = ("<strong>" ~ name ~ "</strong>") if "*" in mark else name %}
+        <span class="ta-author">{% if url %}<a href="{{ url }}">{{ label }}</a>{% else %}{{ label }}{% endif %}<sup>{{ aff }}{{ mark }}</sup></span>{% if not loop.last %},{% endif %}
         {%- endfor %}
       </p>
       <p class="ta-hero__affil">

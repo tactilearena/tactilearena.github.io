@@ -241,3 +241,4 @@
 .md-typeset figure.ta-card { margin: 0; width: auto; display: flex; }
 .md-typeset figure.ta-card > p { margin: 0; }
 .md-typeset figure.ta-card img { border-radius: 0; }
+.md-typeset .ta-authors { font-size: .9rem; line-height: 1.7; margin-bottom: .3rem; }

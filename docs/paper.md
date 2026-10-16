@@ -7,14 +7,14 @@ description: Scalable high-density tactile arenas for measuring ground-contact f
 
 ## Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals
 
-Weiwen Lu<sup>1*</sup>, Ariel Slepyan<sup>2,3*</sup>, Pierce Perkins<sup>1</sup>, Alessandro Ascani
-Orsini<sup>4</sup>, Kiara Quinn<sup>1</sup>, Nitish V. Thakor<sup>1</sup>
+<p class="ta-authors"><strong>Weiwen Lu</strong><sup>1&ast;</sup>, <strong>Ariel Slepyan</strong><sup>2,3&ast;</sup>,
+Pierce Perkins<sup>1</sup>, Alessandro Ascani Orsini<sup>4</sup>, Kiara Quinn<sup>1</sup>, Nitish V. Thakor<sup>1</sup></p>
 
 <p class="ta-small"><sup>1</sup>Department of Biomedical Engineering, Johns Hopkins University ·
 <sup>2</sup>Department of Electrical Engineering and Computer Science, MIT ·
 <sup>3</sup>Department of Brain and Cognitive Sciences, MIT ·
 <sup>4</sup>Department of Electrical Engineering, Johns Hopkins University ·
-<sup>*</sup>Equal contribution</p>
+<sup>&ast;</sup>These authors contributed equally.</p>
 
 **Status:** manuscript in preparation.
 

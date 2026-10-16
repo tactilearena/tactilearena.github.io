@@ -29,6 +29,7 @@ demo/          run_demo.m               runs the pipeline on the demo recording 
 data/          tailbase_model/          trained tail-base CNN (best_tail_detector.pt) and its training history
                calibration_0_450/       per-board calibration curves (calibration_0_450.json)
                platform_sheet_template.mat   sensor position relative to the platform corners
+hardware/      KiCad sources, fabrication Gerbers and BOM for the 64 x 64 sensor and its readout board (CERN-OHL-P-2.0)
 docs/          the website (MkDocs Material; mkdocs.yml at the root, published by .github/workflows/pages.yml)
 site_tools/    Python scripts that make the website's videos and sampling explainers from a raw recording
 ```
@@ -186,7 +187,7 @@ Everything is written under `GAIT_WORK_ROOT`. Conventions used by all stages:
 
 ## License and citation
 
-Code: MIT License; see [LICENSE](LICENSE). Website text, figures and media in `docs/`: CC BY 4.0; see [LICENSE-docs](LICENSE-docs). The recordings are released separately under CC BY 4.0.
+Code: MIT License; see [LICENSE](LICENSE). Hardware design files in `hardware/`: CERN-OHL-P-2.0; see [LICENSE-hardware](LICENSE-hardware). Website text, figures and media in `docs/`: CC BY 4.0; see [LICENSE-docs](LICENSE-docs). The recordings are released separately under CC BY 4.0.
 
 If you use this code or data, please cite the paper (manuscript in preparation; see [CITATION.cff](CITATION.cff) and the [website](https://tactilearena.github.io/paper/)).
 

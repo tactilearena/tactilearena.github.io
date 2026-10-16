@@ -569,12 +569,12 @@ def s09_open(t):
     im = to_img(blank()).convert("RGBA")
     a = ease(t / 0.8)
     text_block(im, (W / 2, 250), ["Open"], 80, "SemiBold", anchor="ma", fill=(255, 179, 138), alpha=a)
-    lines = ["Build guide and assembly video", "Readout firmware and synchronized recording code",
+    lines = ["KiCad design files, build guide and assembly video", "Readout firmware and synchronized recording code",
              "Analysis pipeline, pretrained models and calibration curves", "85 runway recordings with annotations"]
     y = 400
     for i_, ln in enumerate(lines):
         y = text_block(im, (W / 2, y), [ln], 42, "Regular", anchor="ma", alpha=ease((t - 0.6 - 0.35 * i_) / 0.6)) + 10
-    text_block(im, (W / 2, y + 40), ["About US$540 in parts for a four-module runway"], 34, "Regular", fill=(170, 162, 182), anchor="ma",
+    text_block(im, (W / 2, y + 40), ["Open hardware: about US$550 in parts for a four-module runway"], 34, "Regular", fill=(170, 162, 182), anchor="ma",
                alpha=ease((t - 2.4) / 0.6))
     text_block(im, (W / 2, H - 170), ["tactilearena.github.io"], 56, "SemiBold", anchor="ma", alpha=ease((t - 3.0) / 0.6))
     return im
@@ -616,7 +616,7 @@ CAPTION_TABLE = {
                    (15.3, 21.7, "Contact shape changed too: the injured paw's print became smaller and more elongated (blue boxes).")],
     "s08_beyond": [(0.3, 4.9, "Because the floor is modular, the same four modules tile other arenas: here, three rats in a square open field."),
                    (5.1, 9.7, "Possible next steps: pose tracking, neural recordings, contact-triggered experiments, shear sensing.")],
-    "s09_open": [(0.5, 8.6, "Open: build guide, firmware, analysis code and 85 recordings. tactilearena.github.io")],
+    "s09_open": [(0.5, 8.6, "Open: hardware design files, firmware, analysis code and 85 recordings. tactilearena.github.io")],
 }
 
 GAP = 0.5  # dip to black between scenes (s)

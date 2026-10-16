@@ -18,33 +18,46 @@ computer.</p>
 | Part | Per runway | Notes |
 |---|---|---|
 | Sensor module (flex PCB, 2 layers, 157.9&nbsp;&times;&nbsp;179.7&nbsp;mm outline) | 4 | 64&nbsp;&times;&nbsp;64 electrode pairs at 2&nbsp;mm pitch; no components. Its two 70-contact tails plug straight into the readout board. Order as flex (FPC) with stiffeners on the tails. |
-| Readout board (4-layer PCB, 92&nbsp;&times;&nbsp;56&nbsp;mm) | 4 | Teensy 4.1, 2&nbsp;&times; ADG732 32:1 multiplexers, 2&nbsp;&times; AD7476 12-bit ADCs, 8&nbsp;&times; 74LVC595 shift registers, op-amps, two 70-pin flex connectors (Molex 505110). |
+| Readout board (4-layer PCB, 92&nbsp;&times;&nbsp;56&nbsp;mm) | 4 | Teensy 4.1, 2&nbsp;&times; ADG732 32:1 multiplexers, 2&nbsp;&times; AD7476 12-bit ADCs, 8&nbsp;&times; 74LVC595 shift registers, 2&nbsp;&times; MCP41HV51 digital potentiometers, op-amps, two 70-pin flex connectors (Molex 505110). |
 | Piezoresistive film (Velostat/Linqstat) | ~4 pieces of 140&nbsp;&times;&nbsp;140&nbsp;mm | Lies over the electrode grid. |
 | Waterproof cloth | ~1 yard | Covers the sensing surface; the animal walks on it. |
 | Clear acrylic walls and floor, USB cables and hub, overhead camera(s), computer | | The recording script runs on macOS with two 1920&nbsp;&times;&nbsp;1080 cameras. |
 
 ## What it costs { #cost }
 
-Parts for one four-module runway come to about **US$540** (range about US$480&ndash;690), or **about US$135 per
-64&nbsp;&times;&nbsp;64 module**. That assumes you solder the boards yourself, order bare PCBs from any fab, and buy parts
-at retail. Prices were checked in October 2026.
+Parts for one four-module runway come to about **US&#36;550** (range about US&#36;500&ndash;750), or **about
+US&#36;140 per 64&nbsp;&times;&nbsp;64 module**. That assumes you solder the boards yourself, order bare PCBs from any
+fab, and buy parts at retail. Prices were checked in October 2026.
 
 | | Per runway |
 |---|---|
-| Readout electronics (parts for 4 boards) | $308 |
+| Readout electronics (parts for 4 boards) | $324 |
 | 4 &times; Teensy 4.1 | $126 |
 | Readout PCBs and stencil (one order of 5) | ~$13 |
 | Flex sensor PCBs (one order of 5) | ~$75 (estimate; $30&ndash;200 depending on fab) |
 | Piezoresistive film and waterproof cloth | ~$15 |
-| **Total** | **~$540** |
+| **Total** | **~$550** |
 
-The two analog chips (ADG732 multiplexer and AD7476 ADC, two of each per board) are almost half the total. The flex
-sensor is the least certain line: quote it with your fab before ordering. Shipping, tax, tools, the enclosure,
-cameras and the computer are not included. Assembly by the board house is optional and adds roughly US$115.
+The two analog chips (ADG732 multiplexer and AD7476 ADC, two of each per board) are almost half the total. The
+digital potentiometers are priced at DigiKey's US$2.00 (on backorder in October 2026); from stock elsewhere they
+cost up to about US&#36;7, which adds about US&#36;40. The flex sensor is the least certain line: quote it with your fab
+before ordering. Shipping, tax, tools, the enclosure, cameras and the computer are not included. Assembly by the
+board house is optional and adds roughly US&#36;115.
 
-!!! note "Design files"
-    Fabrication files for the sensor module and the readout board (KiCad sources, Gerbers and the bill of
-    materials) are being prepared for release here.
+## Design files { #design-files }
+
+The KiCad sources, the Gerbers the boards were made from and the readout board's bill of materials are in
+[`hardware/`](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware), under the CERN Open
+Hardware Licence v2, Permissive.
+
+| Board | Files | Order as |
+|---|---|---|
+| Sensor module | [KiCad layout and Gerbers](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware/sensor_64x64) | 2-layer **flex** PCB, 157.9&nbsp;&times;&nbsp;179.7&nbsp;mm, stiffener under the two tails |
+| Readout board | [KiCad schematic, layout and Gerbers](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware/readout_64x64), [BOM](https://github.com/tactilearena/tactilearena.github.io/blob/main/hardware/readout_64x64/bom.csv) | 4-layer, 1.6&nbsp;mm, 91.9&nbsp;&times;&nbsp;56.3&nbsp;mm |
+
+The [hardware README](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware#readme) has the
+fabrication and soldering notes. The Teensy 4.1 and the two digital potentiometers on each readout board are fitted
+by hand.
 
 ## Assembly { #assembly }
 

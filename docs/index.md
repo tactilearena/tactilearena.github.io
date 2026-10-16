@@ -240,7 +240,7 @@ Possible next steps, none of which the paper has tested yet:
 <div class="ta-card__body" markdown>
 ### Build guide
 Four flex-PCB sensor modules, four readout boards built around a Teensy 4.1, a piezoresistive film and a
-waterproof cover: about US$540 in parts for one runway, or roughly US$135 per module. Includes an assembly video.
+waterproof cover: about US&#36;550 in parts for one runway, or roughly US&#36;140 per module. KiCad design files, Gerbers and an assembly video included.
 
 [Build one](build.md){ .ta-more }
 </div>

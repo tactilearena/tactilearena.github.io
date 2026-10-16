@@ -5,7 +5,7 @@ IC11 IC14,2,TLV9362,Dual op-amp,TLV9362IDR,C4367884,SOIC127P600X175-8N (SOIC-8),
 IC12 IC13,2,AD7476ARTZ,12-bit ADC (SPI),AD7476ARTZ,C651070,SOT95P280X145-6N (SOT-23-6),SMT,
 J1 J2,2,5051107091,70-pin 0.5 mm FPC connector for the sensor's two tails,Molex 505110-7091,C6393753,5051107091,SMT,0.5 mm pitch
 U6,1,LM2776,Switched-capacitor voltage inverter,LM2776DBVR,C69527,SOT-23-6,SMT,
-VR1 VR2,2,MCP41HV51-103E/ST,10 kOhm digital potentiometer (gain; set by the firmware's digipot value),MCP41HV51-103E/ST,C637062,SOP65P640X120-14N (TSSOP-14),Hand,Marked DNP in the schematic (board-house assembly); fit them by hand: the firmware sets both on start-up
+VR1 VR2,2,MCP41HV51-103E/ST,10 kOhm digital potentiometer (gain; set by the firmware's digipot value),MCP41HV51-103E/ST,C637062,SOP65P640X120-14N (TSSOP-14),Hand,Required. Marked DNP in the schematic only because JLCPCB did not stock it at the time; buy separately and solder by hand
 U1,1,Teensy 4.1,Microcontroller board,Teensy 4.1 (PJRC/SparkFun DEV-16771),,Teensy41,Hand,Marked DNP in the schematic; solder on 2 x 24 pin headers
 C1-C22,22,0.1 uF,Ceramic capacitor,,C28233,0805,SMT,
 C31 C32,2,1 uF,Ceramic capacitor,,C28323,0805,SMT,

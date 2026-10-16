@@ -31,9 +31,10 @@ layouts in this folder (checked layer by layer).
   streams to the computer over USB.
 - **PCB:** 4 layers, 1.6 mm, 91.9 × 56.3 mm, all parts on the top side. The smallest vias are 0.35 mm pad /
   0.15 mm drill, so check your fab's capability.
-- **Parts:** [`bom.csv`](readout_64x64/bom.csv), per board. The Teensy 4.1 and the two digital potentiometers are
-  marked do-not-populate in the schematic because they were not part of the board-house assembly order. Fit them
-  by hand; the firmware needs both potentiometers.
+- **Parts:** [`bom.csv`](readout_64x64/bom.csv), per board. The Teensy 4.1 and the two digital potentiometers
+  (MCP41HV51) are marked do-not-populate in the schematic only because they were not in the board-house assembly
+  order (JLCPCB did not stock the potentiometer at the time). Both are required: buy them separately and solder
+  them by hand.
 - **Soldering:** the multiplexers (TQFP-48), shift registers (TSSOP-16) and the two 70-pin connectors are 0.5–0.65 mm
   pitch. A solder-paste stencil and a hot plate or reflow oven make this much easier. The Teensy goes on 2 × 24 pin
   headers.

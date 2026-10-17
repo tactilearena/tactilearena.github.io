@@ -12,7 +12,7 @@ manuscript. The biological study is a small, exploratory cohort, described with 
 
 <figure class="ta-fig" markdown>
 ![Paw contacts projected onto video frames; normalized plantar pressure maps and 3D reconstructions for each paw, including a post-surgery left hindpaw; a trail of footprints with the body-centroid path; contact intervals for all four paws.](assets/figures/fig3_contacts.jpg){ loading=lazy }
-<figcaption><strong>Fig. 3.</strong> a, Detected contacts on synchronized video frames. b, Plantar pressure maps for each paw, including a post-surgery left hindpaw that suggests the rat was also bearing weight on its heel. c, A footprint trail at maximum contact area. d, Stance intervals for all four paws.</figcaption>
+<figcaption><strong>Fig. 2.</strong> a, Detected contacts on synchronized video frames. b, Plantar pressure maps for each paw, including a post-surgery left hindpaw that suggests the rat was also bearing weight on its heel. c, A footprint trail at maximum contact area. d, Stance intervals for all four paws.</figcaption>
 </figure>
 
 Projecting detected contacts onto the video shows each paw's position relative to the animal throughout a walk.
@@ -24,7 +24,7 @@ for all four limbs.
 
 <figure class="ta-fig" markdown>
 ![Whole-animal COP trajectory over a recording with three walking windows highlighted, longitudinal position and COP speed over time, and comparisons of COP with the video body centroid before and after surgery.](assets/figures/fig2_cop.jpg){ loading=lazy }
-<figcaption><strong>Fig. 2.</strong> a&ndash;c, Whole-animal centre of pressure (COP) over a recording, its position along the runway and its speed in three walking windows. d,e, COP (yellow) and the video body centroid (white dashed) in illustrative walks before and after surgery.</figcaption>
+<figcaption><strong>Fig. 3.</strong> a&ndash;c, Whole-animal centre of pressure (COP) over a recording, its position along the runway and its speed in three walking windows. d,e, COP (yellow) and the video body centroid (white dashed) in illustrative walks before and after surgery.</figcaption>
 </figure>
 
 The whole-animal COP describes how weight is spread across the supporting paws. It followed the video body

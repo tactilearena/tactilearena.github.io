@@ -558,7 +558,7 @@ def s08_beyond(t):
     fr = _ar["v"]; k = min(len(fr) - 1, int(t * 30))
     im = to_img(blank()).convert("RGBA")
     clip = Image.fromarray(fr[k]); im.paste(clip, ((W - clip.width) // 2, 92))
-    badge(im, "Demonstration · not analysed in the paper", ((W - clip.width) // 2 + 14, 34))
+    badge(im, "Three rats · 128 × 128 taxels", ((W - clip.width) // 2 + 14, 34))
     caption(im, t, [(0.3, 4.9, "Because the floor is modular, the same four modules tile other arenas: here, three rats in a square open field."),
                     (5.1, 9.7, "Possible next steps: pose tracking, neural recordings, contact-triggered experiments, shear sensing.")], 0)
     return im

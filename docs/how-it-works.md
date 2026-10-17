@@ -24,7 +24,7 @@ make the 64&nbsp;&times;&nbsp;256-taxel runway: 16,384 taxels over 512&nbsp;&tim
 and under an overhead camera.
 
 Because each module is read independently, the modules can also be arranged into other shapes, such as a square
-open field (a [demonstration](index.md#beyond) not analysed in the paper).
+open field ([see the arena](index.md#beyond) and Supplementary Video 5 on the [Paper](paper.md#videos) page).
 
 </div>
 <figure class="ta-fig" markdown>

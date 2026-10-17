@@ -11,8 +11,7 @@ hide:
 
 <!--
   Home page story. Layout classes live in docs/stylesheets/tactilearena.css.
-  Numbers here come only from the manuscript (Gait_Project_Paper, main 4.0.tex) and its figures; anything not
-  analysed in the paper is labelled as a demonstration.
+  Numbers here come only from the manuscript (Gait_Project_Paper, main 4.0.tex) and its figures.
 -->
 
 <section class="ta-section" markdown>
@@ -217,11 +216,10 @@ Possible next steps:
 - synchronized neural or muscle recordings, to tie each step's mechanics to sensorimotor control, and perturbations triggered at specific phases of contact;
 - shear sensing at the same resolution, to add tangential forces.
 
-<p class="ta-note">Demonstration recordings: the square arena and multi-animal clips were not analysed in the paper.</p>
 
 </div>
 <figure class="ta-media" markdown>
-<span class="ta-badge">Demonstration · not analysed in the paper</span>
+<span class="ta-badge">Three rats · 128 × 128 taxels</span>
 <video width="1600" height="900" data-loop muted loop playsinline preload="none" data-poster="assets/video/arena_multi.jpg"
        aria-label="Three rats on a square tactile arena built from four modules; left, the live tactile map with their paw contacts; right, the overhead camera.">
   <source src="assets/video/arena_multi.mp4" type="video/mp4">

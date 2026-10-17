@@ -210,7 +210,7 @@ Mass-equivalent loading for every paw at about 1&nbsp;kHz. Speed matters for sho
 The sensing surface is assembled from independent modules, so the same hardware can cover other shapes. Here,
 the four modules are tiled into a square open field with three rats at once.
 
-Possible next steps, none of which the paper has tested yet:
+Possible next steps:
 
 - larger or differently shaped arenas, and other species, after recalibration;
 - pairing contact measurements with markerless pose estimation, to relate load to limb and body posture;

@@ -1,8 +1,8 @@
-"""Supplementary Video 5: the modules tiled as an open arena (demonstration, not analysed in the paper).
+"""Supplementary Video 5: reconfiguration of the sensor modules into an open-field arena.
   1. title card
   2. square arena (four modules 2x2, 128x128 taxels), rat 4 on 2026-02-24 with the study's settings
      (M = 200, T = 700): tactile floor | overhead camera (rotated 180 deg, as in the pipeline) | side camera
-  3. three rats on the square arena (development recording, November 2025; Victor's composite video)
+  3. three rats exploring the square arena together (tactile map + overhead camera composite)
 Camera MP4s are stamped 30 fps but were recorded at ~19-20 fps, so every frame is placed by its saved timestamp.
 The recording has host-side stalls (all boards pause together: 25.8 s 4.9 s, 41.9 s 2.9 s, 55.9 s 4.0 s, 72.9 s 6.1 s),
 so the excerpt is taken from a stall-free stretch.
@@ -102,9 +102,8 @@ CAMS = {}
 def title(t):
     im = to_img(blank()).convert("RGBA"); a = ease(t / 0.6)
     text_block(im, (W / 2, 330), ["Supplementary Video 5"], 30, "Medium", fill=EMBER, anchor="ma", alpha=a)
-    text_block(im, (W / 2, 390), ["The same modules as an open arena"], 64, "SemiBold", anchor="ma", alpha=a)
-    text_block(im, (W / 2, 500), ["Demonstration recordings, not analysed in the paper.",
-                                  "Four 64 × 64 modules tiled 2 × 2: a 256 × 256 mm floor of 128 × 128 taxels."],
+    text_block(im, (W / 2, 390), ["Reconfiguration of the sensor modules", "into an open-field arena"], 60, "SemiBold", anchor="ma", alpha=a)
+    text_block(im, (W / 2, 570), ["Four 64 × 64 modules tiled 2 × 2: a 256 × 256 mm floor of 128 × 128 taxels."],
                32, "Regular", fill=(210, 204, 220), anchor="ma", alpha=ease((t - 0.6) / 0.6))
     return im
 
@@ -121,10 +120,10 @@ def square(t):
     im = to_img(f).convert("RGBA")
     for x, lab in zip(XS, ["Tactile floor (128 × 128 taxels)", "Overhead camera", "Side camera"]):
         text_block(im, (x, Y0 - 50), [lab], 30, "Medium")
-    badge(im, "Demonstration · not analysed in the paper", (XS[0] + 4, 60))
+    badge(im, "Single rat · 128 × 128 taxels", (XS[0] + 4, 60))
     text_block(im, (W - 40, 64), [f"24 February 2026, rat 4 · M = 200, T = 700 · 0.75× speed · t = {tt:5.1f} s"], 24,
                fill=(170, 162, 182), anchor="ra")
-    caption(im, t, [(0.3, 7.6, "Four modules tiled 2 × 2 make a square open field, recorded with the same readout settings as the study."),
+    caption(im, t, [(0.3, 7.6, "Four modules tiled 2 × 2 form a square open field, recorded with the same readout settings as the runway."),
                     (7.8, 15.9, "Paw contacts are recorded wherever they land, through walking, turning and rearing.")], 0)
     return im
 
@@ -139,9 +138,9 @@ def multi(t):
     fr = MULTI["v"]; k = min(len(fr) - 1, int(t * 30))
     im = to_img(blank()).convert("RGBA")
     clip = Image.fromarray(fr[k]); im.paste(clip, ((W - clip.width) // 2, 92))
-    badge(im, "Demonstration · three rats · development recording, November 2025", ((W - clip.width) // 2 + 14, 34))
-    caption(im, t, [(0.3, 9.7, "Several animals at once: the floor records each one's contacts, with no markers or attachments."),
-                    (9.9, 19.7, "This clip predates the study recordings and used an earlier readout configuration.")], 0)
+    badge(im, "Three rats · 128 × 128 taxels", ((W - clip.width) // 2 + 14, 34))
+    caption(im, t, [(0.3, 9.7, "Three rats explore the arena together; the floor records every animal's contacts simultaneously."),
+                    (9.9, 19.7, "No markers, tethers or body-mounted sensors are needed.")], 0)
     return im
 
 

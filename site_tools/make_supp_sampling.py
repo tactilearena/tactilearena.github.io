@@ -1,4 +1,4 @@
-"""Supplementary Video 4: adaptive sampling, frame by frame (1920x1080, 30 fps, no audio).
+"""Supplementary Video 4: adaptive tactile sampling during locomotion (1920x1080, 30 fps, no audio).
   1. title card
   2. one frame of one module, read by read: the firmware's sampling loop run on a simulated paw (labelled)
   3. the recorded packets of all four boards, frame by frame (2026-02-24, rat 4, runway)
@@ -17,7 +17,7 @@ P0 = [int(np.searchsorted(bd["ts"], T0)) for bd in S.rw.boards]
 def title(t):
     im = to_img(blank()).convert("RGBA"); a = ease(t / 0.6)
     text_block(im, (W / 2, 330), ["Supplementary Video 4"], 30, "Medium", fill=EMBER, anchor="ma", alpha=a)
-    text_block(im, (W / 2, 390), ["Adaptive sampling, frame by frame"], 64, "SemiBold", anchor="ma", alpha=a)
+    text_block(im, (W / 2, 390), ["Adaptive tactile sampling during locomotion"], 64, "SemiBold", anchor="ma", alpha=a)
     text_block(im, (W / 2, 500), ["Each readout board reads 200 of its module's 4,096 taxels per frame (M = 200, threshold T = 700).",
                                   "It re-reads last frame's contacts, scans the module coarse-to-fine, and reads the 3 × 3 neighbours",
                                   "of every reading above threshold, until the 200 reads are used."],

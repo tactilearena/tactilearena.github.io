@@ -63,11 +63,11 @@ Full-quality files are on the [GitHub release](https://github.com/tactilearena/t
 
 <div class="ta-cards" markdown>
 <div class="ta-card" markdown>
-<div class="ta-media"><video width="720" height="1280" controls muted playsinline preload="none" data-poster="../assets/video/assembly.jpg" aria-label="Supplementary Video 1: Assembling the tactile runway"><source src="../assets/video/assembly.mp4" type="video/mp4"></video></div>
+<div class="ta-media"><video width="720" height="1280" controls muted playsinline preload="none" data-poster="../assets/video/assembly.jpg" aria-label="Supplementary Video 1: Assembly of the tactile runway"><source src="../assets/video/assembly.mp4" type="video/mp4"></video></div>
 <div class="ta-card__body" markdown>
 <span class="ta-card__num">SUPPLEMENTARY VIDEO 1</span>
 
-### Assembling the tactile runway
+### Assembly of the tactile runway
 
 Each sensor's flex tails go into its readout board; the four arrays are aligned, covered with piezoresistive film and a waterproof cloth, and connected to the computer.
 
@@ -75,11 +75,11 @@ Each sensor's flex tails go into its readout board; the four arrays are aligned,
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media"><video width="1280" height="1000" controls muted playsinline preload="none" data-poster="../assets/video/pre-surgery.jpg" aria-label="Supplementary Video 2: Walking before surgery"><source src="../assets/video/pre-surgery.mp4" type="video/mp4"></video></div>
+<div class="ta-media"><video width="1280" height="1000" controls muted playsinline preload="none" data-poster="../assets/video/pre-surgery.jpg" aria-label="Supplementary Video 2: Synchronized overhead video and paw-resolved plantar pressure during walking before sciatic nerve pinch"><source src="../assets/video/pre-surgery.mp4" type="video/mp4"></video></div>
 <div class="ta-card__body" markdown>
 <span class="ta-card__num">SUPPLEMENTARY VIDEO 2</span>
 
-### Walking before surgery
+### Synchronized overhead video and paw-resolved plantar pressure during walking before sciatic nerve pinch
 
 Rat 6, 11 February 2026: labelled paw contacts on the overhead video, and the pressure under each paw during stance. 0.25&times; speed.
 
@@ -87,11 +87,11 @@ Rat 6, 11 February 2026: labelled paw contacts on the overhead video, and the pr
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media"><video width="1280" height="1000" controls muted playsinline preload="none" data-poster="../assets/video/post-surgery.jpg" aria-label="Supplementary Video 3: Walking after sciatic nerve pinch"><source src="../assets/video/post-surgery.mp4" type="video/mp4"></video></div>
+<div class="ta-media"><video width="1280" height="1000" controls muted playsinline preload="none" data-poster="../assets/video/post-surgery.jpg" aria-label="Supplementary Video 3: Synchronized overhead video and paw-resolved plantar pressure during walking after sciatic nerve pinch"><source src="../assets/video/post-surgery.mp4" type="video/mp4"></video></div>
 <div class="ta-card__body" markdown>
 <span class="ta-card__num">SUPPLEMENTARY VIDEO 3</span>
 
-### Walking after sciatic nerve pinch
+### Synchronized overhead video and paw-resolved plantar pressure during walking after sciatic nerve pinch
 
 Rat 4, 19 March 2026, nine days after left sciatic nerve pinch. 0.25&times; speed.
 
@@ -99,27 +99,27 @@ Rat 4, 19 March 2026, nine days after left sciatic nerve pinch. 0.25&times; spee
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media"><video width="1920" height="1080" controls muted playsinline preload="none" data-poster="../assets/video/supp4_sampling.jpg" aria-label="Supplementary Video 4: Adaptive sampling, frame by frame"><source src="../assets/video/supp4_sampling.mp4" type="video/mp4"></video></div>
+<div class="ta-media"><video width="1920" height="1080" controls muted playsinline preload="none" data-poster="../assets/video/supp4_sampling.jpg" aria-label="Supplementary Video 4: Adaptive tactile sampling during locomotion"><source src="../assets/video/supp4_sampling.mp4" type="video/mp4"></video></div>
 <div class="ta-card__body" markdown>
 <span class="ta-card__num">SUPPLEMENTARY VIDEO 4</span>
 
-### Adaptive sampling, frame by frame
+### Adaptive tactile sampling during locomotion
 
-The firmware loop on a simulated paw, read by read; then the recorded packets of all four boards from a walking rat, frame by frame.
+The readout firmware's sampling loop on a simulated paw, read by read; then the recorded packets of all four modules during walking, frame by frame.
 
-[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo4_adaptive_sampling.mp4){ .ta-more }
+[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo4_adaptive_tactile_sampling.mp4){ .ta-more }
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media"><video width="1920" height="1080" controls muted playsinline preload="none" data-poster="../assets/video/supp5_arena.jpg" aria-label="Supplementary Video 5: The same modules as an open arena (demonstration)"><source src="../assets/video/supp5_arena.mp4" type="video/mp4"></video></div>
+<div class="ta-media"><video width="1920" height="1080" controls muted playsinline preload="none" data-poster="../assets/video/supp5_arena.jpg" aria-label="Supplementary Video 5: Reconfiguration of the sensor modules into an open-field arena"><source src="../assets/video/supp5_arena.mp4" type="video/mp4"></video></div>
 <div class="ta-card__body" markdown>
 <span class="ta-card__num">SUPPLEMENTARY VIDEO 5</span>
 
-### The same modules as an open arena (demonstration)
+### Reconfiguration of the sensor modules into an open-field arena
 
-Four modules tiled 2&nbsp;&times;&nbsp;2 under a rat walking, turning and rearing, with overhead and side cameras; then three rats in a development recording. Not analysed in the paper.
+Four modules tiled 2&nbsp;&times;&nbsp;2 form a 256&nbsp;&times;&nbsp;256&nbsp;mm arena of 128&nbsp;&times;&nbsp;128 taxels: one rat walking, turning and rearing, with overhead and side cameras; then three rats exploring together.
 
-[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo5_open_arena_demo.mp4){ .ta-more }
+[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo5_open_field_arena.mp4){ .ta-more }
 </div>
 </div>
 </div>

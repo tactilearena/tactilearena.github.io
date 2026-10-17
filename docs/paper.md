@@ -57,6 +57,73 @@ within-step loading dynamics that downsampling degrades.
 
 </div>
 
+## Supplementary videos { #videos }
+
+Full-quality files are on the [GitHub release](https://github.com/tactilearena/tactilearena.github.io/releases/tag/supplementary-videos-v1); the legends are in [`supplementary/README.md`](https://github.com/tactilearena/tactilearena.github.io/tree/main/supplementary).
+
+<div class="ta-cards" markdown>
+<div class="ta-card" markdown>
+<div class="ta-media"><video width="720" height="1280" controls muted playsinline preload="none" data-poster="../assets/video/assembly.jpg" aria-label="Supplementary Video 1: Assembling the tactile runway"><source src="../assets/video/assembly.mp4" type="video/mp4"></video></div>
+<div class="ta-card__body" markdown>
+<span class="ta-card__num">SUPPLEMENTARY VIDEO 1</span>
+
+### Assembling the tactile runway
+
+Each sensor's flex tails go into its readout board; the four arrays are aligned, covered with piezoresistive film and a waterproof cloth, and connected to the computer.
+
+[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo1_assembly.mp4){ .ta-more }
+</div>
+</div>
+<div class="ta-card" markdown>
+<div class="ta-media"><video width="1280" height="1000" controls muted playsinline preload="none" data-poster="../assets/video/pre-surgery.jpg" aria-label="Supplementary Video 2: Walking before surgery"><source src="../assets/video/pre-surgery.mp4" type="video/mp4"></video></div>
+<div class="ta-card__body" markdown>
+<span class="ta-card__num">SUPPLEMENTARY VIDEO 2</span>
+
+### Walking before surgery
+
+Rat 6, 11 February 2026: labelled paw contacts on the overhead video, and the pressure under each paw during stance. 0.25&times; speed.
+
+[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo2_walking_before_surgery.mp4){ .ta-more }
+</div>
+</div>
+<div class="ta-card" markdown>
+<div class="ta-media"><video width="1280" height="1000" controls muted playsinline preload="none" data-poster="../assets/video/post-surgery.jpg" aria-label="Supplementary Video 3: Walking after sciatic nerve pinch"><source src="../assets/video/post-surgery.mp4" type="video/mp4"></video></div>
+<div class="ta-card__body" markdown>
+<span class="ta-card__num">SUPPLEMENTARY VIDEO 3</span>
+
+### Walking after sciatic nerve pinch
+
+Rat 4, 19 March 2026, nine days after left sciatic nerve pinch. 0.25&times; speed.
+
+[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo3_walking_after_surgery.mp4){ .ta-more }
+</div>
+</div>
+<div class="ta-card" markdown>
+<div class="ta-media"><video width="1920" height="1080" controls muted playsinline preload="none" data-poster="../assets/video/supp4_sampling.jpg" aria-label="Supplementary Video 4: Adaptive sampling, frame by frame"><source src="../assets/video/supp4_sampling.mp4" type="video/mp4"></video></div>
+<div class="ta-card__body" markdown>
+<span class="ta-card__num">SUPPLEMENTARY VIDEO 4</span>
+
+### Adaptive sampling, frame by frame
+
+The firmware loop on a simulated paw, read by read; then the recorded packets of all four boards from a walking rat, frame by frame.
+
+[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo4_adaptive_sampling.mp4){ .ta-more }
+</div>
+</div>
+<div class="ta-card" markdown>
+<div class="ta-media"><video width="1920" height="1080" controls muted playsinline preload="none" data-poster="../assets/video/supp5_arena.jpg" aria-label="Supplementary Video 5: The same modules as an open arena (demonstration)"><source src="../assets/video/supp5_arena.mp4" type="video/mp4"></video></div>
+<div class="ta-card__body" markdown>
+<span class="ta-card__num">SUPPLEMENTARY VIDEO 5</span>
+
+### The same modules as an open arena (demonstration)
+
+Four modules tiled 2&nbsp;&times;&nbsp;2 under a rat walking, turning and rearing, with overhead and side cameras; then three rats in a development recording. Not analysed in the paper.
+
+[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo5_open_arena_demo.mp4){ .ta-more }
+</div>
+</div>
+</div>
+
 ## Related work from our groups { #related }
 
 - A. Slepyan, D. Li, H. Cai, R. McGovern, A. Aug, S. Sankar, T. Tran, N. Thakor. *Adaptive compressive tactile

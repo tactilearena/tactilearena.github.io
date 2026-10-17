@@ -95,7 +95,7 @@ def videos():
     out = f"{A}/video"; os.makedirs(out, exist_ok=True)
     # build guide: vertical phone video with burned-in captions, keep it legible
     ff(["-i", f"{V}/assembly.MP4", "-vf", "scale=720:-2", "-c:v", "libx264", "-preset", "slow", "-crf", "27",
-        "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", f"{out}/assembly.mp4"])
+        "-pix_fmt", "yuv420p", "-an", "-movflags", "+faststart", f"{out}/assembly.mp4"])  # audio is background music: dropped
     ff(["-ss", "20", "-i", f"{out}/assembly.mp4", "-frames:v", "1", "-q:v", "4", f"{out}/assembly.jpg"])
     for n in ("pre-surgery", "post-surgery"):
         ff(["-i", f"{V}/{n}.MP4", "-vf", "scale=1280:-2", "-c:v", "libx264", "-preset", "slow", "-crf", "25",

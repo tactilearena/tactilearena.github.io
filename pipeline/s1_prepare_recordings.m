@@ -42,9 +42,9 @@ function selections = step_1_pick_overhead_videos(cfg)
 %   selections = step_1_pick_overhead_videos()
 %   selections = step_1_pick_overhead_videos(cfg)
 %
-% The GUI scans Rat Data/<date>/runway/ratN folders, skips rat3, keeps dates
-% after Feb 10 2026, and writes selected overhead videos to
-% video_labels/overhead_video_selections.csv by default.
+% The GUI scans <date>/runway/rat<N> folders under cfg.rat_data_root for the
+% rats in cfg.included_rats and dates on or after cfg.first_recording_date,
+% and writes the selected overhead videos to cfg.video_selection_path.
 
 if nargin < 1 || isempty(cfg)
     cfg = gait_config();
@@ -497,10 +497,10 @@ function calibrations = step_2_calibrate_platform_corners(cfg)
 %   calibrations = step_2_calibrate_platform_corners()
 %   calibrations = step_2_calibrate_platform_corners(cfg)
 %
-% This GUI reads video_labels/overhead_video_selections.csv, loops through
-% selected overhead videos, asks for four platform corners, then uses
-% automatic footprint detector/platform_sheet_template.mat to infer the
-% pressure-sheet corners and save one homography per recording.
+% This GUI reads cfg.video_selection_path, loops through the selected
+% overhead videos, asks for four platform corners, then uses
+% data/platform_sheet_template.mat to infer the pressure-sheet corners and
+% save one homography per recording.
 
 if nargin < 1 || isempty(cfg)
     cfg = gait_config();
@@ -1107,9 +1107,9 @@ function recording_list = step_3_build_background_models_and_recordings(cfg)
 %   recording_list = step_3_build_background_models_and_recordings()
 %   recording_list = step_3_build_background_models_and_recordings(cfg)
 %
-% Reads video_labels/platform_corner_calibrations.csv, builds one rotated
-% background model per calibrated overhead video, and writes the final
-% video_labels/recordings.csv consumed by step_4_run_batch_peak_seed.
+% Reads cfg.platform_calibration_path, builds one rotated background model
+% per calibrated overhead video, and writes a recording list for
+% s2_detect_contacts to work_root/setup/recordings.csv.
 
 if nargin < 1 || isempty(cfg)
     cfg = gait_config();

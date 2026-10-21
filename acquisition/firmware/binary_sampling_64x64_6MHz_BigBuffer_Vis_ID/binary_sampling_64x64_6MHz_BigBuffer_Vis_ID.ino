@@ -9,7 +9,7 @@ static const int ROWS = 64;
 static const int COLS = 64;
 static const int N = ROWS * COLS;
 
-// Configurable parameters (will be set by MATLAB)
+// Configurable parameters, set by the host at start-up (record_runway.py)
 static const int MAX_M = 2048;  // Maximum possible M
 static int M = 500;             // Number of samples to take per frame
 static int thr = 200;           // Threshold for neighbor sampling
@@ -112,7 +112,7 @@ int muxtable[32][5] = {
 };
 
 // SPI settings and potentiometer objects
-SPISettings settings(6E6, MSBFIRST, SPI_MODE0);  // 6MHz instead of 1MHz
+SPISettings settings(6E6, MSBFIRST, SPI_MODE0);  // 6 MHz SPI clock
 MCP41HVX1 Digipot1(CS1, SHDN1, WLAT1);
 MCP41HVX1 Digipot2(CS2, SHDN2, WLAT2);
 
@@ -377,7 +377,7 @@ void neighborSampling(int centerX, int centerY, bool isOriginalTrigger = false) 
       msrValArr[idx] = val;
       idx++;
 
-      // Add to stream buffer (currently add all)
+      // Add to stream buffer (every sampled taxel is sent)
       addThresholdPixel(storageIdx, val);
 
       if (idx >= M) return;
@@ -424,7 +424,7 @@ void binarySampling() {
     msrValArr[idx] = val;
     idx++;
 
-    // Add to stream buffer (currently add all)
+    // Add to stream buffer (every sampled taxel is sent)
     addThresholdPixel(storageIdx, val);
 
     if (idx >= M) break;
@@ -454,7 +454,7 @@ void binarySampling() {
     msrValArr[idx] = val;
     idx++;
 
-    // Add to stream buffer (currently add all)
+    // Add to stream buffer (every sampled taxel is sent)
     addThresholdPixel(storageIdx, val);
 
     if (idx >= M) break;

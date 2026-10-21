@@ -3,8 +3,7 @@
 Full-quality files are attached to the
 [supplementary-videos-v1 release](https://github.com/tactilearena/tactilearena.github.io/releases/tag/supplementary-videos-v1);
 lighter copies play on the [website](https://tactilearena.github.io/paper/#videos). All are MP4 (H.264), without
-audio. Videos 4 and 5 are made from the raw recordings by `site_tools/make_supp_sampling.py` and
-`site_tools/make_supp_square.py`.
+audio. The scripts that produce them are in `site_tools/` (see its README).
 
 | # | File | Length |
 |---|---|---|

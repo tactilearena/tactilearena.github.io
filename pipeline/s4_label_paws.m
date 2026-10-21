@@ -1,7 +1,6 @@
-% Combines the pressure movie from step 2 and the mobile window from step 3
-% and generate the final footprint assignment 
-
 function results = s4_label_paws(only, opts)
+% Pressure movie and contacts from s2 plus walking windows from s3: writes the
+% paw-labeled stance contacts to mobile_contacts/<recording>_mobile_contacts.mat.
 
 if nargin < 1, only = []; end
 if nargin < 2, opts = struct(); end
@@ -48,7 +47,7 @@ end
 end
 
 function out_path = write_label_video(cfg, rec, D, contacts, W, vid)
-% Create the overlaid overhead camera + pressure reco for each walking window
+% Create the overlaid overhead camera + pressure map for each walking window
 PAWS = ["FL", "FR", "HL", "HR"];
 PAW_RGB = [0.18 0.66 0.31; 0.95 0.42 0.23; 0.23 0.51 0.96; 0.95 0.76 0.18];
 pad_s = 0.3; video_fps = 30;
@@ -273,8 +272,8 @@ end
 end
 
 function contacts = track_mobile_contacts(frames, times, bout_windows, opts)
-% search through footprints within the mobile window and spatiotemporally 
-% link the pressure clusters over time
+% Links the pressure clusters within each walking window across frames into
+% contact tracks.
 if nargin < 4 || isempty(opts), opts = struct(); end
 thresh = get_opt(opts, 'pressure_thresh', 200);
 link_px = get_opt(opts, 'link_px', 4);

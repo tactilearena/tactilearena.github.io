@@ -1,8 +1,8 @@
 function results = s3_find_mobile_bouts(action, only)
 % Whole-body COP trace and candidate walking bouts ("extract"), manual
 % keep/trim GUI ("correct"), per-bout stats ("stats") and the final walking
-% windows ("export"). "review_new"/"export_new" do the same with the newer
-% automatic detector (detect_walking_bouts), not used for the paper.
+% windows ("export"). "review_new"/"export_new" do the same with an
+% automatic bout detector (detect_walking_bouts), which was not used in the paper's analysis.
 
 if nargin < 1 || strlength(string(action)) == 0
     action = "extract_and_stats";
@@ -479,7 +479,7 @@ state.corrections = corrections;
 state.current_recording = 1;
 state.current_bout = 1;
 
-fig = figure('Name', 'Step 12 COP Trajectory Correction', ...
+fig = figure('Name', 'Walking-bout review', ...
     'NumberTitle', 'off', 'Color', 'w', 'Position', [80 80 1320 760], ...
     'CloseRequestFcn', @on_close);
 ui.rec_list = uicontrol(fig, 'Style', 'listbox', 'Units', 'normalized', ...
@@ -1206,7 +1206,8 @@ end
 function [bouts, info] = detect_walking_bouts(frames, time, opts)
 % Walking runs ([t_start t_end] per row) from the COP trace: sustained travel
 % along x with velocity hysteresis, displacement and straightness checks.
-% Presets: 'strict' (matches the curated windows) and 'review' (generous).
+% Default thresholds are conservative; opts.preset = 'review' relaxes them to
+% propose candidates for manual review.
 
 if nargin < 3, opts = struct(); end
 p = struct('win_s', 1.0, 'v_hi', 70, 'v_lo', 15, 'gap_s', 2.5, 'v_edge', 40, ...

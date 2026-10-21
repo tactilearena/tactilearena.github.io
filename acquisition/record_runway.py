@@ -1,7 +1,17 @@
-"""Record four tactile boards + overhead cameras on one shared clock (the
-paper's runway_three_cams.py). Edit ports, cameras and board settings at the
-bottom. BoardN_buffer_overflows is always 0 (check disabled); cameras run
-below 30 fps, so use the saved frame timestamps.
+"""Record four tactile boards and the overhead cameras on one shared clock.
+
+Each board is sent its settings (M, threshold, digital potentiometer); board and
+camera threads then start from one shared start time, and every tactile packet
+and camera frame is timestamped relative to it. Output: one
+runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat file and one
+camera_<K>_<time>.mp4 per camera. Serial ports, camera indices (two overhead
+cameras, [0, 1]) and board settings are set at the bottom of the script.
+
+Serial backlog: every 100 frames, a board's input buffer is cleared if more
+than 10 kB is waiting (the event is printed); after an invalid sync word or a
+truncated packet the buffer is cleared to resynchronise. No overflow counter is
+incremented, so BoardN_buffer_overflows is always 0. Cameras run below the
+30 fps target, so use the saved per-frame timestamps.
 """
 import serial
 import struct
@@ -58,7 +68,7 @@ class TactileDataRecorder:
                 }
 
     def configure_board(self, board_name, M_value, threshold, digipot):
-        """Configure a board with M_value, threshold, and digipot settings (matches square code)"""
+        """Configure a board with M_value, threshold, and digipot settings"""
         if not self.connections[board_name]['connected']:
             print(f"[{board_name}] Not connected, skipping configuration")
             return False
@@ -131,11 +141,11 @@ class TactileDataRecorder:
         first_board_id = None
         last_print_time = time.time()
         buffer_overflow_count = 0
-        pause_count = 0  # Track how many times we paused for disk stalls
+        pause_count = 0  # Disk-stall pauses (reported; this version does not pause)
 
         SYNC_MARKER = 0xDEADBEEF
-        BUFFER_WARNING_THRESHOLD = 80000  # Warn if buffer exceeds 50KB
-        BUFFER_FLUSH_THRESHOLD = 100000  # Flush if buffer exceeds 80KB
+        BUFFER_WARNING_THRESHOLD = 80000  # 80 kB; not used (see backlog check below)
+        BUFFER_FLUSH_THRESHOLD = 100000  # 100 kB; not used (see backlog check below)
 
         # Wait for start signal
         print(f"[{board_name}] Waiting for start signal...")
@@ -148,19 +158,6 @@ class TactileDataRecorder:
 
         while not stop_event.is_set():
             try:
-                # # BUFFER MANAGEMENT: Check buffer size before reading
-                # buffer_size = ser.in_waiting
-                #
-                # if buffer_size > BUFFER_FLUSH_THRESHOLD:
-                #     # Critical: buffer is too full, clear it to prevent old data
-                #     ser.reset_input_buffer()
-                #     buffer_overflow_count += 1
-                #     print(
-                #         f"[{board_name}] ⚠ BUFFER OVERFLOW! Cleared {buffer_size} bytes (overflow #{buffer_overflow_count})")
-                #     continue
-                # elif buffer_size > BUFFER_WARNING_THRESHOLD:
-                #     print(f"[{board_name}] ⚠ Buffer warning: {buffer_size} bytes pending")
-
                 sync_data = ser.read(4)
                 if len(sync_data) != 4:
                     continue
@@ -201,7 +198,7 @@ class TactileDataRecorder:
                         indices = raw_array[0::2]
                         values = raw_array[1::2]
 
-                        # Filter out invalid indices (like square code does)
+                        # Filter out invalid indices
                         mask = (indices != 0xFFFF) & (indices != 0xFFFE) & (indices < 4096)
                         frame_indices_list = indices[mask].tolist()
                         frame_values_list = values[mask].tolist()
@@ -368,7 +365,7 @@ class TactileDataRecorder:
                 if current_time >= deadline:
                     break
 
-                # Only print status every 1 second (not sleep for 1 second!)
+                # Print the status at most once per second (without sleeping)
                 if current_time - last_update >= 1.0:
                     elapsed = current_time - self.shared_start_time
                     remaining = duration - elapsed
@@ -872,9 +869,9 @@ if __name__ == "__main__":
     # Initialize tactile recorder
     recorder = TactileDataRecorder(ports)
 
-    # Initialize multi-camera recorder with your three cameras
+    # Initialize multi-camera recorder with the two overhead cameras
     video_recorder = MultiCameraRecorder(
-        camera_indices=[0, 1],  # Your three external cameras
+        camera_indices=[0, 1],  # the two overhead cameras
         width=1920,
         height=1080,
         fps=30.0,

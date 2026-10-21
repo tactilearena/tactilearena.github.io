@@ -10,7 +10,7 @@ import cv2
 class RealTimeTactileVisualizer:
     def __init__(self, ports, threshold=500, M_value=2000, digipot=100, layout='square'):
         self.ports = ports
-        self.threshold = threshold  # Display/visualization threshold
+        self.threshold = threshold  # Board threshold for neighbourhood sampling
         self.M_value = M_value  # How many pixels to sample per frame
         self.digipot = digipot  # Digipot setting
         self.board_size = 64
@@ -20,14 +20,14 @@ class RealTimeTactileVisualizer:
         if layout == 'square':
             self.grid_rows = 2
             self.grid_cols = 2
-            # Layout order: [Board 1, Board 2, Board 3, Board 4]
+            # Layout order: [Board 3, Board 1, Board 2, Board 4]
             # Position mapping: top-left, top-right, bottom-left, bottom-right
             self.layout_order = [3, 1, 2, 4]
             self.transforms = {
-                1: 'none',  # Board 1: rotate 90° counterclockwise
+                1: 'none',  # Board 1: no rotation
                 2: 'none',  # Board 2: no rotation
-                3: 'none',  # Board 3: rotate 180°
-                4: 'none'  # Board 4: rotate 270° counterclockwise (= 90° clockwise)
+                3: 'none',  # Board 3: no rotation
+                4: 'none'  # Board 4: no rotation
             }
         elif layout == 'runway':
             self.grid_rows = 1
@@ -40,7 +40,7 @@ class RealTimeTactileVisualizer:
             raise ValueError(f"Unknown layout: {layout}")
 
         # Buffer to hold the latest image for each board (1-4)
-        # Use -500 to mark unsampled sensors (changed from 0)
+        # Use -500 to mark unsampled sensors
         self.board_buffers = {i: np.full((64, 64), -500, dtype=np.int16) for i in range(1, 5)}
         self.buffer_locks = {i: threading.Lock() for i in range(1, 5)}
 
@@ -58,12 +58,12 @@ class RealTimeTactileVisualizer:
             ser.write(config_str.encode())
             print(f"[Port {port_num}] Sent config: {config_str.strip()}")
 
-            # Wait for "OK" response - reduced timeout for real-time performance
+            # Wait for "OK" response - short timeout for real-time performance
             ok_buffer = bytearray()
             start_time = time.time()
             config_ok = False
 
-            while (time.time() - start_time) < 1.0:  # 1 second timeout (reduced from 3)
+            while (time.time() - start_time) < 1.0:  # 1 second timeout
                 if ser.in_waiting > 0:
                     byte = ser.read(1)
                     ok_buffer.append(byte[0])
@@ -180,8 +180,8 @@ class RealTimeTactileVisualizer:
                                 print(f"[Port {board_num}] Invalid board_id={actual_board}, skipping")
                                 continue
 
-                            # Create FRESH frame initialized to -500 (like MATLAB's -1000)
-                            # This matches MATLAB behavior - each frame starts clean
+                            # Start each frame from -500 (unsampled); only the taxels
+                            # in this packet are filled, so each frame starts clean
                             fresh_img = np.full((64, 64), -500, dtype=np.int16)
 
                             for idx, val in zip(indices, values):
@@ -272,15 +272,14 @@ class RealTimeTactileVisualizer:
                 with self.buffer_locks[board_id]:
                     combined[row_start:row_end, col_start:col_end] = self.board_buffers[board_id].copy()
 
-            # 2. Apply threshold is now handled at data ingestion, not display
-            # Just separate unsampled from sampled
+            # 2. The board threshold only steers sampling; every sampled taxel is shown.
+            # Separate unsampled from sampled
             mask_unsampled = (combined == -500)
 
             # 3. Normalize for display
-            # We need to map three distinct ranges:
-            # -500 (unsampled) -> 0 (darkest in custom range)
-            # 0 (below threshold) -> 50 (low but visible)
-            # 1-4095 (actual data) -> 51-255 (full color range)
+            # Two ranges are mapped:
+            # -500 (unsampled) -> 0 (drawn black below)
+            # 0-4095 (sampled data) -> 51-255 (full color range)
 
             display_img = np.zeros_like(combined, dtype=np.uint8)
 
@@ -359,11 +358,6 @@ class RealTimeTactileVisualizer:
                     else:
                         color = (0, 255, 0)  # Green - active
 
-                    # Uncomment to show status text on image
-                    # y_pos = 20 + (i - 1) * 25
-                    # cv2.putText(color_img, status_text, (10, y_pos),
-                    #             cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
-
             # 6. Show it
             window_name = f'Tactile Real-Time ({self.layout.capitalize()} Layout)'
             cv2.imshow(window_name, color_img)
@@ -392,7 +386,7 @@ class RealTimeTactileVisualizer:
 
 
 if __name__ == "__main__":
-    # Use your specific ports
+    # Serial ports of the four readout boards (edit for the acquisition computer)
     my_ports = [
         '/dev/cu.usbmodem180332101',
         '/dev/cu.usbmodem180345701',
@@ -402,8 +396,8 @@ if __name__ == "__main__":
 
     viz = RealTimeTactileVisualizer(
         my_ports,
-        threshold=700,  # Hardware threshold - board only samples pixels > 500
-        M_value=200,  # Sample up to 2000 pixels per frame
+        threshold=700,  # Board threshold - readings above 700 trigger neighbourhood sampling
+        M_value=200,  # Sample up to 200 taxels per frame
         digipot=100,  # Digipot setting
         layout='runway'
     )

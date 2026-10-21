@@ -1,8 +1,11 @@
 % ============================================================================
 clc; close all;
-% Peak-seed segmentation variant.
+% Peak-seed contact segmentation.
 % This script intentionally detects only high-confidence footprint cores
 % first, then relies on dynamic ROI extraction to recover IC/LO.
+% s2_detect_contacts.m sets the values used in the paper, overriding the
+% defaults below for MIN_CONTACT_AREA, PEAK_SEED_CANDIDATE_MODE,
+% DYNAMIC_ROI_MAX_SIZE_PX and GAIT_MIN_STANCE_SEC.
 if exist('SEGMENTATION_VIDEO_CAM1_PATH', 'var') && ...
         ~isempty(SEGMENTATION_VIDEO_CAM1_PATH)
     video_cam1_path = SEGMENTATION_VIDEO_CAM1_PATH;
@@ -39,7 +42,7 @@ end
                                     % seconds, not pressure-frame index
 DEBUG_FOOTPRINT_CANDIDATES = true; % show rejected footprint candidates
 MAX_DEBUG_CANDIDATES = 64;
-REJECT_TAILBASE_CONTACTS = false; % disabled for now; the tail proxy can
+REJECT_TAILBASE_CONTACTS = false; % off in the analysis; the tail proxy can
                                   % incorrectly reject true paw contacts
 PRINT_RAW_CLUSTER_SUMMARY = false; % raw pre-grouping fragments are noisy;
                                    % keep the full dump opt-in for debugging
@@ -123,11 +126,6 @@ MIN_CONTACT_AREA    = 10;     % peak-seed area: require a confident
                               % footprint core before opening/tracking a
                               % candidate step. Dynamic extraction later
                               % recovers lower-pressure IC/LO tails.
-% if strcmp(layout, 'square')
-%     MIN_CONTACT_AREA = 10;     % square contacts are often smaller because
-%                               % the animal stands/turns in place instead
-%                               % of producing full runway paw rolls.
-% end
 if exist('SEGMENTATION_MIN_CONTACT_AREA', 'var') && ...
         ~isempty(SEGMENTATION_MIN_CONTACT_AREA)
     MIN_CONTACT_AREA = double(SEGMENTATION_MIN_CONTACT_AREA);
@@ -152,7 +150,7 @@ PRELABEL_SPLIT_MIN_AREA = 20;
 PRELABEL_SPLIT_MIN_PEAK_DIST_PX = 5;
 PRELABEL_SPLIT_MIN_PROMINENCE = 500;
 OPEN_CLUSTER_MERGE_DIST_PX = 8; % merge duplicate open clusters on same paw
-FLIP_FORE_LATERAL_LABELS = false; % experimental: invert only FL/FR rank
+FLIP_FORE_LATERAL_LABELS = false; % diagnostic option: invert only FL/FR rank
                                   % mapping when validating camera anatomy
 PROXIMAL_NEW_CONTACT_PX = 6; % if a later seed shifts this far proximally
                              % from an existing cluster, open a new event
@@ -305,8 +303,8 @@ if exist('SEGMENTATION_DYNAMIC_ROI_MAX_SIZE_PX', 'var') && ...
     DYNAMIC_ROI_MAX_SIZE_PX = double(SEGMENTATION_DYNAMIC_ROI_MAX_SIZE_PX);
 end
 DYNAMIC_SMOOTH_FRAMES   = 5;    % moving median/mean window for ROI trace
-DYNAMIC_MIN_ON_FRAMES   = 3;    % sustained frames above 15% peak
-DYNAMIC_OFF_FRAMES      = 5;    % sustained frames below 15% peak for IC/LO
+DYNAMIC_MIN_ON_FRAMES   = 3;    % sustained frames above DYNAMIC_PEAK_FRACTION of peak
+DYNAMIC_OFF_FRAMES      = 5;    % sustained frames below DYNAMIC_PEAK_FRACTION of peak for IC/LO
 DYNAMIC_STD_GROWTH_FACTOR = 2.5; % terminate if spatial spread gets much
                                 % larger than spread at peak pressure
 DYNAMIC_STD_GROWTH_MIN_PX = 3;   % absolute spread increase required too
@@ -505,7 +503,7 @@ else
 end
 UPDATE_SEGMENTATION_DISPLAY = SHOW_SEGMENTATION_FIGURE || SAVE_SEGMENTATION_VIDEO;
 f = figure('Position',[50 50 1400 500], ...
-    'Name','Footstep Labeller v2 - Peak Seed', 'Visible', figure_visible);
+    'Name','Contact detector', 'Visible', figure_visible);
 seg_video_writer = [];
 seg_video_path = '';
 seg_video_frame_count = 0;
@@ -685,15 +683,13 @@ noise_clusters = clusters;
 
 frame_idx = 0;
 
-% Per-frame body-axis log: the whole-rat pressure-blob skeleton axis
-% (tail-to-centroid direction) computed below for the fore/hind quadrant
-% split is otherwise ephemeral -- overwritten every frame and never
-% saved. Logging it lets downstream labeling reuse the same body
-% orientation signal instead of re-deriving position from scratch. Left
-% NaN for frames where the snapshot block below doesn't run (near-edge /
-% standing frames); a downstream consumer should treat this as a
-% zero-order hold (last known value), matching how this detector itself
-% uses last_body_cx etc. across such frames.
+% Per-frame body-axis log: the body axis (tail to body centroid, from the
+% overhead-camera body mask and the tail-base estimate) computed below for
+% the fore/hind quadrant split. It is saved with the detector output
+% (body_axis_trace) so that later stages can use the same body-orientation
+% signal. Frames without a reliable body estimate are left NaN; a consumer
+% should hold the last valid value, as this detector does with
+% last_body_cx and related variables.
 body_axis_log_t       = nan(n_frames, 1);
 body_axis_log_cx      = nan(n_frames, 1);
 body_axis_log_cy      = nan(n_frames, 1);
@@ -852,14 +848,13 @@ for time_idx = 1:n_frames
         end
 
         current_area = sum(mask(:));
-        % Runway fork: a shrunken body-mask area alone isn't sufficient
-        % evidence of rearing/standing on a runway corridor (head-down
-        % sniffing, partial wall occlusion, and normal stride phases can
-        % all shrink the visible top-down silhouette without the rat
-        % actually rearing). Genuine standing/rearing has a second,
-        % independent signature: only the two hindpaws stay in contact.
-        % Require both before suppressing body-geometry updates for the
-        % frame, rather than the square original's area-only OR-like check.
+        % A shrunken body-mask area alone is not sufficient evidence of
+        % rearing/standing on the runway (head-down sniffing, partial wall
+        % occlusion, and normal stride phases can all shrink the visible
+        % top-down silhouette without the rat rearing). Standing/rearing
+        % has a second, independent signature: only the hindpaws remain in
+        % contact (at most two open contacts). Both conditions are required
+        % before the frame is flagged as standing.
         n_open_clusters_for_standing = sum([clusters.open]);
         is_standing  = (current_area > 0) && (current_area < standing_threshold) && ...
             (n_open_clusters_for_standing <= 2);
@@ -918,16 +913,11 @@ for time_idx = 1:n_frames
                     [model_tail_x, model_tail_y, model_tail_conf] = ...
                         tailbase_prediction_for_frame(tailbase_predictions, ...
                         current_cam1_idx);
-                    % Runway fork: the square original used 0.05 here, but
-                    % the tailbase prediction script's own documentation
-                    % (predict_square_tailbase_from_manifest.py) references
-                    % an intended "confidence>=0.5" gate -- 0.05 is a 10x
-                    % typo, not a deliberate threshold. Confirmed on real
-                    % data: frames where the rat hasn't entered the board
-                    % yet (empty warped mask) produce confidence ~0.04-0.057
-                    % with the prediction pinned at a meaningless corner
-                    % pixel, which sits right at/above the old 0.05 gate and
-                    % lets that noise through as if it were a real detection.
+                    % Tail-base predictions with confidence below
+                    % tailbase_confidence_min are ignored. Before the rat
+                    % enters the platform (empty warped mask), the network
+                    % returns low confidence (about 0.04-0.06) with the
+                    % prediction at a corner pixel.
                     tailbase_confidence_min = 0.5;
                     model_tail_ok = isfinite(model_tail_x) && ...
                         isfinite(model_tail_y) && ...
@@ -1095,7 +1085,7 @@ for time_idx = 1:n_frames
                         last_arrow_ux = head_ax_x*al*2;  last_arrow_uy = head_ax_y*al*2;
                     end
 
-                end  % ~near_edge && ~is_standing
+                end  % body_reliable_this_frame
                 if ~body_reliable_this_frame
                     last_quad_assigned = false;
                     last_body_reliable = false;
@@ -1357,7 +1347,7 @@ for time_idx = 1:n_frames
         end
     end
 
-    % FIX 1 + 3: IC-LOCK with spatial consistency check
+    % IC lock with spatial consistency check
     % ===================================================================
     % For every open cluster that does not yet have a locked label,
     % attempt to assign one using the current body-mask overlap.
@@ -1441,7 +1431,7 @@ for time_idx = 1:n_frames
                 if sorted_votes(rank) == 0, break; end
                 cand = sort_order(rank);
 
-                % Spatial consistency check (fix 3)
+                % Spatial consistency check
                 if last_body_reliable && ~isnan(last_body_cx)
                     bcx_c = clusters(ci2).cx;
                     bcy_c = clusters(ci2).cy;
@@ -3480,10 +3470,10 @@ function clusters=mark_open_isolated_noise_clusters(clusters)
     end
     xy = [[clusters(open_ci).cx]' [clusters(open_ci).cy]'];
     % A small, short-lived label far from a strong simultaneous contact is
-    % physically implausible on the square platform.  These were previously
-    % allowed through once a fallback geometry rule assigned a paw label.
-    % Preserve direct projected-body-mask contacts; the user-defined mask is
-    % stronger evidence than this spatial outlier heuristic.
+    % physically implausible and is marked as noise, even when a fallback
+    % geometry rule has assigned it a paw label. Direct projected-body-mask
+    % contacts are preserved; the body mask is stronger evidence than this
+    % spatial outlier heuristic.
     remote_outlier_dist_px = 60;
     weak_max_obs = 8;
     weak_max_area_px = 24;
@@ -4819,13 +4809,9 @@ function clean_events=build_clean_gait_events(events,swing_min_sec,max_merge_dis
             if gap < swing_min_sec && dist <= max_merge_dist_px
                 clean_events(end) = merge_clean_events(clean_events(end), paw_events(ei));
             else
-                % Runway fork: the square original treated an ambiguous
-                % gap/distance pair (neither clearly "same stance" nor
-                % clearly "separate stance") as a conflict and discarded
-                % whichever candidate had fewer observations
-                % (clean_status='clean_rejected'). That silently dropped a
-                % confirmed-genuine footstep on runway data, so both
-                % candidates are kept here instead.
+                % Events of the same paw that are not merged (gap of at
+                % least swing_min_sec or centroid shift above
+                % max_merge_dist_px) are kept as separate stance events.
                 clean_events(end+1,1) = event_to_clean_event(paw_events(ei), 'kept'); %#ok<AGROW>
             end
         end

@@ -1,5 +1,5 @@
 """Square-arena frames (four 64x64 modules tiled 2x2 -> 128x128 taxels, 256 x 256 mm), following
-pipeline/segmentation_peak_seed_refined_runway.m 'square' layout: hardware ids 1,2,3,4 at top-left, top-right,
+pipeline/peak_seed_contact_detector.m 'square' layout: hardware ids 1,2,3,4 at top-left, top-right,
 bottom-left, bottom-right, rotated rot90 / none / rot180 / rot270 (MATLAB rot90 = numpy rot90, counter-clockwise)."""
 import numpy as np
 from ta_frames import Runway

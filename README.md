@@ -19,7 +19,7 @@ acquisition/   record_runway.py         four boards + two overhead cameras on on
 pipeline/      gait_config.m            paths and study settings (edit this first)
                s1_prepare_recordings.m  background models; video choice and platform corners for new data
                s2_detect_contacts.m     tail-base CNN + contact detector -> pressure movie, contacts
-               segmentation_peak_seed_refined_runway.m   the contact detector (called by s2)
+               peak_seed_contact_detector.m  the contact detector (called by s2)
                s3_find_mobile_bouts.m   whole-animal COP trace and walking bouts (+ review window)
                s4_label_paws.m          FL/FR/HL/HR stance events inside the walking bouts (+ labeled video)
                s5_calibrate_to_grams.m  summed taxel response -> mass-equivalent grams
@@ -119,7 +119,7 @@ s4_label_paws(rec)                         % paw-labeled stance events in the wa
 
 **s3, walking bouts.** The whole-animal centre of pressure is computed at ~100 Hz, with each board rendered from its nearest packet by timestamp. Candidate walking bouts are proposed from its speed. `"correct"` opens a review window to keep, reject or trim each candidate; `"stats"` and `"export"` write the per-bout table and the walking windows. The paper used candidates reviewed by hand (the deposit's `mobile_bout_windows.csv`).
 
-An improved automatic detector, `detect_walking_bouts` (actions `"review_new"` / `"export_new"`), is included but was **not** used in the paper. It proposes bouts for the same review window. On the 81 labeled recordings, 95% of the 2,469 manually labeled walking prints have their stance midpoint inside one of its proposed bouts. The proposals add time to review: about 1,000 s of proposed bouts against 619 s of manually selected walking windows.
+An improved automatic detector, `detect_walking_bouts` (actions `"review_auto"` / `"export_auto"`), is included but was **not** used in the paper. It proposes bouts for the same review window. On the 81 labeled recordings, 95% of the 2,469 manually labeled walking prints have their stance midpoint inside one of its proposed bouts. The proposals add time to review: about 1,000 s of proposed bouts against 619 s of manually selected walking windows.
 
 **s4, paw labels.** Inside each walking window, stance contacts are re-segmented from the pressure movie. Each is assigned FL/FR/HL/HR from its position relative to the smoothed whole-animal COP and walking direction, plus 0.3 × log of the camera votes; left/right is decoded in onset order (Viterbi), and back-to-back pieces of one stance are merged. In the manually selected walking windows of 81 recordings, 2,303 of 2,469 manually labeled prints (93.3%) were found and given the correct paw. Output: `work_root/mobile_contacts/<recording>_mobile_contacts.mat`. With `s4_label_paws(rec, struct('video', true))` it also writes `<recording>_paw_labels.mp4`: camera and pressure map for each walking window, every stance labeled, and "human: XX" where a manual label exists and disagrees. These are the final paw labels; s2's provisional labels from camera votes are not used downstream.
 

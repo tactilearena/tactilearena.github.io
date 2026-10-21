@@ -1,7 +1,7 @@
 // Sampling explainers for "How it works".
 //
 // 1. Simulator (#ta-sim): one 64 x 64 module running the readout firmware's sampling loop
-//    (acquisition/firmware/.../binary_sampling_64x64_6MHz_BigBuffer_Vis_ID.ino, binarySampling()):
+//    (acquisition/firmware/readout_64x64/readout_64x64.ino, binarySampling()):
 //      - taxels that triggered neighbour sampling last frame are read first (up to 50 "priority centres");
 //      - then the fixed coarse-to-fine background order (ctrMsrRows/ctrMsrCols, loaded from scan_order.json),
 //        shifted by one column every frame and by one row after each full sweep of columns;

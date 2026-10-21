@@ -59,7 +59,7 @@ cfg.sham_rats = [1 2];
 cfg.sni_rats = [4 5 6];
 
 % detector
-cfg.detector_script = fullfile(cfg.repo_root, 'pipeline', 'segmentation_peak_seed_refined_runway.m');
+cfg.detector_script = fullfile(cfg.repo_root, 'pipeline', 'peak_seed_contact_detector.m');
 cfg.detector_dir = fullfile(cfg.repo_root, 'pipeline');
 cfg.tailbase_script = fullfile(cfg.repo_root, 'tailbase', 'tailbase_cnn.py');
 cfg.python_exe = getenv_or('GAIT_PYTHON', 'python');

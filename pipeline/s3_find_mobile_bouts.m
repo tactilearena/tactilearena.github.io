@@ -1,7 +1,7 @@
 function results = s3_find_mobile_bouts(action, only)
 % Whole-body COP trace and candidate walking bouts ("extract"), manual
 % keep/trim GUI ("correct"), per-bout stats ("stats") and the final walking
-% windows ("export"). "review_new"/"export_new" do the same with an
+% windows ("export"). "review_auto"/"export_auto" do the same with an
 % automatic bout detector (detect_walking_bouts), which was not used in the paper's analysis.
 
 if nargin < 1 || strlength(string(action)) == 0
@@ -36,11 +36,11 @@ if action == "export"
     return;
 end
 
-if action == "review_new" || action == "export_new"
+if action == "review_auto" || action == "export_auto"
     review_root = fullfile(cfg.cop_root, 'walking_bout_review');
     ensure_dir(review_root);
-    raw = use_new_detector_bouts(raw, review_root);
-    if action == "review_new"
+    raw = use_auto_detector_bouts(raw, review_root);
+    if action == "review_auto"
         launch_correction_gui(raw, review_root, fullfile(review_root, 'cop_trajectory_corrections.csv'));
     else
         export_reviewed_windows(raw, cfg.cop_root, review_root);
@@ -91,7 +91,7 @@ fprintf('Wrote %d kept mobile bouts for %d recordings (%.0f s total) to %s\n', .
     height(T), numel(unique(T.recording)), sum(T.t_end - T.t_start), out);
 end
 
-function raw = use_new_detector_bouts(raw, review_root)
+function raw = use_auto_detector_bouts(raw, review_root)
 % Swap in cached detect_walking_bouts candidates (review preset) for the GUI.
 cache_path = fullfile(review_root, 'detector_candidates.csv');
 use_cache = exist(cache_path, 'file') == 2;
@@ -142,7 +142,7 @@ fprintf('%d candidate bouts in %d recordings.\n', sum([raw.n_bouts]), numel(raw)
 end
 
 function export_reviewed_windows(raw, script_dir, review_root)
-% Saved decisions from "review_new" -> mobile_bout_windows_reviewed.csv.
+% Saved decisions from "review_auto" -> mobile_bout_windows_reviewed.csv.
 corrections = read_corrections(fullfile(review_root, 'cop_trajectory_corrections.csv'));
 rec = strings(0, 1); bidx = zeros(0, 1); t0 = zeros(0, 1); t1 = zeros(0, 1);
 n_total = 0; n_unreviewed = 0;

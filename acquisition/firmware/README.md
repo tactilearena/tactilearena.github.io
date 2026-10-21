@@ -1,6 +1,6 @@
 # Readout-board firmware
 
-`binary_sampling_64x64_6MHz_BigBuffer_Vis_ID/` is the firmware for the four 64 × 64 readout boards (Teensy 4.1; Arduino IDE with Teensyduino and the `MCP41HVX1` digital-potentiometer library).
+`readout_64x64/readout_64x64.ino` is the firmware for the four 64 × 64 readout boards (Teensy 4.1; Arduino IDE with Teensyduino and the `MCP41HVX1` digital-potentiometer library).
 
 **Before flashing each board, set `BOARD_ID` (line 5) to 1, 2, 3 or 4.** The ID is sent in every packet. The recording script names boards by USB port: in the paper's recordings `Board1`-`Board4` carried IDs 4, 3, 2, 1. The pipeline's runway layout (boards 4-3-2-1 left to right) assumes that order, so connect the ports the same way.
 

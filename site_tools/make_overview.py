@@ -516,7 +516,7 @@ def s07_injury(t):
         a = ease((t - 0.3) / 0.8)
         text_block(im, (W / 2, 120), ["After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground..."], 40, "Medium", anchor="ma", alpha=a)
         # two bars: change in ratio (start at 1)
-        items = [("Duty-factor ratio", 0.33, (150, 142, 162), "timing"), ("Time-integrated loading ratio", 0.61, (242, 107, 58), "touch")]
+        items = [("Duty-factor ratio", 0.33, (150, 142, 162), "timing"), ("Time-integrated loading ratio", 0.59, (242, 107, 58), "touch")]
         bx = 520; bw_ = 300; base_y = 250; full = 470
         for i_, (lab, dec, col, _) in enumerate(items):
             x = bx + i_ * 560
@@ -534,7 +534,7 @@ def s07_injury(t):
         card = Image.new("RGB", (fig.width + 40, fig.height + 40), "white"); card.paste(fig, (20, 20))
         im.paste(card, ((W - card.width) // 2, 50))
         caption(im, lt, [(0.3, 3.6, "In three injured and two sham-operated rats followed for two weeks, both ratios decreased and then returned toward baseline."),
-                         (3.8, 6.8, "Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 18–21%.")], 0)
+                         (3.8, 6.8, "Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 22–23%.")], 0)
     else:
         lt = t - 15.0; fig = _inj["ab"]
         im.paste(fig, ((W - fig.width) // 2, 110))
@@ -612,7 +612,7 @@ CAPTION_TABLE = {
     "s07_injury": [(0.3, 4.4, "After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground..."),
                    (4.5, 7.8, "...but the loading ratio decreased by approximately 60%, nearly twice the decrease in the duty-factor ratio."),
                    (8.3, 11.6, "In three injured and two sham-operated rats followed for two weeks, both ratios decreased and then returned toward baseline."),
-                   (11.8, 14.8, "Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 18–21%."),
+                   (11.8, 14.8, "Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 22–23%."),
                    (15.3, 21.7, "Contact morphology also changed: injured-hindpaw contacts became smaller and more elongated (cyan outlines).")],
     "s08_beyond": [(0.3, 4.9, "The modular design allows the same four modules to form other arenas, such as a square open field with three rats."),
                    (5.1, 9.7, "Future applications include integration with pose estimation, neural recordings, contact-triggered perturbations and shear sensing.")],

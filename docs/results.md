@@ -56,18 +56,19 @@ assigned an incorrect paw identity ([Supplementary Fig. S2](how-it-works.md#pipe
 
 <figure class="ta-fig" markdown>
 ![Pressure maps through a gait cycle for a sham-operated and a nerve-injured rat; contact area and length-to-width ratio by paw; hindpaw duty-factor and loading ratios; body-mass-normalized peak response by paw; hindpaw imbalance index by rat and epoch.](assets/figures/fig5_sni.jpg){ loading=lazy }
-<figcaption><strong>Fig. 5.</strong> Three rats with left sciatic nerve pinch injury (SNI) and two sham-operated rats, recorded before surgery and over the following two weeks. a,b, Contact shapes through a gait cycle. c, Contact area and length-to-width ratio. d, Hindpaw duty-factor and time-integrated loading ratios. e,f, Peak response relative to each paw's presurgical baseline. g,h, Hindpaw loading imbalance.</figcaption>
+<figcaption><strong>Fig. 5.</strong> Three rats with left sciatic nerve pinch injury (SNI) and two sham-operated rats, recorded before surgery and over the following two weeks. a,b, Contact shapes through a postoperative gait cycle. c, Contact area relative to baseline and footprint length-to-width ratio for each paw. d, Left-to-right hindpaw duty-factor and time-integrated loading ratios. e,f, Body-mass-normalized peak loading relative to each rat's presurgical median for that paw. g,h, Hindpaw imbalance, (L&minus;R)/(L+R), during hindpaw-only support.</figcaption>
 </figure>
 
-- **Footprint morphology.** After surgery, the contact area of the injured left hindpaw decreased and its length-to-width ratio increased; changes were smaller in sham-operated rats and in uninjured paws.
-- **Gait timing and loading.** Relative to baseline, the left-to-right hindpaw duty-factor ratio decreased by 0.33 on days 1&ndash;5 and 0.31 on days 8&ndash;10, whereas the time-integrated loading ratio decreased by 0.61 and 0.56 (all p&nbsp;&lt;&nbsp;0.001). Both ratios returned toward baseline by days 11&ndash;13. Neither ratio differed significantly from baseline in sham-operated rats.
-- **Paw-specific loading.** The peak response of the injured hindpaw decreased by 27% on days 1&ndash;5 (p&nbsp;&lt;&nbsp;0.001) and by 16% on days 8&ndash;10 (p&nbsp;=&nbsp;0.009), whereas that of the contralateral hindpaw increased by 18% (p&nbsp;=&nbsp;0.037) and 21% (p&nbsp;=&nbsp;0.008). Forepaws of SNI rats and all paws of sham-operated rats showed no significant changes.
-- **Loading imbalance.** During hindpaw-only support, session-level loading shifted toward the right side in all three SNI rats.
+- **Footprint morphology.** In SNI rats, the contact area of the injured left hindpaw decreased to approximately 77% and 74% of baseline on days 1&ndash;5 and 8&ndash;10 (both p&nbsp;&lt;&nbsp;0.001) and was 85% of baseline on days 11&ndash;13 (p&nbsp;=&nbsp;0.064); its length-to-width ratio increased by 49%, 56% and 40% across the three postoperative epochs (all p&nbsp;&lt;&nbsp;0.001). The contact area of the contralateral hindpaw increased to approximately 122% of baseline on days 1&ndash;5 (p&nbsp;=&nbsp;0.009). No morphology measure changed significantly in sham-operated rats.
+- **Gait timing and loading.** Relative to baseline, the left-to-right hindpaw duty-factor ratio decreased by 0.33 on days 1&ndash;5 and 0.30 on days 8&ndash;10, whereas the time-integrated loading ratio decreased by 0.59 and 0.54 (all p&nbsp;&lt;&nbsp;0.001). By days 11&ndash;13, neither ratio differed significantly from baseline (p&nbsp;=&nbsp;0.305 and 0.918). Neither ratio differed significantly from baseline in sham-operated rats.
+- **Paw-specific loading.** Peak loading of the injured hindpaw decreased by 27% on days 1&ndash;5 (p&nbsp;&lt;&nbsp;0.001) and by 18% on days 8&ndash;10 (p&nbsp;=&nbsp;0.026), whereas that of the contralateral hindpaw increased by 22% (p&nbsp;=&nbsp;0.019) and 23% (p&nbsp;=&nbsp;0.006). Forepaws of SNI rats and all paws of sham-operated rats showed no significant changes.
+- **Hindlimb imbalance.** During hindpaw-only support, as in rearing, the imbalance index shifted toward right-sided loading in all three SNI rats, decreasing by 0.28, 0.21 and 0.31 on days 1&ndash;5, 8&ndash;10 and 11&ndash;13 (all p&nbsp;&lt;&nbsp;0.001); the injured hindpaw carried approximately 35&ndash;40% of the hindlimb load, compared with approximately 50% before surgery. Sham-operated rats showed no significant change.
 
 Together, these results indicate that the rats continued to place the injured paw while bearing substantially less
-weight on it, with compensatory loading of the contralateral hindpaw. Within-paw COP trajectories further indicated
-delayed anterior load transfer in the injured hindpaw ([Supplementary Fig. S3](#within-paw)), a feature that
-requires resolving load within individual stance phases.
+weight on it, with compensatory loading of the contralateral hindpaw. Paw-specific COP trajectories further
+suggested delayed anterior load transfer in the injured hindpaw, and the net COP displacement at lift-off shifted
+by up to approximately 1.4&nbsp;mm after surgery, mainly in the contralateral hindpaw
+([Supplementary Fig. S3](#within-paw)).
 
 <div class="grid" markdown>
 <figure class="ta-media" markdown>
@@ -90,12 +91,12 @@ requires resolving load within individual stance phases.
 
 <figure class="ta-fig" markdown>
 ![Pressure frames from one right hindpaw contact through stance with the paw-level centre-of-pressure trajectory; representative contacts with trajectories; hindpaw centre-of-pressure displacement over stance before and after surgery.](assets/figures/figS3_within_paw_cop.jpg){ loading=lazy }
-<figcaption><strong>Supplementary Fig. S3.</strong> a,b, Pressure distribution under one paw through stance, with the paw-level COP trajectory. c,d, Anterior&ndash;posterior and medio-lateral COP displacement over stance (949 manually labelled footprints). After nerve pinch, the anterior&ndash;posterior COP of the injured hindpaw progressed more slowly in early stance and shifted more abruptly before lift-off; net displacement at lift-off did not differ significantly between groups.</figcaption>
+<figcaption><strong>Supplementary Fig. S3.</strong> a,b, Pressure distribution under one paw through stance, with the paw-level COP trajectory. c,d, Anterior&ndash;posterior and medio-lateral COP displacement over stance before and after surgery in sham-operated (n&nbsp;=&nbsp;2) and pinch-injured (n&nbsp;=&nbsp;3) rats (910 manually labelled footprints). In pinch-injured rats, net displacement at lift-off shifted laterally by 0.7&nbsp;mm in the left hindpaw (p&nbsp;=&nbsp;0.032) and anteriorly by 1.4&nbsp;mm (p&nbsp;=&nbsp;0.026) and laterally by 0.9&nbsp;mm (p&nbsp;=&nbsp;0.019) in the right hindpaw; sham-operated rats showed no significant change. After surgery, anterior&ndash;posterior COP progression also changed in timing, with slower progression after initial contact and a sharper shift before lift-off.</figcaption>
 </figure>
 
 ## Limitations { #limitations }
 
-- **Cohort.** The cohort of three SNI and two sham-operated rats was designed to demonstrate longitudinal measurement rather than to establish the specificity or reproducibility of each observed change; walking speed may have contributed to some differences.
-- **Paw labels.** Automated paw assignment was evaluated within manually selected walking bouts, and the biological analyses used manually corrected labels.
+- **Cohort.** The cohort of three SNI and two sham-operated rats was designed to demonstrate feasibility for longitudinal study rather than to establish the specificity or reproducibility of each observed change; walking speed may have contributed to some differences.
+- **Paw labels.** Within curated walking windows, automated paw assignment mislabelled 4.2% and missed 2.6% of manually annotated contacts; the biological analyses used manually corrected labels, and walking-window selection and camera-to-sensor registration were curated manually.
 - **Force.** Calibration was performed per board on summed responses (held-out errors of 23.4&ndash;30.6&nbsp;g). The film measures normal load; tangential forces would require additional sensing.
 - **Scope.** Turning, overlapping contacts and prolonged spontaneous behaviour require broader validation.

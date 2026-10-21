@@ -73,12 +73,12 @@ its share of stance time was moderate, whereas the reduction in the load it supp
 
 <div class="ta-finding">
   <div class="ta-finding__card"><b>&minus;0.33</b><span><em>Gait timing.</em> Change in the left-to-right hindpaw duty-factor ratio, days 1&ndash;5 after surgery.</span></div>
-  <div class="ta-finding__card ta-finding__card--touch"><b>&minus;0.61</b><span><em>Contact loading.</em> Change in the left-to-right hindpaw time-integrated loading ratio, days 1&ndash;5 after surgery.</span></div>
+  <div class="ta-finding__card ta-finding__card--touch"><b>&minus;0.59</b><span><em>Contact loading.</em> Change in the left-to-right hindpaw time-integrated loading ratio, days 1&ndash;5 after surgery.</span></div>
 </div>
 
 Both ratios are close to 1 at baseline: the duty-factor ratio therefore decreased by approximately one third,
 whereas the loading ratio decreased by approximately 60%. Peak loading of the injured hindpaw decreased by 27%,
-and that of the contralateral hindpaw increased by 18&ndash;21%. Both ratios returned toward baseline by days
+and that of the contralateral hindpaw increased by 22&ndash;23%. Both ratios returned toward baseline by days
 11&ndash;13.
 
 <p class="ta-small">Model estimates from linear mixed-effects models (p&nbsp;&lt;&nbsp;0.001 for both ratio changes). Statistical details are given in <a href="results/#injury">Results</a>.</p>

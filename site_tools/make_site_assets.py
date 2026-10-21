@@ -11,7 +11,7 @@ HOME = os.path.expanduser("~")
 ONE_JHU = os.path.join(HOME, "Library/CloudStorage/OneDrive-JohnsHopkins")
 ONE_MIT = os.path.join(HOME, "Library/CloudStorage/OneDrive-MassachusettsInstituteofTechnology")
 TESTING = os.path.join(ONE_JHU, "testing_rat")
-PAPER = os.path.join(ONE_MIT, "Gait_Project_Paper", "overleaf", "figures")
+PAPER = os.environ.get("TA_PAPER_FIGS", os.path.join(ONE_MIT, "Gait_Project_Paper", "overleaf", "figures"))  # or an Overleaf export
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 A = os.path.join(REPO, "docs", "assets")
 WORK = os.path.join(REPO, ".work")
@@ -69,6 +69,8 @@ def figures(dpi=220):
     tmp = os.path.join(WORK, "figtmp"); os.makedirs(tmp, exist_ok=True)
     for fn, page, (l, b, r, t), name in FIGS:
         src = os.path.join(PAPER, fn)
+        if not os.path.exists(src):
+            print("   skip (not in source):", fn); continue
         base = os.path.join(tmp, name)
         subprocess.run(["pdftoppm", "-r", str(dpi), "-f", str(page), "-l", str(page), "-png", "-singlefile", src, base],
                        check=True)

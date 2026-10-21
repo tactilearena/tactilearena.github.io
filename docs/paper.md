@@ -29,13 +29,13 @@ and posture, while direct measurements of contact forces often require specializ
 trade-offs among spatial coverage, resolution, and acquisition speed. Here, we introduce a scalable tactile sensing
 platform that transforms the surface beneath freely moving animals into a high-resolution contact-imaging
 instrument. By combining modular sensor arrays with adaptive compressive tactile sampling, the platform provides
-16,384 tactile sensing elements at 2-mm pitch across a 512&nbsp;&times;&nbsp;128-mm runway, with nominal 1-kHz
+16,384 tactile sensing elements at 2-mm pitch across a 512&nbsp;&times;&nbsp;128-mm runway, with nominal 1 kHz
 acquisition. Rather than exhaustively scanning the entire array, the system concentrates measurements around active
 contacts, enabling high-speed sensing across an extended behavioral surface. Synchronized overhead video and a
 camera-assisted analysis pipeline enable paw-resolved measurements of contact loading, stance dynamics, footprint
 morphology, interlimb weight redistribution, and center-of-pressure trajectories. In a longitudinal rat model of
-sciatic nerve injury, the platform reveals substantial unloading of the injured hindlimb and compensatory loading of
-the contralateral limb, including changes underestimated by conventional gait timing measures. The modular
+sciatic nerve injury, the platform detected reduced loading of the injured hindlimb and increased loading of the
+contralateral limb, including changes that conventional gait timing measures underestimated. The modular
 architecture, together with openly available hardware designs, software and data, provides an accessible framework
 for studying the mechanical interactions underlying freely moving behavior, with potential applications across
 neuroscience, injury, and motor recovery research.

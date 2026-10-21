@@ -18,7 +18,7 @@ Timed to overview.mp4; the on-screen captions carry the same text.
 - **01:19** After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground...
 - **01:23** ...but the loading ratio decreased by approximately 60%, nearly twice the decrease in the duty-factor ratio.
 - **01:27** In three injured and two sham-operated rats followed for two weeks, both ratios decreased and then returned toward baseline.
-- **01:30** Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 18–21%.
+- **01:30** Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 22–23%.
 - **01:34** Contact morphology also changed: injured-hindpaw contacts became smaller and more elongated (cyan outlines).
 - **01:41** The modular design allows the same four modules to form other arenas, such as a square open field with three rats.
 - **01:46** Future applications include integration with pose estimation, neural recordings, contact-triggered perturbations and shear sensing.

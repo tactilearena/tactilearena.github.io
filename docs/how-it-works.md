@@ -28,8 +28,8 @@ open-field arena ([Modularity](index.md#beyond); Supplementary Video 5 on the [P
 
 </div>
 <figure class="ta-fig" markdown>
-![Schematic of the runway: overhead camera, acrylic walls, waterproof cloth over the pressure-sensor sheet and piezoresistive layer; photograph of the sensor array with its readout board.](assets/figures/overview.jpg){ loading=lazy }
-<figcaption><strong>Runway configuration.</strong> An overhead camera above a 64&nbsp;&times;&nbsp;256-taxel pressure-sensor sheet (four modules) beneath a waterproof cloth. Panel b shows one module with its readout board. Adapted from the manuscript.</figcaption>
+![Schematic of the runway: overhead camera, transparent walls, waterproof cloth over the pressure-sensor sheet and piezoresistive layer, acrylic floor.](assets/figures/runway_schematic.jpg){ loading=lazy }
+<figcaption><strong>Runway configuration.</strong> An overhead camera above the pressure-sensor sheet and piezoresistive layer, covered by a waterproof cloth and enclosed by transparent walls.</figcaption>
 </figure>
 </div>
 

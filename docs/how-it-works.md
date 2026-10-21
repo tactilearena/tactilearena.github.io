@@ -163,7 +163,7 @@ compare each animal with its own presurgical baseline.
 <figcaption><strong>Analysis pipeline</strong> (Fig. 1 of the manuscript). A1, pressure frame as acquired; black taxels were not measured in that frame. A2, overhead video. B, tail-base localization. C, registered fusion. D, paw assignment. E, footstep extraction.</figcaption>
 </figure>
 
-1. **Synchronization.** Pressure packets from the four boards and frames from the overhead cameras are timestamped
+1. **Synchronization.** Pressure packets from the four boards and frames from the overhead and side cameras are timestamped
    against a common host clock from a shared start signal.
 2. **Pressure frames.** The most recent packet from each board is reconstructed into a 64&nbsp;&times;&nbsp;64 image
    (taxels not measured in that frame were below threshold in recent frames and are set to zero), and the four images

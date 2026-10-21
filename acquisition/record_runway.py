@@ -1,11 +1,11 @@
-"""Record four tactile boards and the overhead cameras on one shared clock.
+"""Record four tactile boards and the two cameras (overhead and side) on one shared clock.
 
 Each board is sent its settings (M, threshold, digital potentiometer); board and
 camera threads then start from one shared start time, and every tactile packet
 and camera frame is timestamped relative to it. Output: one
 runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat file and one
-camera_<K>_<time>.mp4 per camera. Serial ports, camera indices (two overhead
-cameras, [0, 1]) and board settings are set at the bottom of the script.
+camera_<K>_<time>.mp4 per camera. Serial ports, camera indices (two cameras,
+[0, 1]: overhead and side) and board settings are set at the bottom of the script.
 
 Serial backlog: every 100 frames, a board's input buffer is cleared if more
 than 10 kB is waiting (the event is printed); after an invalid sync word or a
@@ -869,9 +869,9 @@ if __name__ == "__main__":
     # Initialize tactile recorder
     recorder = TactileDataRecorder(ports)
 
-    # Initialize multi-camera recorder with the two overhead cameras
+    # Initialize multi-camera recorder with the overhead and side cameras
     video_recorder = MultiCameraRecorder(
-        camera_indices=[0, 1],  # the two overhead cameras
+        camera_indices=[0, 1],  # overhead and side cameras
         width=1920,
         height=1080,
         fps=30.0,

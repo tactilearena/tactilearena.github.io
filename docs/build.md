@@ -21,7 +21,7 @@ an overhead camera and a host computer.</p>
 | Readout board (4-layer PCB, 92&nbsp;&times;&nbsp;56&nbsp;mm) | 4 | Teensy 4.1, 2&nbsp;&times; ADG732 32:1 multiplexers, 2&nbsp;&times; AD7476 12-bit ADCs, 8&nbsp;&times; 74LVC595 shift registers, 2&nbsp;&times; MCP41HV51 digital potentiometers, operational amplifiers and two 70-pin flexible-circuit connectors (Molex 505110). |
 | Piezoresistive film (Velostat/Linqstat) | 4 sheets of approximately 140&nbsp;&times;&nbsp;140&nbsp;mm | Placed over the electrode arrays. |
 | Waterproof cloth | approximately 1 m | Forms the walking surface over the sensing area. |
-| Acrylic walls and base, USB cables and hub, overhead camera(s), host computer | | The recording software runs on macOS with two 1920&nbsp;&times;&nbsp;1080 cameras. |
+| Acrylic walls and base, USB cables and hub, overhead and side cameras, host computer | | The recording software runs on macOS with two 1920&nbsp;&times;&nbsp;1080 cameras; the side view assists manual paw labelling. |
 
 ## Cost { #cost }
 

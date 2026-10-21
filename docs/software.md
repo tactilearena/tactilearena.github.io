@@ -7,13 +7,15 @@ description: Acquisition firmware and recording software, and the MATLAB/Python 
 
 <p class="ta-lede">The complete acquisition and analysis software, from the readout firmware to paw-labelled stance
 events, is available in the <a href="https://github.com/tactilearena/tactilearena.github.io">repository</a> under the
-MIT License. This page summarizes its organization; the repository README provides the full reference.</p>
+MIT License. This page summarizes its organization; the repository README provides the full reference. Scripts
+used to compute the gait metrics and statistical analyses reported in the manuscript are available from the
+corresponding authors upon request.</p>
 
 ## Repository structure { #layout }
 
 | Folder | Contents |
 |---|---|
-| `acquisition/` | `record_runway.py`: synchronized recording of the four boards and the overhead cameras (`.mat` and `.mp4`); `live_view_runway.py`: live pressure map; `firmware/`: readout-board firmware (Teensy 4.1) |
+| `acquisition/` | `record_runway.py`: synchronized recording of the four boards and the overhead and side cameras (`.mat` and `.mp4`); `live_view_runway.py`: live pressure map; `firmware/`: readout-board firmware (Teensy 4.1) |
 | `pipeline/` | `gait_config.m`: paths and study settings; stages `s1`&ndash;`s5` (below) |
 | `tailbase/` | `tailbase_cnn.py`: tail-base localization (annotation, training and prediction) |
 | `demo/` | `run_demo.m`: runs the pipeline on the demonstration recording and verifies the output |
@@ -25,7 +27,7 @@ MIT License. This page summarizes its organization; the repository README provid
 
 - **MATLAB** (tested with R2023b) with the Image Processing, Signal Processing, and Statistics and Machine Learning toolboxes.
 - **Python 3** for the tail-base network: `pip install -r requirements.txt` (NumPy, OpenCV, PyTorch). A GPU is not required; on the demonstration recording, a CPU-only run required the same time and produced identical labels.
-- **Acquisition only:** the readout boards, a host computer with four USB ports and the overhead cameras, together with `pyserial` and `scipy`.
+- **Acquisition only:** the readout boards, a host computer with four USB ports and the two cameras (overhead and side), together with `pyserial` and `scipy`.
 
 ## Demonstration workflow { #demo }
 

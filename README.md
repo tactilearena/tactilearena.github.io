@@ -8,12 +8,12 @@ Johns Hopkins University and MIT. Manuscript in preparation.
 
 TactileArena transforms the floor into a sensor. A modular surface of 16,384 pressure-sensitive taxels (2-mm pitch, 512 × 128 mm, nominal 1 kHz) records where, when and with what force a freely moving animal contacts the ground, synchronized with overhead video and without instrumentation of the animal. Each readout board measures 200 of its module's 4,096 taxels per frame and concentrates these measurements on active contacts (adaptive compressive sampling), enabling this combination of sensing area, spatial density and acquisition speed.
 
-The runway is a 64 × 256 piezoresistive array (four 64 × 64 modules, each with its own readout board) under a walking surface, recorded together with overhead cameras. This repository holds the readout firmware, the synchronized recording code, the pipeline that takes each recording from raw sensor packets to paw-labeled (FL/FR/HL/HR) stance events and mass-equivalent loading, and the project website (`docs/`).
+The runway is a 64 × 256 piezoresistive array (four 64 × 64 modules, each with its own readout board) under a walking surface, recorded together with an overhead camera and a side camera. This repository holds the readout firmware, the synchronized recording code, the pipeline that takes each recording from raw sensor packets to paw-labeled (FL/FR/HL/HR) stance events and mass-equivalent loading, and the project website (`docs/`).
 
 ## Repository layout
 
 ```
-acquisition/   record_runway.py         four boards + two overhead cameras on one clock -> .mat + .mp4
+acquisition/   record_runway.py         four boards + overhead and side cameras on one clock -> .mat + .mp4
                live_view_runway.py      live pressure map (no recording)
                firmware/                readout-board firmware (Teensy 4.1; set BOARD_ID per board)
 pipeline/      gait_config.m            paths and study settings (edit this first)
@@ -58,7 +58,7 @@ The two tables are compared with `demo/expected/`; a successful run ends with `D
 - **Python 3** for the tail-base CNN: `pip install -r requirements.txt` (tested with Python 3.12, NumPy 2.4, OpenCV 4.13, PyTorch 2.12 CPU and 2.11 CUDA). Install time is a few minutes.
 - **A GPU is not needed.** On the demo recording a CPU-only run took the same time and gave the same labeled stance events. Tail-base positions agreed on all but 1 of 1,376 frames, which changed the camera votes of 1 of 197 detector contacts and no label.
 - **Disk:** about 60 MB of output per recording, two thirds of it tail-base frame images.
-- **Recording only:** the readout boards and firmware (`acquisition/firmware/`), a computer with four USB ports and the overhead cameras, plus `pyserial` and `scipy`.
+- **Recording only:** the readout boards and firmware (`acquisition/firmware/`), a computer with four USB ports and the two cameras (overhead and side), plus `pyserial` and `scipy`.
 
 ## Data
 
@@ -188,6 +188,8 @@ Everything is written under `GAIT_WORK_ROOT`. Conventions used by all stages:
 ## License and citation
 
 Code: MIT License; see [LICENSE](LICENSE). Hardware design files in `hardware/`: CERN-OHL-P-2.0; see [LICENSE-hardware](LICENSE-hardware). Website text, figures and media in `docs/`: CC BY 4.0; see [LICENSE-docs](LICENSE-docs). The recordings are released separately under CC BY 4.0.
+
+Scripts used to compute the gait metrics and statistical analyses reported in the manuscript are available from the corresponding authors upon request.
 
 If you use this code or data, please cite the paper (manuscript in preparation; see [CITATION.cff](CITATION.cff) and the [website](https://tactilearena.github.io/paper/)).
 

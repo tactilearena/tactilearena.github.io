@@ -20,5 +20,5 @@ venv/
 Thumbs.db
 
 # website/video build: raw-data copies, caches and renders (never committed)
-.work/
-site/
+/.work/
+/site/

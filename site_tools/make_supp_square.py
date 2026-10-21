@@ -4,8 +4,7 @@
      (M = 200, T = 700): tactile floor | overhead camera (rotated 180 deg, as in the pipeline) | side camera
   3. three rats exploring the square arena together (tactile map + overhead camera composite)
 Camera MP4s are stamped 30 fps but were recorded at ~19-20 fps, so every frame is placed by its saved timestamp.
-The recording has host-side stalls (all boards pause together: 25.8 s 4.9 s, 41.9 s 2.9 s, 55.9 s 4.0 s, 72.9 s 6.1 s),
-so the excerpt is taken from a stall-free stretch.
+The excerpt (60.6-72.8 s) is a continuous stretch of the recording.
 Usage: python make_supp_square.py out.mp4"""
 import os, sys, subprocess, numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -13,8 +12,9 @@ from PIL import Image
 from scipy import ndimage as ndi
 from scipy.ndimage import gaussian_filter
 from ta_square import Square
-from media_common import WORK, Writer, poster, pressure_rgba, THRESHOLD
-from make_overview import (W, H, FPS, blank, to_img, to_arr, ease, text_block, caption, badge, EMBER, read_video)
+from media_common import WORK, SOURCES, Writer, poster, pressure_rgba, THRESHOLD
+from make_overview import (W, H, FPS, blank, to_img, to_arr, ease, text_block, caption, badge, EMBER, read_video,
+                           arena_panels)
 
 DATA = os.path.join(WORK, "data", "square_rat4_0224")
 SQ = Square(os.path.join(WORK, "cache", "square_rat4_0224.npz"))
@@ -133,12 +133,13 @@ MULTI = {}
 
 def multi(t):
     if "v" not in MULTI:
-        src = os.path.join(os.path.expanduser("~"), "Library/CloudStorage/OneDrive-JohnsHopkins/testing_rat/11-03-2025/Videos/Demo Videos/multi animal.mov")
-        MULTI["v"] = read_video(src, 22, 20, 30, 1380)
+        # cropped below the recording's own panel titles; panel height matches the single-rat segment
+        MULTI["v"] = read_video(os.path.join(SOURCES, "arena_three_rats.mov"), 22, 20, 30, 1254, crop=(1920, 904, 0, 156))
     fr = MULTI["v"]; k = min(len(fr) - 1, int(t * 30))
     im = to_img(blank()).convert("RGBA")
-    clip = Image.fromarray(fr[k]); im.paste(clip, ((W - clip.width) // 2, 92))
-    badge(im, "Three rats · 128 × 128 taxels", ((W - clip.width) // 2 + 14, 34))
+    clip = Image.fromarray(fr[k]); x0 = (W - clip.width) // 2
+    arena_panels(im, clip, x0, Y0)
+    badge(im, "Three rats · 128 × 128 taxels", (x0 + 4, 60))
     caption(im, t, [(0.3, 9.7, "Three rats explore the arena simultaneously; the contacts of all animals are recorded concurrently."),
                     (9.9, 19.7, "No markers, tethers or body-mounted sensors are required.")], 0)
     return im

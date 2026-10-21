@@ -1,4 +1,4 @@
-// Clips.
+// Clips and figures.
 //
 // Loops: <video data-loop muted loop playsinline preload="none" ...> play while at least a quarter of them is
 // on screen and pause otherwise, so a page full of clips only decodes what is visible and loads nothing until
@@ -49,7 +49,18 @@
     videos.forEach(function (v) { v.muted = true; observer.observe(v); });
   }
 
-  function setup() { posters(); loops(); }
+  // Figures: each figure image links to its full-resolution file.
+  function figures() {
+    document.querySelectorAll(".ta-fig img").forEach(function (img) {
+      if (img.closest("a")) return;
+      var a = document.createElement("a");
+      a.href = img.currentSrc || img.src; a.className = "ta-zoom"; a.target = "_blank"; a.rel = "noopener";
+      a.title = "Open the full-resolution figure";
+      img.parentNode.insertBefore(a, img); a.appendChild(img);
+    });
+  }
+
+  function setup() { posters(); loops(); figures(); }
   if (document.readyState === "complete") setup();
   else window.addEventListener("load", setup, { once: true });
 })();

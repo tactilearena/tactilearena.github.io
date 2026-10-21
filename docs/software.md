@@ -11,22 +11,15 @@ MIT License. This page summarizes its organization; the repository README provid
 
 ## Repository structure { #layout }
 
-```text
-acquisition/   record_runway.py         four boards + two overhead cameras on one clock -> .mat + .mp4
-               live_view_runway.py      live pressure map (no recording)
-               firmware/                readout-board firmware (Teensy 4.x; set BOARD_ID per board)
-pipeline/      gait_config.m            paths and study settings
-               s1_prepare_recordings.m  background models; video selection and platform corners for new data
-               s2_detect_contacts.m     tail-base CNN + contact detector -> pressure movie, contacts
-               s3_find_mobile_bouts.m   whole-animal COP trace and walking bouts (with review interface)
-               s4_label_paws.m          FL/FR/HL/HR stance events within walking bouts (with labelled video)
-               s5_calibrate_to_grams.m  summed taxel response -> mass-equivalent grams
-tailbase/      tailbase_cnn.py          tail-base localization: annotation, training, prediction
-demo/          run_demo.m               runs the pipeline on the demonstration recording and verifies the output
-data/          tailbase_model/, calibration_0_450/, platform_sheet_template.mat
-hardware/      KiCad sources, fabrication files and bill of materials (CERN-OHL-P-2.0)
-docs/          this website (MkDocs); site_tools/ generates its figures and videos from the recordings
-```
+| Folder | Contents |
+|---|---|
+| `acquisition/` | `record_runway.py`: synchronized recording of the four boards and the overhead cameras (`.mat` and `.mp4`); `live_view_runway.py`: live pressure map; `firmware/`: readout-board firmware (Teensy 4.1) |
+| `pipeline/` | `gait_config.m`: paths and study settings; stages `s1`&ndash;`s5` (below) |
+| `tailbase/` | `tailbase_cnn.py`: tail-base localization (annotation, training and prediction) |
+| `demo/` | `run_demo.m`: runs the pipeline on the demonstration recording and verifies the output |
+| `data/` | pretrained tail-base model, calibration curves and the platform template |
+| `hardware/` | KiCad sources, fabrication files and bill of materials (CERN-OHL-P-2.0) |
+| `docs/`, `site_tools/` | this website and the scripts that generate its figures and videos from the recordings |
 
 ## Requirements { #requirements }
 

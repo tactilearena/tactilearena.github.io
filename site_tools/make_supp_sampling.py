@@ -78,7 +78,7 @@ def boards(i, label, legend_alpha=1.0):
     text_block(im, (x0 + 256 * s2, top - 72), [f"t = {tnow:.3f} s    measured in this frame: {tot} of 16,384 taxels"], 30,
                fill=EMBER, anchor="ra")
     for k in range(4):
-        text_block(im, (x0 + 64 * s2 * k + 8, top + 64 * s2 + 10), [f"module {k + 1}"], 22, fill=(130, 122, 142))
+        text_block(im, (x0 + 64 * s2 * k + 8, top + 64 * s2 + 10), [f"board {4 - k}"], 22, fill=(130, 122, 142))
     text_block(im, (x0, top + 64 * s2 + 52), ["black: not measured in this frame     grey: measured, below threshold     colour: measured, above threshold"],
                26, fill=(170, 162, 182), alpha=legend_alpha)
     return im

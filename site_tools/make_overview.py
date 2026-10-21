@@ -107,13 +107,19 @@ def fit_image(path, box_w, box_h, bg=None):
     return im.resize((int(im.width * s), int(im.height * s)), Image.LANCZOS)
 
 
-def read_video(path, start, dur, fps, scale_w):
-    """Frames of a clip, resampled to fps and scaled to scale_w wide (rgb float arrays)."""
-    probe = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
-                            "-of", "csv=p=0", path], capture_output=True, text=True).stdout.strip().splitlines()[0].split(",")
-    w0, h0 = int(probe[0]), int(probe[1]); sh = int(round(h0 * scale_w / w0 / 2) * 2)
+def read_video(path, start, dur, fps, scale_w, crop=None):
+    """Frames of a clip, resampled to fps, optionally cropped (w, h, x, y) and scaled to scale_w wide (rgb arrays)."""
+    if crop:
+        w0, h0 = crop[0], crop[1]
+    else:
+        probe = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
+                                "stream=width,height", "-of", "csv=p=0", path],
+                               capture_output=True, text=True).stdout.strip().splitlines()[0].split(",")
+        w0, h0 = int(probe[0]), int(probe[1])
+    sh = int(round(h0 * scale_w / w0 / 2) * 2)
+    vf = (f"crop={crop[0]}:{crop[1]}:{crop[2]}:{crop[3]}," if crop else "") + f"fps={fps},scale={scale_w}:{sh}"
     raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", str(start), "-t", str(dur), "-i", path, "-vf",
-                          f"fps={fps},scale={scale_w}:{sh}", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
+                          vf, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
                          capture_output=True, check=True).stdout
     return np.frombuffer(raw, np.uint8).reshape(-1, sh, scale_w, 3)
 
@@ -551,14 +557,23 @@ def fit_image_from(im, bw, bh):
 _ar = {}
 
 
+def arena_panels(im, clip, x0, y0, src_w=1920, size=30):
+    """Paste a frame of the three-rat arena clip (cropped below its own panel titles) and label its two panels."""
+    im.paste(clip, (x0, y0))
+    s = clip.width / src_w
+    for dx, lab in ((18, "Tactile floor (128 × 128 taxels)"), (922, "Overhead camera")):
+        text_block(im, (x0 + int(dx * s), y0 - 50), [lab], size, "Medium")
+
+
 @scene(10.0)
 def s08_beyond(t):
     if "v" not in _ar:
         _ar["v"] = read_video(os.path.join(A, "video", "arena_multi.mp4"), 14, 10, 30, 1500)
     fr = _ar["v"]; k = min(len(fr) - 1, int(t * 30))
     im = to_img(blank()).convert("RGBA")
-    clip = Image.fromarray(fr[k]); im.paste(clip, ((W - clip.width) // 2, 92))
-    badge(im, "Three rats · 128 × 128 taxels", ((W - clip.width) // 2 + 14, 34))
+    clip = Image.fromarray(fr[k]); x0 = (W - clip.width) // 2
+    arena_panels(im, clip, x0, 160)
+    badge(im, "Three rats · 128 × 128 taxels", (x0 + 14, 34))
     caption(im, t, [(0.3, 4.9, "The modular design allows the same four modules to form other arenas, such as a square open field with three rats."),
                     (5.1, 9.7, "Future applications include integration with pose estimation, neural recordings, contact-triggered perturbations and shear sensing.")], 0)
     return im
@@ -609,8 +624,8 @@ CAPTION_TABLE = {
                      (16.8, 21.8, "Adaptive sampling enables acquisition across 16,384 taxels at approximately 1,000 frames per second.")],
     "s06_loading": [(0.3, 6.6, "With synchronized video, contacts are assigned to individual paws, correctly identifying 93.3% of 2,469 manually annotated contacts."),
                     (6.8, 13.7, "The load on each paw is then resolved at approximately 1 kHz throughout every stance.")],
-    "s07_injury": [(0.3, 4.4, "After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground..."),
-                   (4.5, 7.8, "...but the loading ratio decreased by approximately 60%, nearly twice the decrease in the duty-factor ratio."),
+    "s07_injury": [(0.3, 4.4, "After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground."),
+                   (4.5, 7.8, "The loading ratio, however, decreased by approximately 60%, nearly twice the decrease in the duty-factor ratio."),
                    (8.3, 11.6, "In three injured and two sham-operated rats followed for two weeks, both ratios decreased and then returned toward baseline."),
                    (11.8, 14.8, "Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 22–23%."),
                    (15.3, 21.7, "Contact morphology also changed: injured-hindpaw contacts became smaller and more elongated (cyan outlines).")],
@@ -657,7 +672,7 @@ def main():
         fh.write("WEBVTT\n\n")
         for a, b, txt in cues:
             fh.write(f"{vtt_time(a)} --> {vtt_time(b)}\n{txt}\n\n")
-    poster(out, out.replace(".mp4", ".jpg"), t=21.5)
+    poster(out, out.replace(".mp4", ".jpg"), t=13.5)  # title card
     with open(os.path.join(WORK, "overview_script.md"), "w") as fh:
         fh.write("# TactileArena overview: narration script\n\nTimed to overview.mp4; the on-screen captions carry the same text.\n\n")
         for a, b, txt in cues:

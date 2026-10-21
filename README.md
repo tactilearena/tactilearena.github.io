@@ -15,7 +15,7 @@ The runway is a 64 × 256 piezoresistive array (four 64 × 64 modules, each with
 ```
 acquisition/   record_runway.py         four boards + two overhead cameras on one clock -> .mat + .mp4
                live_view_runway.py      live pressure map (no recording)
-               firmware/                readout-board firmware (Teensy 4.x; set BOARD_ID per board)
+               firmware/                readout-board firmware (Teensy 4.1; set BOARD_ID per board)
 pipeline/      gait_config.m            paths and study settings (edit this first)
                s1_prepare_recordings.m  background models; video choice and platform corners for new data
                s2_detect_contacts.m     tail-base CNN + contact detector -> pressure movie, contacts
@@ -23,7 +23,7 @@ pipeline/      gait_config.m            paths and study settings (edit this firs
                s3_find_mobile_bouts.m   whole-animal COP trace and walking bouts (+ review window)
                s4_label_paws.m          FL/FR/HL/HR stance events inside the walking bouts (+ labeled video)
                s5_calibrate_to_grams.m  summed taxel response -> mass-equivalent grams
-tailbase/      tailbase_cnn.py          tail-base localiser: annotate / train / predict
+tailbase/      tailbase_cnn.py          tail-base localizer: annotate / train / predict
 demo/          run_demo.m               runs the pipeline on the demo recording and checks the result
                expected/                expected walking windows and stance events
 data/          tailbase_model/          trained tail-base CNN (best_tail_detector.pt) and its training history
@@ -31,12 +31,12 @@ data/          tailbase_model/          trained tail-base CNN (best_tail_detecto
                platform_sheet_template.mat   sensor position relative to the platform corners
 hardware/      KiCad sources, fabrication Gerbers and BOM for the 64 x 64 sensor and its readout board (CERN-OHL-P-2.0)
 docs/          the website (MkDocs Material; mkdocs.yml at the root, published by .github/workflows/pages.yml)
-site_tools/    Python scripts that make the website's videos and sampling explainers from a raw recording
+site_tools/    scripts that produce the website media and the Supplementary Videos (see site_tools/README.md)
 ```
 
 ## Demo
 
-The demo package is `demo_2-24-2026_rat4.zip` in the data deposit on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364) (the DOI resolves once the deposit is published) (415 MB download, 1.36 GB unzipped). It holds one complete recording, rat 4 on 24 Feb 2026 (sciatic nerve pinch group, two weeks before surgery): an 85-s session with five runway crossings. It contains the raw pressure packets (1.0 GB), the overhead video (334 MB) and that recording's annotations, in the same layout as the full data deposit. Extracting it to `C:\` gives `C:\gait_demo\data`.
+The demo package, `demo_2-24-2026_rat4.zip` (415 MB; 1.36 GB unzipped), is part of the data deposit on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364); the DOI resolves once the deposit is published. It holds one complete recording, rat 4 on 24 Feb 2026 (sciatic nerve pinch group, two weeks before surgery): an 85-s session with five runway crossings. It contains the raw pressure packets (1.0 GB), the overhead video (334 MB) and that recording's annotations, in the same layout as the full data deposit. Extracting it to `C:\` gives `C:\gait_demo\data`.
 
 ```matlab
 setenv('GAIT_PYTHON', 'C:\path\to\python.exe')   % Python with PyTorch, if not on the PATH
@@ -97,7 +97,7 @@ addpath('<repo>/pipeline')
 
 ## Recording
 
-`acquisition/record_runway.py` runs on the acquisition computer (macOS) with the four readout boards on USB serial (115,200 baud). It sends each board its settings, then releases the board and camera threads from one shared start time, and saves `runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat` plus one `camera_<K>_<time>.mp4` per camera. The paper's recordings used 90 s, M = 200, threshold 700, digital potentiometer 100, and two cameras at 1920 × 1080 (30 fps target; about 25-27 fps achieved, so use the saved per-frame timestamps). Edit the serial ports and camera indices at the bottom of the script. Each board streams about 880 frames per second; see `acquisition/firmware/README.md` for the sampling scheme and packet format. `live_view_runway.py` shows the live pressure map.
+`acquisition/record_runway.py` runs on the acquisition computer (macOS) with the four readout boards connected over USB serial. It sends each board its settings, then releases the board and camera threads from one shared start time, and saves `runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat` plus one `camera_<K>_<time>.mp4` per camera. The paper's recordings used 90 s, M = 200, threshold 700, digital potentiometer 100, and two cameras at 1920 × 1080 (30 fps target; about 25-27 fps achieved, so use the saved per-frame timestamps). Edit the serial ports and camera indices at the bottom of the script. Each board streams about 880 frames per second; see `acquisition/firmware/README.md` for the sampling scheme and packet format. `live_view_runway.py` shows the live pressure map.
 
 ## Running the pipeline
 

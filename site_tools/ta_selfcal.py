@@ -1,4 +1,4 @@
-"""Camera->sensor registration for a recording whose saved homography is not in the shared data.
+"""Camera-to-sensor registration without a saved homography.
 Start from the pipeline's platform template (data/platform_sheet_template.mat: pressure-sheet corners in the
 rot180 overhead frame of the template session) and search for the similarity correction (in sensor space)
 that puts the most pressure inside the rat's video silhouette: paws are always under the body outline.

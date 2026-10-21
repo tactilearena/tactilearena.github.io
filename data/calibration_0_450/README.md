@@ -10,7 +10,10 @@
 - **Interpolation.** Pixel sums are converted with monotone piecewise cubic Hermite interpolation (PCHIP) between those points.
 - **Range.** Values below the first point return 0 g. Values above the last point (about 410-421 g, depending on the board) are outside the calibrated range and return NaN.
 
-In the JSON, `boards.<boardN>.pixel_sum_knots` and `force_g_knots` are the paired calibration points.
+In the JSON, `boards.<boardN>.pixel_sum_knots` and `force_g_knots` are the paired calibration points. The remaining fields
+record the fit: `rmse_g`, `mae_g` and `n_samples` are the in-sample errors and sample count of the final curve (the
+held-out errors are given under Accuracy), `presses_used` lists the presses retained for that board, numbered in
+recording order (`all` for board 1), and `force_tare_g` and `baseline_sum` are the force and taxel-sum offsets.
 
 ## Accuracy
 

@@ -60,7 +60,7 @@ neuroscience, injury, and motor recovery research.
 
 Full-resolution files are available from the [GitHub release](https://github.com/tactilearena/tactilearena.github.io/releases/tag/supplementary-videos-v1); legends are provided in [`supplementary/README.md`](https://github.com/tactilearena/tactilearena.github.io/tree/main/supplementary).
 
-<div class="ta-cards" markdown>
+<div class="ta-cards ta-cards--video" markdown>
 <div class="ta-card" markdown>
 <div class="ta-media"><video width="720" height="1280" controls muted playsinline preload="none" data-poster="../assets/video/assembly.jpg" aria-label="Supplementary Video 1: Assembly of the tactile runway"><source src="../assets/video/assembly.mp4" type="video/mp4"></video></div>
 <div class="ta-card__body" markdown>
@@ -136,4 +136,5 @@ Four modules tiled 2&nbsp;&times;&nbsp;2 form a 256&nbsp;&times;&nbsp;256&nbsp;m
 
 ## Ethics { #ethics }
 
-Animal procedures were performed under protocol RA24M61.
+All animal procedures were conducted under a protocol approved by the Johns Hopkins University Animal Care and Use
+Committee (ACUC; protocol RA24M61, approved 11 March 2024).

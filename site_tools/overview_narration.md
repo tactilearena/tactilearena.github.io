@@ -15,8 +15,8 @@ Timed to overview.mp4; the on-screen captions carry the same text.
 - **00:59** Adaptive sampling enables acquisition across 16,384 taxels at approximately 1,000 frames per second.
 - **01:05** With synchronized video, contacts are assigned to individual paws, correctly identifying 93.3% of 2,469 manually annotated contacts.
 - **01:11** The load on each paw is then resolved at approximately 1 kHz throughout every stance.
-- **01:19** After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground...
-- **01:23** ...but the loading ratio decreased by approximately 60%, nearly twice the decrease in the duty-factor ratio.
+- **01:19** After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground.
+- **01:23** The loading ratio, however, decreased by approximately 60%, nearly twice the decrease in the duty-factor ratio.
 - **01:27** In three injured and two sham-operated rats followed for two weeks, both ratios decreased and then returned toward baseline.
 - **01:30** Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 22–23%.
 - **01:34** Contact morphology also changed: injured-hindpaw contacts became smaller and more elongated (cyan outlines).

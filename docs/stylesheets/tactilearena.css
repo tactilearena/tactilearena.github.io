@@ -242,3 +242,20 @@
 .md-typeset figure.ta-card > p { margin: 0; }
 .md-typeset figure.ta-card img { border-radius: 0; }
 .md-typeset .ta-authors { font-size: .9rem; line-height: 1.7; margin-bottom: .3rem; }
+
+/* Header repository link: name only (no release tag or star/fork counts). */
+.md-source__facts { display: none; }
+
+/* Three photographs in one row, cropped to a common frame. */
+.ta-cards--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ta-cards--3 .ta-card img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; }
+.ta-cards--3 .ta-media--contain img { object-fit: contain; }
+@media screen and (max-width: 44.9375em) { .ta-cards--3 { grid-template-columns: 1fr; } }
+
+/* Supplementary-video cards: every clip in a 16:9 frame, so that the cards align. */
+.ta-cards--video .ta-media { aspect-ratio: 16 / 9; background: #000; }
+.ta-cards--video .ta-media video { width: 100%; height: 100%; object-fit: contain; }
+
+/* Figures open at full resolution. */
+.ta-fig a.ta-zoom { display: block; cursor: zoom-in; }
+.ta-card__body .headerlink { display: none; }

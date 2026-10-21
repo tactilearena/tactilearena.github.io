@@ -2,8 +2,7 @@ name: pages
 
 # Builds tactilearena.github.io from docs/ (MkDocs Material) and deploys it to GitHub Pages.
 #
-# Needs: repository Settings > Pages > Source = "GitHub Actions". On the Free plan Pages only works once the
-# repository is public, so the build is skipped quietly while it is private.
+# Requires Settings > Pages > Source: "GitHub Actions".
 
 on:
   push:

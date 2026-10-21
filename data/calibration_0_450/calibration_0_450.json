@@ -56,7 +56,7 @@
       "rmse_g": 20.03,
       "mae_g": 12.07,
       "n_samples": 567,
-      "mountains_used": "all"
+      "presses_used": "all"
     },
     "board2": {
       "pixel_sum_knots": [
@@ -102,7 +102,7 @@
       "rmse_g": 28.64,
       "mae_g": 16.17,
       "n_samples": 297,
-      "mountains_used": [
+      "presses_used": [
         1,
         2,
         7
@@ -156,7 +156,7 @@
       "rmse_g": 21.13,
       "mae_g": 13.58,
       "n_samples": 419,
-      "mountains_used": [
+      "presses_used": [
         3,
         4,
         5,
@@ -211,7 +211,7 @@
       "rmse_g": 22.71,
       "mae_g": 15.03,
       "n_samples": 381,
-      "mountains_used": [
+      "presses_used": [
         3,
         4,
         5

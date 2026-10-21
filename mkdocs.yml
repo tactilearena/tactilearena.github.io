@@ -5,10 +5,10 @@ site_description: >-
   overhead video.
 site_url: https://tactilearena.github.io/
 repo_url: https://github.com/tactilearena/tactilearena.github.io
-repo_name: tactilearena/tactilearena.github.io
+repo_name: Source code
 edit_uri: edit/main/docs/
 docs_dir: docs
-copyright: "TactileArena. Code MIT, hardware CERN-OHL-P-2.0, website text, figures and media CC BY 4.0."
+copyright: "Code: MIT License · Hardware design files: CERN-OHL-P-2.0 · Text, figures and media: CC BY 4.0"
 
 theme:
   name: material

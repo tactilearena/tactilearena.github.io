@@ -135,7 +135,7 @@ sparsely.
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media" markdown>![Workflow: high-speed pressure frame, overhead video, tail-base localization network, registered fusion, paw assignment and footstep extraction.](assets/figures/fig1_workflow.jpg){ loading=lazy }</div>
+<div class="ta-media" markdown>![Pressure contacts assigned to the four paws (FL, FR, HL, HR) with camera assistance, shown as boxes on one pressure frame.](assets/figures/card_fusion.jpg){ loading=lazy }</div>
 <div class="ta-card__body" markdown>
 <span class="ta-card__num">03 · VIDEO FUSION</span>
 
@@ -183,7 +183,7 @@ injury, contacts of the injured hindpaw became smaller and more elongated.
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media" markdown>![Whole-animal centre of pressure (yellow) and video-derived body centroid (white dashed) during two walking sequences, with colour-coded footprints and body outlines.](assets/figures/card_cop.jpg){ loading=lazy }</div>
+<div class="ta-media ta-media--white" markdown>![Whole-animal centre of pressure (yellow) and video-derived body centroid (white dashed) during two presurgical walking sequences, with colour-coded footprints and body outlines.](assets/figures/card_cop.jpg){ loading=lazy }</div>
 <div class="ta-card__body" markdown>
 ### Centre of pressure
 The whole-animal centre of pressure describes how body weight is distributed across the supporting paws, a
@@ -224,7 +224,7 @@ Future applications include:
 </div>
 <figure class="ta-media" markdown>
 <span class="ta-badge">Three rats · 128 × 128 taxels</span>
-<video width="1600" height="900" data-loop muted loop playsinline preload="none" data-poster="assets/video/arena_multi.jpg"
+<video width="1600" height="754" data-loop muted loop playsinline preload="none" data-poster="assets/video/arena_multi.jpg"
        aria-label="Three rats on a square tactile arena formed by four modules; left, the tactile map with their paw contacts; right, the overhead video.">
   <source src="assets/video/arena_multi.mp4" type="video/mp4">
 </video>

@@ -5,7 +5,10 @@ from matplotlib import colormaps
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-WORK = os.path.join(REPO, ".work")
+# Working folder (fonts, caches built from the data deposit, intermediate files; not tracked) and the folder of source
+# media that are not part of the data deposit (photographs, the assembly recording, demonstration clips); see README.
+WORK = os.environ.get("TA_WORK", os.path.join(REPO, ".work"))
+SOURCES = os.environ.get("TA_SOURCES", os.path.join(WORK, "sources"))
 FONT_VF = os.path.join(WORK, "fonts", "IBMPlexSans-VF.ttf")
 FONT_MONO = os.path.join(WORK, "fonts", "IBMPlexMono-Regular.ttf")
 

@@ -10,7 +10,7 @@ fast enough to resolve load dynamics within individual steps and recorded on the
 
 ## Sensing surface { #surface }
 
-<div class="ta-story" markdown>
+<div class="ta-story ta-story--top" markdown>
 <div class="ta-story__text" markdown>
 
 Each **module** is a flexible printed circuit carrying a 64&nbsp;&times;&nbsp;64 array of electrode pairs at
@@ -33,7 +33,7 @@ open-field arena ([Modularity](index.md#beyond); Supplementary Video 5 on the [P
 </figure>
 </div>
 
-<div class="ta-cards" markdown>
+<div class="ta-cards ta-cards--3" markdown>
 <figure class="ta-card" markdown>
 ![The assembled runway: an acrylic base with four readout boards along one side, acrylic walls and a cloth-covered sensing floor.](assets/photos/runway_assembled.jpg){ loading=lazy }
 <figcaption>Assembled runway: four modules beneath the cloth between the walls, with the four readout boards along one side (a toy mouse is shown for scale).</figcaption>
@@ -136,7 +136,7 @@ is therefore a property of the configuration used in the study.
 
 ## Force calibration { #calibration }
 
-<div class="ta-story ta-story--flip" markdown>
+<div class="ta-story ta-story--flip ta-story--top" markdown>
 <div class="ta-story__text" markdown>
 
 Raw taxel responses are converted to load using board-specific calibration curves. Each module was loaded through

@@ -38,9 +38,9 @@ across each paw during stance.
 </div>
 <figure class="ta-media" markdown>
 <span class="ta-badge">Recorded data · 0.25× speed</span>
-<video width="1920" height="1084" data-loop muted loop playsinline preload="none" data-poster="assets/loops/camera_floor.jpg"
+<video width="1920" height="1084" data-loop muted loop playsinline preload="none" data-poster="assets/loops/floor_and_camera.jpg"
        aria-label="Top: overhead video of a walking rat whose paws are hidden beneath its body. Bottom: the same instant on the tactile floor, where each paw appears as a distinct, labelled pressure contact.">
-  <source src="assets/loops/camera_floor.mp4" type="video/mp4">
+  <source src="assets/loops/floor_and_camera.mp4" type="video/mp4">
 </video>
 </figure>
 </div>

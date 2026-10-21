@@ -1,33 +1,33 @@
 ---
 title: Build
-description: What goes into a TactileArena runway, what it costs in parts, how it goes together, and how to flash, record and calibrate it.
+description: Components, cost, design files and assembly of the TactileArena runway, and the procedures for firmware installation, recording and calibration.
 ---
 
-# Build a TactileArena
+# Build guide
 
-<p class="ta-lede">One runway is four identical modules: a flex-circuit sensor, a piezoresistive film over it, and a
-readout board under the edge. Everything else is a clear enclosure, a waterproof cover, an overhead camera and a
-computer.</p>
+<p class="ta-lede">A runway comprises four identical modules, each consisting of a flexible-circuit sensor array, a
+piezoresistive film and a readout board. The remaining components are a transparent enclosure, a waterproof cover,
+an overhead camera and a host computer.</p>
 
 <figure class="ta-media ta-media--contain" markdown>
-![One sensor module: a 64 by 64 flex-PCB sensor with its readout board plugged into the tail.](assets/photos/module.png){ loading=lazy }
+![One sensor module: a 64 by 64 flexible-PCB sensor array with its readout board connected to the sensor tails.](assets/photos/module.png){ loading=lazy }
 </figure>
 
-## What you need { #parts }
+## Components { #parts }
 
-| Part | Per runway | Notes |
+| Component | Per runway | Notes |
 |---|---|---|
-| Sensor module (flex PCB, 2 layers, 157.9&nbsp;&times;&nbsp;179.7&nbsp;mm outline) | 4 | 64&nbsp;&times;&nbsp;64 electrode pairs at 2&nbsp;mm pitch; no components. Its two 70-contact tails plug straight into the readout board. Order as flex (FPC) with stiffeners on the tails. |
-| Readout board (4-layer PCB, 92&nbsp;&times;&nbsp;56&nbsp;mm) | 4 | Teensy 4.1, 2&nbsp;&times; ADG732 32:1 multiplexers, 2&nbsp;&times; AD7476 12-bit ADCs, 8&nbsp;&times; 74LVC595 shift registers, 2&nbsp;&times; MCP41HV51 digital potentiometers, op-amps, two 70-pin flex connectors (Molex 505110). |
-| Piezoresistive film (Velostat/Linqstat) | ~4 pieces of 140&nbsp;&times;&nbsp;140&nbsp;mm | Lies over the electrode grid. |
-| Waterproof cloth | ~1 yard | Covers the sensing surface; the animal walks on it. |
-| Clear acrylic walls and floor, USB cables and hub, overhead camera(s), computer | | The recording script runs on macOS with two 1920&nbsp;&times;&nbsp;1080 cameras. |
+| Sensor module (flexible PCB, 2 layers, 157.9&nbsp;&times;&nbsp;179.7&nbsp;mm outline) | 4 | 64&nbsp;&times;&nbsp;64 electrode pairs at 2-mm pitch; no components. Two 70-contact tails connect directly to the readout board. Fabricated as a flexible PCB (FPC) with stiffeners on the tails. |
+| Readout board (4-layer PCB, 92&nbsp;&times;&nbsp;56&nbsp;mm) | 4 | Teensy 4.1, 2&nbsp;&times; ADG732 32:1 multiplexers, 2&nbsp;&times; AD7476 12-bit ADCs, 8&nbsp;&times; 74LVC595 shift registers, 2&nbsp;&times; MCP41HV51 digital potentiometers, operational amplifiers and two 70-pin flexible-circuit connectors (Molex 505110). |
+| Piezoresistive film (Velostat/Linqstat) | 4 sheets of approximately 140&nbsp;&times;&nbsp;140&nbsp;mm | Placed over the electrode arrays. |
+| Waterproof cloth | approximately 1 yard | Forms the walking surface over the sensing area. |
+| Acrylic walls and base, USB cables and hub, overhead camera(s), host computer | | The recording software runs on macOS with two 1920&nbsp;&times;&nbsp;1080 cameras. |
 
-## What it costs { #cost }
+## Cost { #cost }
 
-Parts for one four-module runway come to about **US&#36;550** (range about US&#36;500&ndash;750), or **about
-US&#36;140 per 64&nbsp;&times;&nbsp;64 module**. That assumes you solder the boards yourself, order bare PCBs from any
-fab, and buy parts at retail. Prices were checked in October 2026.
+The parts for one four-module runway cost approximately **US&#36;550** (range approximately
+US&#36;500&ndash;750), or approximately **US&#36;140 per 64&nbsp;&times;&nbsp;64 module**, assuming in-house soldering,
+bare PCBs from any fabrication service and parts at retail prices (October 2026).
 
 | | Per runway |
 |---|---|
@@ -38,82 +38,83 @@ fab, and buy parts at retail. Prices were checked in October 2026.
 | Piezoresistive film and waterproof cloth | ~$15 |
 | **Total** | **~$550** |
 
-The two analog chips (ADG732 multiplexer and AD7476 ADC, two of each per board) are almost half the total. The
-digital potentiometers are priced at DigiKey's US$2.00 (on backorder in October 2026); from stock elsewhere they
-cost up to about US&#36;7, which adds about US&#36;40. The flex sensor is the least certain line: quote it with your fab
-before ordering. Shipping, tax, tools, the enclosure, cameras and the computer are not included. Assembly by the
-board house is optional and adds roughly US&#36;115.
+The analog multiplexers and analog-to-digital converters (two of each per board) account for almost half of the
+total. Digital potentiometers are priced at US&#36;2.00 each (DigiKey, October 2026); other distributors list them at
+up to approximately US&#36;7, which adds approximately US&#36;40. The flexible sensor PCB should be quoted with the
+chosen fabrication service. Shipping, taxes, tools, enclosure, cameras and the host computer are not included;
+optional board-house assembly adds approximately US&#36;115.
 
 ## Design files { #design-files }
 
-The KiCad sources, the Gerbers the boards were made from and the readout board's bill of materials are in
-[`hardware/`](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware), under the CERN Open
-Hardware Licence v2, Permissive.
+The KiCad sources, the fabrication files used to manufacture the boards and the bill of materials of the readout
+board are provided in [`hardware/`](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware) under
+the CERN Open Hardware Licence v2 (permissive).
 
-| Board | Files | Order as |
+| Board | Files | Fabrication |
 |---|---|---|
-| Sensor module | [KiCad layout and Gerbers](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware/sensor_64x64) | 2-layer **flex** PCB, 157.9&nbsp;&times;&nbsp;179.7&nbsp;mm, stiffener under the two tails |
-| Readout board | [KiCad schematic, layout and Gerbers](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware/readout_64x64), [BOM](https://github.com/tactilearena/tactilearena.github.io/blob/main/hardware/readout_64x64/bom.csv) | 4-layer, 1.6&nbsp;mm, 91.9&nbsp;&times;&nbsp;56.3&nbsp;mm |
+| Sensor module | [KiCad layout and Gerber files](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware/sensor_64x64) | 2-layer flexible PCB, 157.9&nbsp;&times;&nbsp;179.7&nbsp;mm, with stiffeners under the two tails |
+| Readout board | [KiCad schematic, layout and Gerber files](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware/readout_64x64); [bill of materials](https://github.com/tactilearena/tactilearena.github.io/blob/main/hardware/readout_64x64/bom.csv) | 4-layer PCB, 1.6&nbsp;mm, 91.9&nbsp;&times;&nbsp;56.3&nbsp;mm |
 
-The [hardware README](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware#readme) has the
-fabrication and soldering notes. The Teensy 4.1 and the two digital potentiometers on each readout board are fitted
-by hand.
+Fabrication and soldering notes are given in the [hardware README](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware#readme).
+The Teensy 4.1 and the two digital potentiometers on each readout board are soldered by hand.
 
 ## Assembly { #assembly }
 
 <div class="ta-story" markdown>
 <div class="ta-story__text" markdown>
 
-1. **Readout boards.** Solder the parts, with the Teensy 4.1 on headers. Flash the firmware (below) with a different
-   board ID on each.
-2. **Connect each sensor.** Push each sensor's flex tail into the two connectors of its readout board.
-3. **Lay out the arrays.** Place the four sensors edge to edge so their taxel grids line up. The pipeline expects
-   boards 4, 3, 2, 1 from left to right along the runway.
-4. **Add the film.** Cover the electrode grids with piezoresistive film.
-5. **Cover and enclose.** Lay the waterproof cloth flat over the film and set the clear walls around it. Mount the
-   overhead camera so it sees the whole floor.
-6. **Connect and check.** Plug the four boards into the computer, run `live_view_runway.py` and check that every
-   board's LED lights up and that pressing the floor shows up in the right place.
+1. **Readout boards.** Solder the components, mounting the Teensy 4.1 on pin headers, and install the firmware
+   (below) with a distinct board identifier on each board.
+2. **Sensor connection.** Insert the two flexible tails of each sensor module into the connectors of its readout board.
+3. **Array alignment.** Place the four sensor modules edge to edge with their taxel grids aligned. The analysis
+   pipeline assumes boards 4, 3, 2 and 1 from left to right along the runway.
+4. **Piezoresistive film.** Cover the electrode arrays with the piezoresistive film.
+5. **Enclosure.** Lay the waterproof cloth flat over the film, position the walls around the sensing area and mount
+   the overhead camera so that the full floor is in view.
+6. **Verification.** Connect the four boards to the host computer, run `live_view_runway.py` and confirm that the
+   indicator LED of every board is lit and that applied pressure appears at the corresponding location.
 
-The video (93&nbsp;s) shows steps 2&ndash;6.
+Steps 2&ndash;6 are shown in Supplementary Video 1 (93&nbsp;s).
 
 </div>
 <figure class="ta-media" markdown style="max-width:22rem">
-<video width="720" height="1280" controls preload="none" playsinline data-poster="../assets/video/assembly.jpg" aria-label="Assembly video: connecting sensors to readout boards, aligning four arrays, covering with piezoresistive film, connecting to the computer">
+<video width="720" height="1280" controls preload="none" playsinline data-poster="../assets/video/assembly.jpg" aria-label="Assembly video: connection of the sensor modules to the readout boards, alignment of the four arrays, application of the piezoresistive film and connection to the host computer">
   <source src="../assets/video/assembly.mp4" type="video/mp4">
   <track kind="chapters" src="../assets/video/assembly_chapters.vtt" srclang="en" label="Steps">
 </video>
 </figure>
 </div>
 
-## Flash the firmware { #firmware }
+## Firmware { #firmware }
 
-The firmware is in [`acquisition/firmware/`](https://github.com/tactilearena/tactilearena.github.io/tree/main/acquisition/firmware)
-(Arduino IDE with Teensyduino and the `MCP41HVX1` digital-potentiometer library).
+The firmware is provided in [`acquisition/firmware/`](https://github.com/tactilearena/tactilearena.github.io/tree/main/acquisition/firmware)
+and is installed with the Arduino IDE, Teensyduino and the `MCP41HVX1` digital-potentiometer library.
 
-- **Set `BOARD_ID` (line 5) to 1, 2, 3 or 4 before flashing each board.** The ID is sent in every packet.
-- On power-up a board waits for one line, `M threshold digipot`, from the host, sets its gain, replies `OK` and
-  starts streaming. It runs the [adaptive sampling loop](how-it-works.md#sampling): every frame is a header
-  (`0xDEADBEEF`, board ID, pixel count, frame counter) followed by (index, value) pairs.
+- **Set `BOARD_ID` (line 5) to 1, 2, 3 or 4 before programming each board.** The identifier is transmitted in every packet.
+- On power-up, each board awaits a configuration line (`M threshold digipot`) from the host, sets its gain,
+  acknowledges with `OK` and begins streaming. It executes the [adaptive sampling loop](how-it-works.md#sampling);
+  each frame consists of a header (`0xDEADBEEF`, board identifier, number of measurements, frame counter) followed
+  by (index, value) pairs.
 
-## Record { #record }
+## Recording { #record }
 
-`acquisition/record_runway.py` configures the four boards, starts them and the cameras from one shared start time,
-and saves `runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat` plus one MP4 per camera with per-frame
-timestamps. Edit the serial ports and camera indices at the bottom of the script. The paper's recordings used
-90&nbsp;s, M&nbsp;=&nbsp;200, threshold 700 and digital potentiometer 100, with cameras at 1920&nbsp;&times;&nbsp;1080 (30&nbsp;fps
-target; about 25&ndash;27&nbsp;fps achieved, which is why the per-frame timestamps matter).
+`acquisition/record_runway.py` configures the four boards, starts them and the cameras from a common start signal,
+and saves `runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat` together with one MP4 file per camera with
+per-frame timestamps. Serial ports and camera indices are set at the end of the script. The study recordings used a
+duration of 90&nbsp;s, M&nbsp;=&nbsp;200, threshold 700 and digital-potentiometer setting 100, with cameras at
+1920&nbsp;&times;&nbsp;1080 (target 30 frames/s; approximately 25&ndash;27 frames/s achieved, so per-frame
+timestamps are used for synchronization).
 
 ```bash
 pip install pyserial scipy numpy opencv-python
-python acquisition/live_view_runway.py     # live pressure map, nothing saved
-python acquisition/record_runway.py        # one synchronized recording
+python acquisition/live_view_runway.py     # live pressure map (no recording)
+python acquisition/record_runway.py        # synchronized recording
 ```
 
-## Calibrate { #calibrate }
+## Calibration { #calibrate }
 
-Calibration curves for the paper's four boards are in
+Calibration curves for the four boards used in the study are provided in
 [`data/calibration_0_450/`](https://github.com/tactilearena/tactilearena.github.io/tree/main/data/calibration_0_450).
-They belong to those boards. A new build needs its own: press each module through the same cover onto a
-reference force plate (the paper used three 5&nbsp;kg load cells and an NAU7802 24-bit amplifier on a Teensy),
-then fit summed taxel response to load as described in that folder's README.
+Each new set of sensor modules requires its own calibration: each module is loaded through the same cover on a
+reference force plate (in the study, three 5-kg load cells with an NAU7802 24-bit amplifier on a Teensy), and the
+summed taxel response is fitted to the reference load as described in the README of that folder.

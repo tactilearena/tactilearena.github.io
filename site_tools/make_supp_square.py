@@ -123,8 +123,8 @@ def square(t):
     badge(im, "Single rat · 128 × 128 taxels", (XS[0] + 4, 60))
     text_block(im, (W - 40, 64), [f"24 February 2026, rat 4 · M = 200, T = 700 · 0.75× speed · t = {tt:5.1f} s"], 24,
                fill=(170, 162, 182), anchor="ra")
-    caption(im, t, [(0.3, 7.6, "Four modules tiled 2 × 2 form a square open field, recorded with the same readout settings as the runway."),
-                    (7.8, 15.9, "Paw contacts are recorded wherever they land, through walking, turning and rearing.")], 0)
+    caption(im, t, [(0.3, 7.6, "Four modules tiled 2 × 2 form a square open-field arena, recorded with the same readout settings as the runway."),
+                    (7.8, 15.9, "Paw contacts are recorded across the arena during walking, turning and rearing.")], 0)
     return im
 
 
@@ -139,8 +139,8 @@ def multi(t):
     im = to_img(blank()).convert("RGBA")
     clip = Image.fromarray(fr[k]); im.paste(clip, ((W - clip.width) // 2, 92))
     badge(im, "Three rats · 128 × 128 taxels", ((W - clip.width) // 2 + 14, 34))
-    caption(im, t, [(0.3, 9.7, "Three rats explore the arena together; the floor records every animal's contacts simultaneously."),
-                    (9.9, 19.7, "No markers, tethers or body-mounted sensors are needed.")], 0)
+    caption(im, t, [(0.3, 9.7, "Three rats explore the arena simultaneously; the contacts of all animals are recorded concurrently."),
+                    (9.9, 19.7, "No markers, tethers or body-mounted sensors are required.")], 0)
     return im
 
 

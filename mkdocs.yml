@@ -1,7 +1,8 @@
 site_name: TactileArena
 site_description: >-
-  A modular, high-density tactile floor that measures where, when and how hard freely moving animals press on
-  the ground: 16,384 taxels at 2 mm pitch, about 1,000 frames per second, synchronized with video.
+  A modular, high-density tactile sensing floor that measures where, when and with what force freely moving
+  animals contact the ground: 16,384 taxels at 2-mm pitch, approximately 1,000 frames per second, synchronized with
+  overhead video.
 site_url: https://tactilearena.github.io/
 repo_url: https://github.com/tactilearena/tactilearena.github.io
 repo_name: tactilearena/tactilearena.github.io

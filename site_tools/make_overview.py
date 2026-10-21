@@ -295,7 +295,7 @@ def s01_open(t):
     im = to_img(f).convert("RGBA")
     a = ease((t - 0.8) / 1.0)
     text_block(im, (W / 2, 150), ["We turned the ground into a sensor."], 64, "SemiBold", anchor="ma", alpha=a)
-    text_block(im, (W - 40, H - 60), ["Real recording · 0.25× speed"], 26, "Regular", fill=(180, 172, 190), anchor="ra",
+    text_block(im, (W - 40, H - 60), ["Recorded data · 0.25× speed"], 26, "Regular", fill=(180, 172, 190), anchor="ra",
                alpha=ease(t / 1.0))
     return im
 
@@ -346,9 +346,9 @@ def s03_camera_floor(t):
     text_block(im, (x0 + 20, y0 + 16), ["Overhead camera"], 28, "Medium", alpha=a)
     text_block(im, (x0 + 20, y0 + v.H + 24), ["Tactile floor"], 28, "Medium", alpha=a)
     text_block(im, (W - 40, y0 + 16), ["0.2× speed"], 24, fill=(180, 172, 190), anchor="ra")
-    caption(im, t, [(0.3, 4.4, "From above, a walking rat hides its paws under its body."),
-                    (4.6, 8.4, "The floor sees each one: where it lands, how long it stays down, and how hard it presses."),
-                    (8.6, 11.3, "Labels are automatic paw identities: left/right, fore/hind (FL, FR, HL, HR).")], 0)
+    caption(im, t, [(0.3, 4.4, "Viewed from above, the paws of a walking rat are largely hidden beneath its body."),
+                    (4.6, 8.4, "The tactile floor records each contact: its location, its duration and the load it bears."),
+                    (8.6, 11.3, "Labels indicate automatic paw assignments (FL, FR, HL, HR).")], 0)
     return im
 
 
@@ -371,12 +371,12 @@ def s04_platform(t):
         cx, cy = src.width / 2, src.height / 2
         crop = src.crop((int(cx - cw / 2), int(cy - ch / 2), int(cx + cw / 2), int(cy + ch / 2))).resize((W, H), Image.LANCZOS)
         im.paste(crop, (0, 0))
-        caption(im, t, [(0.3, 5.0, "Four 64 × 64 sensor modules make a 512 × 128 mm runway: 16,384 taxels at 2 mm pitch.")], 0)
+        caption(im, t, [(0.3, 5.0, "Four 64 × 64 sensor modules form a 512 × 128 mm runway of 16,384 taxels at 2-mm pitch.")], 0)
     elif t < 10.4:
         lt = t - 5.2; m = _ph["m"]; z = 0.92 + 0.08 * lt / 5.2
         mm = m.resize((int(m.width * z), int(m.height * z)), Image.LANCZOS)
         im.paste(mm, ((W - mm.width) // 2, 40 + (760 - mm.height) // 2))
-        caption(im, lt, [(0.3, 5.0, "Each module is a flex circuit of electrodes under a piezoresistive film, read by its own Teensy-based board.")], 0)
+        caption(im, lt, [(0.3, 5.0, "Each module is a flexible electrode array beneath a piezoresistive film, read by a dedicated Teensy-based board.")], 0)
     else:
         lt = t - 10.4; fr = _ph["v"]; k = min(len(fr) - 1, int(lt * 10 * 3))   # 3x speed
         clip = Image.fromarray(fr[k]); bgc = clip.resize((W, int(W * clip.height / clip.width))).filter(ImageFilter.GaussianBlur(30))
@@ -385,7 +385,7 @@ def s04_platform(t):
         cl = clip.resize((int(clip.width * (H - 40) / clip.height), H - 40))
         im.paste(cl, ((W - cl.width) // 2, 20))
         badge(im, "Assembly · 3× speed", (60, 40))
-        caption(im, lt, [(0.2, 5.4, "Plug each sensor into its board, line the four up, cover with film and a waterproof cloth.")], 0)
+        caption(im, lt, [(0.2, 5.4, "Assembly: sensor connection, array alignment, and application of the piezoresistive film and waterproof cloth.")], 0)
     return im
 
 
@@ -429,19 +429,19 @@ def s05_sampling(t):
         phase = log[n_show - 1][2] if n_show else "follow"
         counts = {p: sum(1 for x in log[:n_show] if x[2] == p) for p in ("follow", "scan", "zoom")}
         tx = mod_x + 64 * s + 90
-        text_block(im, (tx, mod_y), ["One frame of one module"], 44, "SemiBold")
-        text_block(im, (tx, mod_y + 62), [f"taxels read: {n_show:3d} / 200 of 4,096"], 34, "Regular", fill=EMBER)
-        rows = [("follow", "1  Re-read last frame's contacts"), ("scan", "2  Coarse-to-fine background scan"),
-                ("zoom", "3  Anything pressed? Read its neighbours")]
+        text_block(im, (tx, mod_y), ["Single acquisition frame of one module"], 44, "SemiBold")
+        text_block(im, (tx, mod_y + 62), [f"taxels measured: {n_show:3d} / 200 of 4,096"], 34, "Regular", fill=EMBER)
+        rows = [("follow", "1  Tracking of previous contacts"), ("scan", "2  Coarse-to-fine background scan"),
+                ("zoom", "3  Neighbourhood expansion above threshold")]
         y = mod_y + 160
         for key, label in rows:
             on = (key == phase and n_show < len(log))
             col = (255, 255, 255) if on else (150, 142, 162)
             text_block(im, (tx, y), [label], 34, "Medium" if on else "Regular", fill=col)
-            text_block(im, (tx + 40, y + 46), [f"{counts[key]} read" + ("" if counts[key] == 1 else "s")], 26, fill=(150, 142, 162)); y += 120
-        text_block(im, (tx, y + 20), ["Faint purple: pressure the board has not read yet"], 24, fill=(150, 142, 162))
-        caption(im, t, [(0.3, 4.6, "Reading 16,384 taxels one by one would be slow. Each board reads only 200 per frame."),
-                        (4.8, 10.8, "It follows last frame's contacts, scans the module coarse-to-fine, and reads every neighbour of anything pressed.")], 0)
+            text_block(im, (tx + 40, y + 46), [f"{counts[key]} measurement" + ("" if counts[key] == 1 else "s")], 26, fill=(150, 142, 162)); y += 120
+        text_block(im, (tx, y + 20), ["Purple shading: applied pressure not yet measured"], 24, fill=(150, 142, 162))
+        caption(im, t, [(0.3, 4.6, "Rather than scanning every taxel, each board measures 200 of its 4,096 taxels per frame."),
+                        (4.8, 10.8, "Active contacts are tracked, a coarse-to-fine scan monitors the module, and loaded regions are resolved at full density.")], 0)
     else:
         # real recording, all four boards, frame by frame
         lt = t - 11.0
@@ -457,11 +457,11 @@ def s05_sampling(t):
             f[top:top + 64 * s2, 64 + 64 * s2 * k:64 + 64 * s2 * (k + 1)] = paint_module(val.reshape(64, 64), rd.reshape(64, 64), s2)
         im = to_img(f).convert("RGBA")
         tnow = S.rw.boards[0]["ts"][_sm["rp"][0] + i]
-        text_block(im, (64, top - 70), [f"Real recording   t = {tnow:.3f} s"], 32, "Medium")
-        text_block(im, (W - 64, top - 70), [f"read this frame: {tot} of 16,384 taxels"], 32, fill=EMBER, anchor="ra")
-        text_block(im, (64, top + 64 * s2 + 20), ["black: not read     grey: read, below threshold     colour: pressed"], 26, fill=(160, 152, 172))
-        caption(im, lt, [(0.3, 5.6, "The real boards, frame by frame: each paw is read in full, the empty floor only sparsely."),
-                         (5.8, 10.8, "That is how 16,384 taxels run at about 1,000 frames per second.")], 0)
+        text_block(im, (64, top - 70), [f"Recorded data   t = {tnow:.3f} s"], 32, "Medium")
+        text_block(im, (W - 64, top - 70), [f"measured in this frame: {tot} of 16,384 taxels"], 32, fill=EMBER, anchor="ra")
+        text_block(im, (64, top + 64 * s2 + 20), ["black: not measured     grey: measured, below threshold     colour: measured, above threshold"], 26, fill=(160, 152, 172))
+        caption(im, lt, [(0.3, 5.6, "Recorded acquisition frames: paw contacts are resolved completely, while unloaded regions are sampled sparsely."),
+                         (5.8, 10.8, "Adaptive sampling enables acquisition across 16,384 taxels at approximately 1,000 frames per second.")], 0)
     return im
 
 
@@ -496,8 +496,8 @@ def s06_loading(t):
             im.alpha_composite(layer); d = ImageDraw.Draw(im)
             d.line(pts, fill=PAW[k], width=3)
     d.text((gx1, gy0 - 8), "mass-equivalent load per paw (0–260 g scale), last 1.2 s", font=font(22), fill=(150, 142, 162), anchor="rb")
-    caption(im, t, [(0.3, 6.6, "With video on the same clock, each contact is assigned to a paw: 93.3% of 2,469 hand-labelled contacts were correct."),
-                    (6.8, 13.7, "Every paw's load is then measured about 1,000 times per second, through every step.")], 0)
+    caption(im, t, [(0.3, 6.6, "With synchronized video, contacts are assigned to individual paws, correctly identifying 93.3% of 2,469 manually annotated contacts."),
+                    (6.8, 13.7, "The load on each paw is then resolved at approximately 1 kHz throughout every stance.")], 0)
     return im
 
 
@@ -514,9 +514,9 @@ def s07_injury(t):
         _inj["ab"] = fit_image_from(_inj["ab"], 1760, 700)
     if t < 8.0:
         a = ease((t - 0.3) / 0.8)
-        text_block(im, (W / 2, 120), ["After a sciatic nerve pinch, rats kept stepping on the injured hind paw..."], 44, "Medium", anchor="ma", alpha=a)
+        text_block(im, (W / 2, 120), ["After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground..."], 40, "Medium", anchor="ma", alpha=a)
         # two bars: change in ratio (start at 1)
-        items = [("Stance-time ratio", 0.33, (150, 142, 162), "timing"), ("Loading ratio", 0.61, (242, 107, 58), "touch")]
+        items = [("Duty-factor ratio", 0.33, (150, 142, 162), "timing"), ("Time-integrated loading ratio", 0.61, (242, 107, 58), "touch")]
         bx = 520; bw_ = 300; base_y = 250; full = 470
         for i_, (lab, dec, col, _) in enumerate(items):
             x = bx + i_ * 560
@@ -526,20 +526,20 @@ def s07_injury(t):
             d.rectangle([x, base_y + full - h2, x + bw_, base_y + full], fill=col)
             d.text((x + bw_ / 2, base_y + full + 20), lab, font=font(34, "Medium"), fill=(235, 230, 240), anchor="ma")
             d.text((x + bw_ / 2, base_y + full - h2 - 16), f"−{dec * g:.2f}", font=font(52, "SemiBold"), fill=col, anchor="mb")
-        d.text((W / 2, base_y + full + 76), "injured / uninjured hind paw, days 1–5 after surgery, relative to a baseline near 1",
+        d.text((W / 2, base_y + full + 76), "Change from baseline in the left-to-right hindpaw ratio, days 1–5 after surgery",
                font=font(26), fill=(150, 142, 162), anchor="ma")
-        caption(im, t, [(4.5, 7.8, "...but its share of the load fell by about 60%, nearly twice the drop in its share of stance time.")], 0)
+        caption(im, t, [(4.5, 7.8, "...but the loading ratio decreased by approximately 60%, nearly twice the decrease in the duty-factor ratio.")], 0)
     elif t < 15.0:
         lt = t - 8.0; fig = _inj["d"]
         card = Image.new("RGB", (fig.width + 40, fig.height + 40), "white"); card.paste(fig, (20, 20))
         im.paste(card, ((W - card.width) // 2, 50))
-        caption(im, lt, [(0.3, 3.6, "Three injured and two sham rats over two weeks: both ratios fell, then recovered toward baseline."),
-                         (3.8, 6.8, "The injured paw's peak load dropped 27%; the opposite hind paw took up 18–21% more.")], 0)
+        caption(im, lt, [(0.3, 3.6, "In three injured and two sham-operated rats followed for two weeks, both ratios decreased and then returned toward baseline."),
+                         (3.8, 6.8, "Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 18–21%.")], 0)
     else:
         lt = t - 15.0; fig = _inj["ab"]
         im.paste(fig, ((W - fig.width) // 2, 110))
-        caption(im, lt, [(0.3, 6.7, "Contact shape changed too: the injured paw's print became smaller and more elongated (blue boxes).")], 0)
-    text_block(im, (W - 40, H - 34), ["Exploratory statistics; small cohort. From Fig. 5 of the manuscript."], 22, fill=(130, 122, 142), anchor="rb")
+        caption(im, lt, [(0.3, 6.7, "Contact morphology also changed: injured-hindpaw contacts became smaller and more elongated (cyan outlines).")], 0)
+    text_block(im, (W - 40, H - 34), ["Adapted from Fig. 5 of the manuscript."], 22, fill=(130, 122, 142), anchor="rb")
     return im
 
 
@@ -559,8 +559,8 @@ def s08_beyond(t):
     im = to_img(blank()).convert("RGBA")
     clip = Image.fromarray(fr[k]); im.paste(clip, ((W - clip.width) // 2, 92))
     badge(im, "Three rats · 128 × 128 taxels", ((W - clip.width) // 2 + 14, 34))
-    caption(im, t, [(0.3, 4.9, "Because the floor is modular, the same four modules tile other arenas: here, three rats in a square open field."),
-                    (5.1, 9.7, "Possible next steps: pose tracking, neural recordings, contact-triggered experiments, shear sensing.")], 0)
+    caption(im, t, [(0.3, 4.9, "The modular design allows the same four modules to form other arenas, such as a square open field with three rats."),
+                    (5.1, 9.7, "Future applications include integration with pose estimation, neural recordings, contact-triggered perturbations and shear sensing.")], 0)
     return im
 
 
@@ -568,13 +568,13 @@ def s08_beyond(t):
 def s09_open(t):
     im = to_img(blank()).convert("RGBA")
     a = ease(t / 0.8)
-    text_block(im, (W / 2, 250), ["Open"], 80, "SemiBold", anchor="ma", fill=(255, 179, 138), alpha=a)
+    text_block(im, (W / 2, 250), ["Open resources"], 80, "SemiBold", anchor="ma", fill=(255, 179, 138), alpha=a)
     lines = ["KiCad design files, build guide and assembly video", "Readout firmware and synchronized recording code",
              "Analysis pipeline, pretrained models and calibration curves", "85 runway recordings with annotations"]
     y = 400
     for i_, ln in enumerate(lines):
         y = text_block(im, (W / 2, y), [ln], 42, "Regular", anchor="ma", alpha=ease((t - 0.6 - 0.35 * i_) / 0.6)) + 10
-    text_block(im, (W / 2, y + 40), ["Open hardware: about US$550 in parts for a four-module runway"], 34, "Regular", fill=(170, 162, 182), anchor="ma",
+    text_block(im, (W / 2, y + 40), ["Approximately US$550 in parts per four-module runway"], 34, "Regular", fill=(170, 162, 182), anchor="ma",
                alpha=ease((t - 2.4) / 0.6))
     text_block(im, (W / 2, H - 170), ["tactilearena.github.io"], 56, "SemiBold", anchor="ma", alpha=ease((t - 3.0) / 0.6))
     return im
@@ -597,26 +597,26 @@ def s10_credits(t):
 # ------------------------------------------------------------------ captions -> VTT (scene-relative -> global)
 CAPTION_TABLE = {
     "s01_open": [(1.0, 8.6, "We turned the ground into a sensor.")],
-    "s03_camera_floor": [(0.3, 4.4, "From above, a walking rat hides its paws under its body."),
-                         (4.6, 8.4, "The floor sees each one: where it lands, how long it stays down, and how hard it presses."),
-                         (8.6, 11.3, "Labels are automatic paw identities: left/right, fore/hind (FL, FR, HL, HR).")],
-    "s04_platform": [(0.3, 5.0, "Four 64 × 64 sensor modules make a 512 × 128 mm runway: 16,384 taxels at 2 mm pitch."),
-                     (5.5, 10.2, "Each module is a flex circuit of electrodes under a piezoresistive film, read by its own Teensy-based board."),
-                     (10.6, 15.8, "Plug each sensor into its board, line the four up, cover with film and a waterproof cloth.")],
-    "s05_sampling": [(0.3, 4.6, "Reading 16,384 taxels one by one would be slow. Each board reads only 200 per frame."),
-                     (4.8, 10.8, "It follows last frame's contacts, scans the module coarse-to-fine, and reads every neighbour of anything pressed."),
-                     (11.3, 16.6, "The real boards, frame by frame: each paw is read in full, the empty floor only sparsely."),
-                     (16.8, 21.8, "That is how 16,384 taxels run at about 1,000 frames per second.")],
-    "s06_loading": [(0.3, 6.6, "With video on the same clock, each contact is assigned to a paw: 93.3% of 2,469 hand-labelled contacts were correct."),
-                    (6.8, 13.7, "Every paw's load is then measured about 1,000 times per second, through every step.")],
-    "s07_injury": [(0.3, 4.4, "After a sciatic nerve pinch, rats kept stepping on the injured hind paw..."),
-                   (4.5, 7.8, "...but its share of the load fell by about 60%, nearly twice the drop in its share of stance time."),
-                   (8.3, 11.6, "Three injured and two sham rats over two weeks: both ratios fell, then recovered toward baseline."),
-                   (11.8, 14.8, "The injured paw's peak load dropped 27%; the opposite hind paw took up 18–21% more."),
-                   (15.3, 21.7, "Contact shape changed too: the injured paw's print became smaller and more elongated (blue boxes).")],
-    "s08_beyond": [(0.3, 4.9, "Because the floor is modular, the same four modules tile other arenas: here, three rats in a square open field."),
-                   (5.1, 9.7, "Possible next steps: pose tracking, neural recordings, contact-triggered experiments, shear sensing.")],
-    "s09_open": [(0.5, 8.6, "Open: hardware design files, firmware, analysis code and 85 recordings. tactilearena.github.io")],
+    "s03_camera_floor": [(0.3, 4.4, "Viewed from above, the paws of a walking rat are largely hidden beneath its body."),
+                         (4.6, 8.4, "The tactile floor records each contact: its location, its duration and the load it bears."),
+                         (8.6, 11.3, "Labels indicate automatic paw assignments (FL, FR, HL, HR).")],
+    "s04_platform": [(0.3, 5.0, "Four 64 × 64 sensor modules form a 512 × 128 mm runway of 16,384 taxels at 2-mm pitch."),
+                     (5.5, 10.2, "Each module is a flexible electrode array beneath a piezoresistive film, read by a dedicated Teensy-based board."),
+                     (10.6, 15.8, "Assembly: sensor connection, array alignment, and application of the piezoresistive film and waterproof cloth.")],
+    "s05_sampling": [(0.3, 4.6, "Rather than scanning every taxel, each board measures 200 of its 4,096 taxels per frame."),
+                     (4.8, 10.8, "Active contacts are tracked, a coarse-to-fine scan monitors the module, and loaded regions are resolved at full density."),
+                     (11.3, 16.6, "Recorded acquisition frames: paw contacts are resolved completely, while unloaded regions are sampled sparsely."),
+                     (16.8, 21.8, "Adaptive sampling enables acquisition across 16,384 taxels at approximately 1,000 frames per second.")],
+    "s06_loading": [(0.3, 6.6, "With synchronized video, contacts are assigned to individual paws, correctly identifying 93.3% of 2,469 manually annotated contacts."),
+                    (6.8, 13.7, "The load on each paw is then resolved at approximately 1 kHz throughout every stance.")],
+    "s07_injury": [(0.3, 4.4, "After sciatic nerve pinch, rats continued to place the injured hindpaw on the ground..."),
+                   (4.5, 7.8, "...but the loading ratio decreased by approximately 60%, nearly twice the decrease in the duty-factor ratio."),
+                   (8.3, 11.6, "In three injured and two sham-operated rats followed for two weeks, both ratios decreased and then returned toward baseline."),
+                   (11.8, 14.8, "Peak loading of the injured hindpaw decreased by 27%, and that of the contralateral hindpaw increased by 18–21%."),
+                   (15.3, 21.7, "Contact morphology also changed: injured-hindpaw contacts became smaller and more elongated (cyan outlines).")],
+    "s08_beyond": [(0.3, 4.9, "The modular design allows the same four modules to form other arenas, such as a square open field with three rats."),
+                   (5.1, 9.7, "Future applications include integration with pose estimation, neural recordings, contact-triggered perturbations and shear sensing.")],
+    "s09_open": [(0.5, 8.6, "Open resources: hardware design files, firmware, analysis software and 85 recordings. tactilearena.github.io")],
 }
 
 GAP = 0.5  # dip to black between scenes (s)

@@ -21,27 +21,26 @@ Pierce Perkins<sup>1</sup>, Alessandro Ascani Orsini<sup>4</sup>, Kiara Quinn<su
 **Contact:** Weiwen Lu ([wlu33@jh.edu](mailto:wlu33@jh.edu)), Ariel Slepyan
 ([aslepyan@mit.edu](mailto:aslepyan@mit.edu)), Nitish V. Thakor ([nitish@jhu.edu](mailto:nitish@jhu.edu)).
 
-## Summary { #summary }
+## Abstract { #summary }
 
-Behavioural measurements in freely moving animals mostly describe movement: where the body and limbs are, and
-when paws touch down. How an animal distributes its weight, transfers load between contacts and pushes on its
-surroundings is a separate quantity that video can only infer indirectly.
+Understanding how animals physically interact with their environment is fundamental to studying movement,
+sensorimotor control, and neurological function. Yet most behavioral measurement systems primarily capture movement
+and posture, while direct measurements of contact forces often require specialized instrumentation or involve
+trade-offs among spatial coverage, resolution, and acquisition speed. Here, we introduce a scalable tactile sensing
+platform that transforms the surface beneath freely moving animals into a high-resolution contact-imaging
+instrument. By combining modular sensor arrays with adaptive compressive tactile sampling, the platform provides
+16,384 tactile sensing elements at 2-mm pitch across a 512&nbsp;&times;&nbsp;128-mm runway, with nominal 1-kHz
+acquisition. Rather than exhaustively scanning the entire array, the system concentrates measurements around active
+contacts, enabling high-speed sensing across an extended behavioral surface. Synchronized overhead video and a
+camera-assisted analysis pipeline enable paw-resolved measurements of contact loading, stance dynamics, footprint
+morphology, interlimb weight redistribution, and center-of-pressure trajectories. In a longitudinal rat model of
+sciatic nerve injury, the platform reveals substantial unloading of the injured hindlimb and compensatory loading of
+the contralateral limb, including changes underestimated by conventional gait timing measures. The modular
+architecture, together with openly available hardware designs, software and data, provides an accessible framework
+for studying the mechanical interactions underlying freely moving behavior, with potential applications across
+neuroscience, injury, and motor recovery research.
 
-We present a scalable tactile platform that turns the floor of an arena into a high-resolution contact-measurement
-instrument. Four modular sensor sheets form a 512&nbsp;&times;&nbsp;128&nbsp;mm runway with 16,384 taxels at 2&nbsp;mm pitch,
-read at a nominal 1&nbsp;kHz. Adaptive compressive sampling makes this combination of area, density and speed
-possible: each readout board concentrates its measurements around active contacts instead of scanning every
-taxel. Overhead video recorded on the same clock supplies body position and orientation, and a camera-assisted
-pipeline assigns contacts to paws, correctly labelling 93.3% of 2,469 manually annotated contacts within curated
-walking windows.
-
-In rats followed for two weeks after a sciatic nerve pinch, the platform showed that animals kept placing the
-injured hind paw while carrying much less weight on it. The injured-to-contralateral hindpaw duty-factor ratio
-fell by about a third, while the time-integrated loading ratio fell by about 60%. Loading shifted to the
-opposite hind paw, and contact morphology changed. High-rate sampling preserved short stance events and
-within-step loading dynamics that downsampling degrades.
-
-## Cite { #cite }
+## Citation { #cite }
 
 <div class="ta-cite" markdown>
 
@@ -59,7 +58,7 @@ within-step loading dynamics that downsampling degrades.
 
 ## Supplementary videos { #videos }
 
-Full-quality files are on the [GitHub release](https://github.com/tactilearena/tactilearena.github.io/releases/tag/supplementary-videos-v1); the legends are in [`supplementary/README.md`](https://github.com/tactilearena/tactilearena.github.io/tree/main/supplementary).
+Full-resolution files are available from the [GitHub release](https://github.com/tactilearena/tactilearena.github.io/releases/tag/supplementary-videos-v1); legends are provided in [`supplementary/README.md`](https://github.com/tactilearena/tactilearena.github.io/tree/main/supplementary).
 
 <div class="ta-cards" markdown>
 <div class="ta-card" markdown>
@@ -69,9 +68,9 @@ Full-quality files are on the [GitHub release](https://github.com/tactilearena/t
 
 ### Assembly of the tactile runway
 
-Each sensor's flex tails go into its readout board; the four arrays are aligned, covered with piezoresistive film and a waterproof cloth, and connected to the computer.
+Connection of the sensor modules to their readout boards, alignment of the four arrays, application of the piezoresistive film and waterproof cloth, and connection to the host computer.
 
-[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo1_assembly.mp4){ .ta-more }
+[Download (full resolution)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo1_assembly.mp4){ .ta-more }
 </div>
 </div>
 <div class="ta-card" markdown>
@@ -81,9 +80,9 @@ Each sensor's flex tails go into its readout board; the four arrays are aligned,
 
 ### Synchronized overhead video and paw-resolved plantar pressure during walking before sciatic nerve pinch
 
-Rat 6, 11 February 2026: labelled paw contacts on the overhead video, and the pressure under each paw during stance. 0.25&times; speed.
+Rat 6, 11 February 2026: paw contacts labelled on the overhead video, with the plantar pressure distribution of each paw during stance. Playback at 0.25&times; real time.
 
-[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo2_walking_before_surgery.mp4){ .ta-more }
+[Download (full resolution)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo2_walking_before_surgery.mp4){ .ta-more }
 </div>
 </div>
 <div class="ta-card" markdown>
@@ -93,9 +92,9 @@ Rat 6, 11 February 2026: labelled paw contacts on the overhead video, and the pr
 
 ### Synchronized overhead video and paw-resolved plantar pressure during walking after sciatic nerve pinch
 
-Rat 4, 19 March 2026, nine days after left sciatic nerve pinch. 0.25&times; speed.
+Rat 4, 19 March 2026, nine days after left sciatic nerve pinch. Playback at 0.25&times; real time.
 
-[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo3_walking_after_surgery.mp4){ .ta-more }
+[Download (full resolution)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo3_walking_after_surgery.mp4){ .ta-more }
 </div>
 </div>
 <div class="ta-card" markdown>
@@ -105,9 +104,9 @@ Rat 4, 19 March 2026, nine days after left sciatic nerve pinch. 0.25&times; spee
 
 ### Adaptive tactile sampling during locomotion
 
-The readout firmware's sampling loop on a simulated paw, read by read; then the recorded packets of all four modules during walking, frame by frame.
+The firmware sampling loop applied to a simulated paw contact, followed by the recorded packets of all four modules during walking, displayed frame by frame.
 
-[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo4_adaptive_tactile_sampling.mp4){ .ta-more }
+[Download (full resolution)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo4_adaptive_tactile_sampling.mp4){ .ta-more }
 </div>
 </div>
 <div class="ta-card" markdown>
@@ -117,14 +116,14 @@ The readout firmware's sampling loop on a simulated paw, read by read; then the 
 
 ### Reconfiguration of the sensor modules into an open-field arena
 
-Four modules tiled 2&nbsp;&times;&nbsp;2 form a 256&nbsp;&times;&nbsp;256&nbsp;mm arena of 128&nbsp;&times;&nbsp;128 taxels: one rat walking, turning and rearing, with overhead and side cameras; then three rats exploring together.
+Four modules tiled 2&nbsp;&times;&nbsp;2 form a 256&nbsp;&times;&nbsp;256&nbsp;mm arena of 128&nbsp;&times;&nbsp;128 taxels: a single rat walking, turning and rearing, recorded with overhead and side cameras, followed by three rats exploring the arena simultaneously.
 
-[Download (full quality)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo5_open_field_arena.mp4){ .ta-more }
+[Download (full resolution)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo5_open_field_arena.mp4){ .ta-more }
 </div>
 </div>
 </div>
 
-## Related work from our groups { #related }
+## Related work { #related }
 
 - A. Slepyan, D. Li, H. Cai, R. McGovern, A. Aug, S. Sankar, T. Tran, N. Thakor. *Adaptive compressive tactile
   subsampling: enabling high spatiotemporal resolution in scalable robotic skin.*
@@ -135,6 +134,6 @@ Four modules tiled 2&nbsp;&times;&nbsp;2 form a 256&nbsp;&times;&nbsp;256&nbsp;m
   multi-frequency signaling for scalable tactile skin with automatic data compression and a single-wire output.*
   IEEE Sensors Journal (2026).
 
-## Animal work { #ethics }
+## Ethics { #ethics }
 
 Animal procedures were performed under protocol RA24M61.

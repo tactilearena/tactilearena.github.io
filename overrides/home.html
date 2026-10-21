@@ -39,29 +39,29 @@
       </p>
       <p class="ta-hero__lede">We turned the ground into a sensor.</p>
       <p class="ta-hero__sub">
-        TactileArena is a modular floor of 16,384 pressure-sensing taxels at 2&nbsp;mm pitch. It records where,
-        when and how hard a freely moving animal presses on the ground, about a thousand times per second,
-        alongside ordinary video and with nothing attached to the animal.
+        TactileArena is a modular sensing floor of 16,384 pressure-sensitive taxels at 2-mm pitch. It records
+        where, when and with what force a freely moving animal contacts the ground, at approximately 1&nbsp;kHz,
+        synchronized with overhead video and without instrumentation of the animal.
       </p>
       <div class="ta-hero__buttons">
-        <a class="ta-btn ta-btn--primary" href="#overview">Watch the overview</a>
+        <a class="ta-btn ta-btn--primary" href="#overview">Overview video</a>
         <a class="ta-btn" href="{{ 'how-it-works/' | url }}">How it works</a>
-        <a class="ta-btn" href="{{ 'build/' | url }}">Build one</a>
+        <a class="ta-btn" href="{{ 'build/' | url }}">Build guide</a>
         <a class="ta-btn" href="{{ config.repo_url }}">Code</a>
         <a class="ta-btn" href="{{ 'data/' | url }}">Data</a>
       </div>
     </div>
     <div class="ta-hero__media">
       <video width="1920" height="538" data-loop muted loop playsinline autoplay preload="auto" poster="{{ 'assets/loops/hero.jpg' | url }}"
-             aria-label="A rat walks along the runway seen from above; the squares of floor under each paw light up as it presses, and fade after it lifts">
+             aria-label="Overhead video of a rat traversing the runway; the taxels beneath each paw are highlighted during contact and fade after lift-off">
         <source src="{{ 'assets/loops/hero.mp4' | url }}" type="video/mp4">
       </video>
     </div>
     <p class="ta-hero__caption">
-      <strong>A real recording, at 0.25&times; speed.</strong> A rat crosses the 512&nbsp;&times;&nbsp;128&nbsp;mm
-      runway, seen by the overhead camera after registration to the sensor grid. Each glowing square is a
-      2&nbsp;mm taxel loaded at that instant; <span class="ta-dot" style="background:#aa2878"></span>magenta
-      marks where a paw has just lifted off.
+      <strong>Recorded data, 0.25&times; speed.</strong> A rat traverses the 512&nbsp;&times;&nbsp;128&nbsp;mm
+      runway, shown in overhead video registered to the sensor grid. Each highlighted square is a 2-mm taxel under
+      load at that instant; <span class="ta-dot" style="background:#aa2878"></span>magenta indicates contacts
+      released within the preceding second.
     </p>
   </section>
 {% endblock %}

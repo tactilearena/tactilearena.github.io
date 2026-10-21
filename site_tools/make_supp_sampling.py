@@ -46,21 +46,21 @@ def sim(t):
     phase = log[n_show - 1][2] if n_show else "follow"
     counts = {p: sum(1 for x in log[:n_show] if x[2] == p) for p in ("follow", "scan", "zoom")}
     tx = mod_x + 64 * s + 90
-    text_block(im, (tx, mod_y), ["One frame of one module"], 44, "SemiBold")
-    text_block(im, (tx, mod_y + 60), ["Simulation: the firmware's loop on a simulated paw"], 26, fill=(170, 162, 182))
-    text_block(im, (tx, mod_y + 110), [f"taxels read: {n_show:3d} / 200 of 4,096"], 34, "Regular", fill=EMBER)
-    rows = [("follow", "1  Re-read last frame's contacts"), ("scan", "2  Coarse-to-fine background scan"),
-            ("zoom", "3  Anything pressed? Read its neighbours")]
+    text_block(im, (tx, mod_y), ["Single acquisition frame of one module"], 44, "SemiBold")
+    text_block(im, (tx, mod_y + 60), ["Simulation of the firmware sampling loop on a simulated paw"], 26, fill=(170, 162, 182))
+    text_block(im, (tx, mod_y + 110), [f"taxels measured: {n_show:3d} / 200 of 4,096"], 34, "Regular", fill=EMBER)
+    rows = [("follow", "1  Tracking of previous contacts"), ("scan", "2  Coarse-to-fine background scan"),
+            ("zoom", "3  Neighbourhood expansion above threshold")]
     y = mod_y + 200
     for key, label in rows:
         on = (key == phase and n_show < len(log))
         text_block(im, (tx, y), [label], 34, "Medium" if on else "Regular", fill=(255, 255, 255) if on else (150, 142, 162))
-        text_block(im, (tx + 40, y + 46), [f"{counts[key]} read" + ("" if counts[key] == 1 else "s")], 26, fill=(150, 142, 162))
+        text_block(im, (tx + 40, y + 46), [f"{counts[key]} measurement" + ("" if counts[key] == 1 else "s")], 26, fill=(150, 142, 162))
         y += 120
-    text_block(im, (tx, y + 10), ["Faint purple: pressure the board has not read yet.", "White: the last few reads."], 24,
+    text_block(im, (tx, y + 10), ["Purple shading: applied pressure not yet measured.", "White: most recent measurements."], 24,
                fill=(150, 142, 162))
-    caption(im, t, [(0.3, 5.8, "A walking rat presses on only a few percent of the floor, so most of each frame's budget can go where the paws are."),
-                    (6.0, 11.7, "Once 200 taxels are read the frame is sent; the next frame starts with the taxels that triggered in this one.")], 0)
+    caption(im, t, [(0.3, 5.8, "During locomotion only a small fraction of the floor is loaded, so most measurements in each frame are allocated to active contacts."),
+                    (6.0, 11.7, "After 200 measurements the frame is transmitted; the next frame begins with the taxels that triggered expansion in this frame.")], 0)
     return im
 
 
@@ -75,28 +75,28 @@ def boards(i, label, legend_alpha=1.0):
     im = to_img(f).convert("RGBA")
     tnow = S.rw.boards[0]["ts"][P0[0] + i]
     text_block(im, (x0, top - 72), [label], 32, "Medium")
-    text_block(im, (x0 + 256 * s2, top - 72), [f"t = {tnow:.3f} s    read this frame: {tot} of 16,384 taxels"], 30,
+    text_block(im, (x0 + 256 * s2, top - 72), [f"t = {tnow:.3f} s    measured in this frame: {tot} of 16,384 taxels"], 30,
                fill=EMBER, anchor="ra")
     for k in range(4):
         text_block(im, (x0 + 64 * s2 * k + 8, top + 64 * s2 + 10), [f"module {k + 1}"], 22, fill=(130, 122, 142))
-    text_block(im, (x0, top + 64 * s2 + 52), ["black: not read in this frame     grey: read, below threshold     colour: read, pressed"],
+    text_block(im, (x0, top + 64 * s2 + 52), ["black: not measured in this frame     grey: measured, below threshold     colour: measured, above threshold"],
                26, fill=(170, 162, 182), alpha=legend_alpha)
     return im
 
 
 def real_slow(t):
     i = int(t * 12)  # 12 board frames per second of video (~1/80 of real time)
-    im = boards(i, "Recorded data, frame by frame (24 February 2026, rat 4, runway)")
-    caption(im, t, [(0.3, 6.6, "The recording itself: in each frame, every board's 200 reads sit on its paws and on a sparse background grid."),
-                    (6.8, 13.7, "A board with no contact spends its budget on the background scan, which then reaches a finer grid."),
-                    (13.9, 19.7, "The background grid shifts by one column every frame, so over successive frames every taxel is read.")], 0)
+    im = boards(i, "Recorded acquisition frames (24 February 2026, rat 4, runway)")
+    caption(im, t, [(0.3, 6.6, "In each recorded frame, the 200 measurements of each board are distributed between the paw contacts and a sparse background grid."),
+                    (6.8, 13.7, "Modules without active contacts allocate their full budget to the background scan, which therefore reaches a finer grid."),
+                    (13.9, 19.7, "The background grid shifts by one column each frame, so that every taxel is measured over successive frames.")], 0)
     return im
 
 
 def real_fast(t):
     i = 240 + int(t * 120)  # 120 board frames per second of video (~1/8 of real time)
-    im = boards(i, "Same recording, about 1/8 of real time")
-    caption(im, t, [(0.3, 9.7, "Each paw stays fully read as it loads and lifts, while the empty floor is only sampled sparsely.")], 0)
+    im = boards(i, "Same recording at approximately 1/8 of real time")
+    caption(im, t, [(0.3, 9.7, "Each contact remains fully resolved from touchdown to lift-off, while unloaded regions are sampled sparsely.")], 0)
     return im
 
 

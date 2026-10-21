@@ -6,7 +6,7 @@ Johns Hopkins University and MIT. Manuscript in preparation.
 
 **Website: <https://tactilearena.github.io>** · [How it works](https://tactilearena.github.io/how-it-works/) · [Build guide](https://tactilearena.github.io/build/) · [Data](https://tactilearena.github.io/data/)
 
-TactileArena turns the floor into a sensor. A modular surface of 16,384 pressure-sensing taxels (2 mm pitch, 512 × 128 mm, nominal 1 kHz) records where, when and how hard a freely moving animal presses on the ground, synchronized with overhead video and with nothing attached to the animal. Each readout board reads only 200 of its module's 4,096 taxels per frame, concentrating its measurements around active contacts (adaptive compressive sampling), which is what makes this combination of area, density and speed possible.
+TactileArena transforms the floor into a sensor. A modular surface of 16,384 pressure-sensitive taxels (2-mm pitch, 512 × 128 mm, nominal 1 kHz) records where, when and with what force a freely moving animal contacts the ground, synchronized with overhead video and without instrumentation of the animal. Each readout board measures 200 of its module's 4,096 taxels per frame and concentrates these measurements on active contacts (adaptive compressive sampling), enabling this combination of sensing area, spatial density and acquisition speed.
 
 The runway is a 64 × 256 piezoresistive array (four 64 × 64 modules, each with its own readout board) under a walking surface, recorded together with overhead cameras. This repository holds the readout firmware, the synchronized recording code, the pipeline that takes each recording from raw sensor packets to paw-labeled (FL/FR/HL/HR) stance events and mass-equivalent loading, and the project website (`docs/`).
 

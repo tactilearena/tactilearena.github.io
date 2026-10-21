@@ -1,7 +1,7 @@
 ---
 template: home.html
 title: TactileArena
-description: A modular, high-density tactile floor that measures where, when and how hard freely moving animals press on the ground, about 1,000 times per second, synchronized with video.
+description: A modular, high-density tactile sensing floor that measures where, when and with what force freely moving animals contact the ground, at approximately 1 kHz, synchronized with overhead video.
 hide:
   - navigation
   - toc
@@ -10,137 +10,142 @@ hide:
 # TactileArena
 
 <!--
-  Home page story. Layout classes live in docs/stylesheets/tactilearena.css.
+  Home page. Layout classes live in docs/stylesheets/tactilearena.css.
   Numbers here come only from the manuscript (Gait_Project_Paper, main 4.0.tex) and its figures.
 -->
 
 <section class="ta-section" markdown>
-<p class="ta-kicker">The idea</p>
+<p class="ta-kicker">Concept</p>
 
-## A camera sees the animal. The floor feels it. { #idea }
+## Contact forces complement video-based behavioral measurement { #idea }
 
 <div class="ta-story ta-story--flip" markdown>
 <div class="ta-story__text" markdown>
 
-Seen from above, a walking rat hides its paws under its body. Video and pose tracking can say where the body
-is and how it moves, but not how much weight each paw carries.
+Viewed from above, the paws of a walking rat are largely hidden beneath its body. Video and pose estimation
+describe the position and movement of the body, but not the load supported by each paw.
 
-TactileArena puts the measurement where the animal meets the world. The floor is a dense grid of pressure
-sensors (taxels), so every contact appears as an image of the paw pressing down, frame by frame. The camera
-supplies the body's position and orientation, and the floor supplies the forces.
+TactileArena measures the interaction directly at the surface. The floor is a dense array of pressure-sensing
+elements (taxels), so that every contact is recorded as a pressure image of the paw throughout stance. Overhead
+video, recorded on the same clock, provides body position and orientation; the tactile floor provides the contact
+loading.
 
-In one recording you get the familiar gait measures, such as when each paw lands and how long it stays down.
-You also get what video cannot see: how hard each paw pushes, how weight shifts between paws, and how load moves
-across a single paw during a step.
+Each recording provides the spatiotemporal parameters measured by conventional gait-analysis platforms such as
+CatWalk, including paw placement and stance and swing timing. It also provides quantities that video cannot
+capture: the load borne by each paw, the redistribution of weight among the paws, and the progression of load
+across each paw during stance.
 
 </div>
 <figure class="ta-media" markdown>
-<span class="ta-badge">Real data · 0.25× speed</span>
+<span class="ta-badge">Recorded data · 0.25× speed</span>
 <video width="1920" height="1084" data-loop muted loop playsinline preload="none" data-poster="assets/loops/camera_floor.jpg"
-       aria-label="Top: overhead camera view of a walking rat whose paws are hidden under its body. Bottom: the same moment on the tactile floor, where each paw is a distinct, labelled pressure contact.">
+       aria-label="Top: overhead video of a walking rat whose paws are hidden beneath its body. Bottom: the same instant on the tactile floor, where each paw appears as a distinct, labelled pressure contact.">
   <source src="assets/loops/camera_floor.mp4" type="video/mp4">
 </video>
 </figure>
 </div>
 
-<p class="ta-small">The same walk seen by the overhead camera (top) and by the floor (bottom), both mapped to sensor coordinates.
-Labels are the analysis pipeline's automatic paw assignments:
-<span class="ta-paw ta-paw--FL">FL</span> left fore, <span class="ta-paw ta-paw--FR">FR</span> right fore,
-<span class="ta-paw ta-paw--HL">HL</span> left hind, <span class="ta-paw ta-paw--HR">HR</span> right hind.</p>
+<p class="ta-small">Simultaneous overhead video (top) and tactile floor (bottom) of the same walking sequence, both
+registered to sensor coordinates. Labels indicate automatic paw assignments by the analysis pipeline:
+<span class="ta-paw ta-paw--FL">FL</span>, left forepaw; <span class="ta-paw ta-paw--FR">FR</span>, right forepaw;
+<span class="ta-paw ta-paw--HL">HL</span>, left hindpaw; <span class="ta-paw ta-paw--HR">HR</span>, right hindpaw.</p>
 
 <div class="ta-numbers">
-  <div class="ta-number"><b>16,384</b><span>taxels, from four 64&nbsp;&times;&nbsp;64 modules</span></div>
-  <div class="ta-number"><b>2&nbsp;mm</b><span>taxel pitch, enough to resolve the shape of a rat's paw print</span></div>
-  <div class="ta-number"><b>512&nbsp;&times;&nbsp;128</b><span>mm sensing surface, the length of a gait runway</span></div>
-  <div class="ta-number"><b>~1&nbsp;kHz</b><span>frame rate (nominal), enough to follow load within a single step</span></div>
-  <div class="ta-number"><b>4.9%</b><span>of each module's taxels read per frame (200 of 4,096); the rest is skipped until something presses</span></div>
+  <div class="ta-number"><b>16,384</b><span>taxels in four 64&nbsp;&times;&nbsp;64 modules</span></div>
+  <div class="ta-number"><b>2&nbsp;mm</b><span>taxel pitch, resolving the plantar contact geometry of the rat paw</span></div>
+  <div class="ta-number"><b>512&nbsp;&times;&nbsp;128</b><span>mm runway sensing area</span></div>
+  <div class="ta-number"><b>~1&nbsp;kHz</b><span>nominal frame rate, resolving load dynamics within individual steps</span></div>
+  <div class="ta-number"><b>4.9%</b><span>of each module's taxels measured per frame (200 of 4,096), concentrated on active contacts</span></div>
 </div>
 </section>
 
 <section class="ta-section" markdown>
-<p class="ta-kicker">Why it matters</p>
+<p class="ta-kicker">Biological application</p>
 
-## Stepping on a paw is not the same as standing on it { #why }
+## Contact loading reveals deficits underestimated by gait timing { #why }
 
 <div class="ta-story ta-story--top" markdown>
 <div class="ta-story__text" markdown>
 
-We tracked rats for two weeks after a pinch injury to the left sciatic nerve (three injured, two sham-operated).
-In the first days after surgery, the injured animals kept placing the injured hind paw on the ground. Timing
-alone showed a moderate deficit, but the loading measured by the floor showed a much larger one.
+Rats were followed for two weeks after a left sciatic nerve pinch (three injured, two sham-operated). During the
+first postoperative days, injured animals continued to place the affected hindpaw on the ground. The reduction in
+its share of stance time was moderate, whereas the reduction in the load it supported was substantially larger.
 
 <div class="ta-finding">
-  <div class="ta-finding__card"><b>&minus;0.33</b><span><em>Timing.</em> Change in the left-to-right hindpaw duty-factor ratio (how long the injured paw stays down) on days 1&ndash;5.</span></div>
-  <div class="ta-finding__card ta-finding__card--touch"><b>&minus;0.61</b><span><em>Loading.</em> Change in the left-to-right time-integrated loading ratio (how much weight it carries over each stance) on days 1&ndash;5.</span></div>
+  <div class="ta-finding__card"><b>&minus;0.33</b><span><em>Gait timing.</em> Change in the left-to-right hindpaw duty-factor ratio, days 1&ndash;5 after surgery.</span></div>
+  <div class="ta-finding__card ta-finding__card--touch"><b>&minus;0.61</b><span><em>Contact loading.</em> Change in the left-to-right hindpaw time-integrated loading ratio, days 1&ndash;5 after surgery.</span></div>
 </div>
 
-Both ratios start near 1, so the paw's share of stance time fell by about a third while its share of load fell by
-about 60%. The rats kept using the paw but bore much less weight on it. At the same time, peak loading of the
-injured paw dropped by 27% and the opposite hind paw took up 18&ndash;21% more. Both ratios had moved back toward
-baseline by days 11&ndash;13.
+Both ratios are close to 1 at baseline: the duty-factor ratio therefore decreased by approximately one third,
+whereas the loading ratio decreased by approximately 60%. Peak loading of the injured hindpaw decreased by 27%,
+and that of the contralateral hindpaw increased by 18&ndash;21%. Both ratios returned toward baseline by days
+11&ndash;13.
 
-<p class="ta-small">Model estimates from the manuscript (mixed-effects models, p&nbsp;&lt;&nbsp;0.001 for both ratio changes). The cohort is small and all tests are exploratory; see <a href="results/#injury">Results</a> for details and limitations.</p>
+<p class="ta-small">Model estimates from linear mixed-effects models (p&nbsp;&lt;&nbsp;0.001 for both ratio changes). Statistical details are given in <a href="results/#injury">Results</a>.</p>
 
 </div>
 <figure class="ta-fig" markdown>
-![Line plots of the injured-to-uninjured hindpaw duty-factor ratio (left) and time-integrated loading ratio (right) before surgery and over two weeks after it, for sham and nerve-injured rats. The loading ratio drops to about 0.4 in injured rats, the duty-factor ratio to about 0.66.](assets/figures/fig5d_ratios.jpg){ loading=lazy }
-<figcaption>Hindpaw ratios (injured over uninjured side) before and after surgery. Thin lines are individual rats, thick lines group means; stars mark within-group differences from baseline (unadjusted). From Fig. 5d of the manuscript.</figcaption>
+![Injured-to-uninjured hindpaw duty-factor ratio and time-integrated loading ratio before surgery and over the two weeks after surgery, for sham-operated and nerve-injured rats.](assets/figures/fig5d_ratios.jpg){ loading=lazy }
+<figcaption>Left-to-right hindpaw duty-factor ratio and time-integrated loading ratio before and after surgery in sham-operated and nerve-injured rats. Adapted from Fig. 5d of the manuscript.</figcaption>
 </figure>
 </div>
 </section>
 
 <section class="ta-section" markdown>
-<p class="ta-kicker">How it works</p>
+<p class="ta-kicker">Sensing architecture</p>
 
-## Large, dense and fast, without reading every taxel { #how }
+## Large-area, high-density sensing at kilohertz rates { #how }
 
-Big pressure-sensing surfaces usually force a trade-off between area, spatial resolution and speed: reading
-thousands of taxels one by one takes time. TactileArena avoids the trade-off by reading each taxel only when it
-is likely to matter.
+Large pressure-sensing surfaces conventionally trade sensing area and spatial resolution against acquisition
+speed, because every taxel must be measured in each frame. TactileArena overcomes this trade-off with adaptive
+compressive sampling: each readout board measures a fixed subset of taxels per frame, resolving at full density
+every region whose readings exceed a configurable pressure threshold, while a sparse background scan monitors the
+remainder of the surface.
 
 <div class="ta-cards" markdown>
 <div class="ta-card" markdown>
-<div class="ta-media ta-media--contain" markdown>![A 64 by 64 flex-PCB sensor array with its readout board plugged into the tail.](assets/photos/module.png){ loading=lazy }</div>
+<div class="ta-media ta-media--contain" markdown>![A 64 by 64 flexible-PCB sensor array with its readout board connected to the sensor tails.](assets/photos/module.png){ loading=lazy }</div>
 <div class="ta-card__body" markdown>
-<span class="ta-card__num">01 · SENSE</span>
+<span class="ta-card__num">01 · SENSING SURFACE</span>
 
-### A floor made of modules
+### Modular sensor arrays
 
-Each module is a flex circuit with a 64&nbsp;&times;&nbsp;64 grid of electrodes under a piezoresistive film,
-covered by a waterproof cloth. Pressure lowers the film's resistance at that spot. Four modules, each with its
-own readout board, tile the 512&nbsp;mm runway.
+Each module is a flexible printed circuit carrying a 64&nbsp;&times;&nbsp;64 electrode array beneath a
+piezoresistive film and a waterproof cover; applied pressure reduces the local resistance of the film. Four
+modules, each with a dedicated readout board, form the 512-mm runway.
 </div>
 </div>
 <div class="ta-card" markdown>
 <div class="ta-media" markdown>
-<video width="512" height="512" data-loop muted loop playsinline preload="none" data-poster="assets/loops/sampling.jpg" aria-label="Animation of the taxels a module reads in successive frames: a sparse, shifting background scan plus dense patches around each paw.">
+<video width="512" height="512" data-loop muted loop playsinline preload="none" data-poster="assets/loops/sampling.jpg" aria-label="Taxels measured by one module in successive frames: a sparse, shifting background scan and dense sampling around each paw contact.">
   <source src="assets/loops/sampling.mp4" type="video/mp4">
 </video>
 </div>
 <div class="ta-card__body" markdown>
-<span class="ta-card__num">02 · SAMPLE</span>
+<span class="ta-card__num">02 · ADAPTIVE SAMPLING</span>
 
-### Look where the action is
+### Adaptive compressive sampling
 
-Each board reads 200 of its 4,096 taxels per frame. A coarse background scan, shifted every frame, watches the
-whole module. Any reading above threshold triggers full-resolution reads of its neighbours, so a paw is
-captured completely while empty floor costs almost nothing.
+Each readout board measures 200 of its 4,096 taxels per frame. A coarse-to-fine background scan, shifted every
+frame, monitors the full module; any reading above the pressure threshold triggers recursive full-resolution
+sampling of its neighbourhood, so that each contact is resolved completely while unloaded regions are sampled
+sparsely.
 
-[Try it yourself](how-it-works.md#sampling){ .ta-more }
+[Interactive demonstration](how-it-works.md#sampling){ .ta-more }
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media" markdown>![Workflow figure: high-speed pressure frame, overhead camera, tail-base network, registered fusion, paw assignment and footstep extraction.](assets/figures/fig1_workflow.jpg){ loading=lazy }</div>
+<div class="ta-media" markdown>![Workflow: high-speed pressure frame, overhead video, tail-base localization network, registered fusion, paw assignment and footstep extraction.](assets/figures/fig1_workflow.jpg){ loading=lazy }</div>
 <div class="ta-card__body" markdown>
-<span class="ta-card__num">03 · FUSE</span>
+<span class="ta-card__num">03 · VIDEO FUSION</span>
 
-### Pressure meets video
+### Camera-assisted paw assignment
 
-An overhead camera records on the same clock. Registration maps it onto the sensor grid, and a small network
-finds the tail base to give body orientation. Contacts are then assigned to paws: 93.3% of 2,469 hand-labelled
-contacts were found and given the right paw.
+Overhead video is recorded on the same clock and registered to the sensor grid, and a convolutional network
+localizes the tail base to provide body orientation. Contacts are then assigned to individual paws, correctly
+identifying 93.3% of 2,469 manually annotated contacts.
 
-[The analysis pipeline](how-it-works.md#pipeline){ .ta-more }
+[Analysis pipeline](how-it-works.md#pipeline){ .ta-more }
 </div>
 </div>
 </div>
@@ -149,7 +154,7 @@ contacts were found and given the right paw.
 <section class="ta-section" id="overview" markdown>
 <p class="ta-kicker">Overview video</p>
 
-## TactileArena in two minutes
+## Overview
 
 <figure class="ta-media" markdown>
 <video width="1920" height="1080" controls preload="none" playsinline data-poster="assets/video/overview.jpg"
@@ -161,67 +166,66 @@ contacts were found and given the right paw.
 </section>
 
 <section class="ta-section" markdown>
-<p class="ta-kicker">What you can measure</p>
+<p class="ta-kicker">Measurements</p>
 
-## From the whole animal down to a single step { #measures }
+## From whole-animal to within-step scales { #measures }
 
-The same recording supports measurements at three scales: movement along the arena, load sharing between the
+Each recording supports measurements at three scales: displacement along the arena, load distribution among the
 four paws, and pressure dynamics within each paw contact.
 
 <div class="ta-cards" markdown>
 <div class="ta-card" markdown>
-<div class="ta-media ta-media--white" markdown>![Normalized plantar pressure maps and 3D reconstructions for each paw, including a post-surgery left hindpaw.](assets/figures/card_footprints.jpg){ loading=lazy }</div>
+<div class="ta-media ta-media--white" markdown>![Normalized plantar pressure maps and three-dimensional reconstructions for each paw, including a postoperative left hindpaw.](assets/figures/card_footprints.jpg){ loading=lazy }</div>
 <div class="ta-card__body" markdown>
-### Footprints and timing
-Paw-resolved pressure maps, contact area and shape, stance and swing for all four limbs. After injury, the
-injured hind paw's print became smaller and more elongated.
+### Contact morphology and timing
+Paw-resolved pressure maps, contact area and shape, and stance and swing timing for all four limbs. After
+injury, contacts of the injured hindpaw became smaller and more elongated.
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media" markdown>![Whole-animal centre of pressure (yellow) and video body centroid (white dashed) over two walks, with colour-coded footprints and fading body outlines.](assets/figures/card_cop.jpg){ loading=lazy }</div>
+<div class="ta-media" markdown>![Whole-animal centre of pressure (yellow) and video-derived body centroid (white dashed) during two walking sequences, with colour-coded footprints and body outlines.](assets/figures/card_cop.jpg){ loading=lazy }</div>
 <div class="ta-card__body" markdown>
-### Where the weight is
-The whole-animal centre of pressure tracks how the body's weight is distributed over its supports, which
-is not the same as the body's outline seen by the camera.
+### Centre of pressure
+The whole-animal centre of pressure describes how body weight is distributed across the supporting paws, a
+quantity distinct from the body outline captured by video.
 </div>
 </div>
 <div class="ta-card" markdown>
-<div class="ta-media ta-media--white" markdown>![Loading traces in grams for each of the four paws over several seconds of walking.](assets/figures/card_loading.jpg){ loading=lazy }</div>
+<div class="ta-media ta-media--white" markdown>![Mass-equivalent loading traces for each of the four paws during several seconds of walking.](assets/figures/card_loading.jpg){ loading=lazy }</div>
 <div class="ta-card__body" markdown>
-### Load within each step
-Mass-equivalent loading for every paw at about 1&nbsp;kHz. Speed matters for short contacts: for stances of
-0.2&ndash;0.5&nbsp;s, cumulative-loading error stayed below 2% down to 50&nbsp;Hz but rose to about 10% at 10&nbsp;Hz.
+### Within-step loading dynamics
+Mass-equivalent loading of each paw at approximately 1&nbsp;kHz. For stances of 0.2&ndash;0.5&nbsp;s,
+cumulative-loading error remained below 2% down to 50&nbsp;Hz and increased to approximately 10% at 10&nbsp;Hz.
 </div>
 </div>
 </div>
 
-[All results](results.md){ .ta-more }
+[Results](results.md){ .ta-more }
 </section>
 
 <section class="ta-section" markdown>
-<p class="ta-kicker">Beyond the runway</p>
+<p class="ta-kicker">Modularity</p>
 
-## The modules can tile other arenas { #beyond }
+## Reconfigurable sensing surfaces { #beyond }
 
 <div class="ta-story" markdown>
 <div class="ta-story__text" markdown>
 
-The sensing surface is assembled from independent modules, so the same hardware can cover other shapes. Here,
-the four modules are tiled into a square open field with three rats at once.
+Because the sensing surface is assembled from independent modules, the same hardware can be arranged in other
+geometries. Here, the four modules form a square open-field arena that records three rats simultaneously.
 
-Possible next steps:
+Future applications include:
 
-- larger or differently shaped arenas, and other species, after recalibration;
-- pairing contact measurements with markerless pose estimation, to relate load to limb and body posture;
-- synchronized neural or muscle recordings, to tie each step's mechanics to sensorimotor control, and perturbations triggered at specific phases of contact;
-- shear sensing at the same resolution, to add tangential forces.
-
+- larger or differently shaped arenas and other species, following recalibration;
+- integration with markerless pose estimation, relating contact loading to limb and body posture;
+- synchronized neural or muscle recordings, linking the mechanics of individual steps to sensorimotor control, including perturbations triggered at defined phases of contact;
+- shear sensing at comparable spatial resolution, extending measurements to tangential forces.
 
 </div>
 <figure class="ta-media" markdown>
 <span class="ta-badge">Three rats · 128 × 128 taxels</span>
 <video width="1600" height="900" data-loop muted loop playsinline preload="none" data-poster="assets/video/arena_multi.jpg"
-       aria-label="Three rats on a square tactile arena built from four modules; left, the live tactile map with their paw contacts; right, the overhead camera.">
+       aria-label="Three rats on a square tactile arena formed by four modules; left, the tactile map with their paw contacts; right, the overhead video.">
   <source src="assets/video/arena_multi.mp4" type="video/mp4">
 </video>
 </figure>
@@ -229,25 +233,26 @@ Possible next steps:
 </section>
 
 <section class="ta-section" markdown>
-<p class="ta-kicker">Open</p>
+<p class="ta-kicker">Resources</p>
 
-## Build it, run it, reuse the data { #open }
+## Open hardware, software and data { #open }
 
 <div class="ta-cards" markdown>
 <div class="ta-card" markdown>
 <div class="ta-card__body" markdown>
-### Build guide
-Four flex-PCB sensor modules, four readout boards built around a Teensy 4.1, a piezoresistive film and a
-waterproof cover: about US&#36;550 in parts for one runway, or roughly US&#36;140 per module. KiCad design files, Gerbers and an assembly video included.
+### Hardware
+Four flexible-PCB sensor modules, four Teensy 4.1-based readout boards, piezoresistive film and a waterproof
+cover; approximately US&#36;550 in parts per runway (approximately US&#36;140 per module). KiCad design files,
+fabrication files and an assembly video are provided.
 
-[Build one](build.md){ .ta-more }
+[Build guide](build.md){ .ta-more }
 </div>
 </div>
 <div class="ta-card" markdown>
 <div class="ta-card__body" markdown>
-### Code
-Readout firmware, synchronized pressure and video recording, and the MATLAB/Python analysis pipeline, with a
-pretrained tail-base network, calibration curves and a demo that checks its own output. MIT licence.
+### Software
+Readout firmware, synchronized pressure and video acquisition, and the MATLAB/Python analysis pipeline, including
+a pretrained tail-base localization network, calibration curves and a self-validating demonstration. MIT License.
 
 [Software](software.md){ .ta-more }
 </div>
@@ -255,8 +260,8 @@ pretrained tail-base network, calibration curves and a demo that checks its own 
 <div class="ta-card" markdown>
 <div class="ta-card__body" markdown>
 ### Data
-All 85 runway recordings from the study, with raw pressure packets, overhead video and the original
-annotations: homographies, blind manual paw labels, walking windows and body mass.
+All 85 runway recordings from the study, with raw pressure packets, overhead video and the original annotations
+(homographies, blinded manual paw labels, walking windows and body mass).
 
 [Data](data.md){ .ta-more }
 </div>
@@ -266,9 +271,9 @@ annotations: homographies, blind manual paw labels, walking windows and body mas
 
 <section class="ta-section" markdown>
 
-## Cite { #cite }
+## Citation { #cite }
 
-The manuscript is in preparation. Until it is published, please cite this website and the code:
+The manuscript is in preparation. Until publication, please cite this website and repository:
 
 <div class="ta-cite" markdown>
 

@@ -155,8 +155,8 @@
         paintTaxel(iR.data, W, c, r, S, colourFor(val[p], thr, read[p], true));
       }
       gT.putImageData(iT, 0, 0); gR.putImageData(iR, 0, 0);
-      stats.textContent = "Read this frame: " + sampler.n + " of 4,096 taxels (" + (100 * sampler.n / NN).toFixed(1) + "%)" +
-        (hot ? "  ·  pressed taxels read: " + hotRead + " of " + hot + " (" + Math.round(100 * hotRead / hot) + "%)" : "  ·  nothing pressed");
+      stats.textContent = "Measured in this frame: " + sampler.n + " of 4,096 taxels (" + (100 * sampler.n / NN).toFixed(1) + "%)" +
+        (hot ? "  ·  above-threshold taxels measured: " + hotRead + " of " + hot + " (" + Math.round(100 * hotRead / hot) + "%)" : "  ·  no applied load");
     }
 
     function tick(t) {
@@ -204,7 +204,7 @@
         }
       }
       g.putImageData(img, 0, 0);
-      stats.textContent = "t = " + (meta.t0 + t).toFixed(4) + " s  ·  read in the current frames: " + total.toLocaleString() + " of 16,384 taxels (" + (100 * total / 16384).toFixed(1) + "%)";
+      stats.textContent = "t = " + (meta.t0 + t).toFixed(4) + " s  ·  measured in the current frames: " + total.toLocaleString() + " of 16,384 taxels (" + (100 * total / 16384).toFixed(1) + "%)";
     }
     function nextPacketTime() {   // the earliest packet after t on any board
       var best = Infinity; boards.forEach(function (b) { var p = latest(b, t); if (p + 1 < b.ts.length) best = Math.min(best, b.ts[p + 1]); });

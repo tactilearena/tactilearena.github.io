@@ -36,7 +36,7 @@ site_tools/    scripts that produce the website media and the Supplementary Vide
 
 ## Demo
 
-The demo package, `demo_2-24-2026_rat4.zip` (415 MB; 1.36 GB unzipped), is part of the data deposit on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364); the DOI resolves once the deposit is published. It holds one complete recording, rat 4 on 24 Feb 2026 (sciatic nerve pinch group, two weeks before surgery): an 85-s session with five runway crossings. It contains the raw pressure packets (1.0 GB), the overhead video (334 MB) and that recording's annotations, in the same layout as the full data deposit. Extracting it to `C:\` gives `C:\gait_demo\data`.
+The demo package, `demo_2-24-2026_rat4.zip` (415 MB; 1.36 GB unzipped), is part of the data deposit on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364). It holds one complete recording, rat 4 on 24 Feb 2026 (sciatic nerve pinch group, two weeks before surgery): an 85-s session with five runway crossings. It contains the raw pressure packets (1.0 GB), the overhead video (334 MB) and that recording's annotations, in the same layout as the full data deposit. Extracting it to `C:\` gives `C:\gait_demo\data`.
 
 ```matlab
 setenv('GAIT_PYTHON', 'C:\path\to\python.exe')   % Python with PyTorch, if not on the PATH
@@ -62,7 +62,7 @@ The two tables are compared with `demo/expected/`; a successful run ends with `D
 
 ## Data
 
-The recordings and the study annotations are on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364) (CC BY 4.0), as one zip per recording (`<M-D-YYYY>_ratN.zip`, 85 files, about 380 MB each) plus `annotations.zip`. Extract all of them into the same folder and point `GAIT_DATA_ROOT` at it:
+The recordings and the study annotations are on Zenodo, [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364) (CC BY 4.0), as one zip per recording (`<M-D-YYYY>_ratN.zip`, 85 files, about 400 MB each) plus `annotations.zip`. Extract all of them into the same folder and point `GAIT_DATA_ROOT` at it:
 
 ```
 <data_root>/

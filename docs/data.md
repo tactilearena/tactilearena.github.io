@@ -10,12 +10,12 @@ with the annotations required to reproduce the analyses.</p>
 
 !!! note "Data deposit"
     The recordings are deposited on Zenodo under
-    [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364); the DOI becomes active when the record
-    is published.
+    [doi:10.5281/zenodo.23286364](https://doi.org/10.5281/zenodo.23286364) (CC&nbsp;BY&nbsp;4.0), with MD5 checksums in
+    `md5sums.txt`.
 
 ## Contents of the deposit { #contents }
 
-- **Recordings:** one archive per recording (`<M-D-YYYY>_ratN.zip`, approximately 380&nbsp;MB each), containing the
+- **Recordings:** one archive per recording (`<M-D-YYYY>_ratN.zip`, approximately 400&nbsp;MB each), containing the
   raw pressure packets from the four boards with the camera-frame timestamps on the same clock (MATLAB `.mat`) and
   the overhead video (MP4).
 - **Annotations** (`annotations.zip`): camera-to-sensor homographies; blinded manual paw labels (FL/FR/HL/HR)

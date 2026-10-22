@@ -367,7 +367,7 @@ def s04_platform(t):
     if "a" not in _ph:
         _ph["a"] = Image.open(os.path.join(A, "photos", "runway_rat_raw.jpg")).convert("RGB")
         _ph["m"] = fit_image(os.path.join(A, "photos", "module.png"), 1200, 720)
-        _ph["v"] = read_video(os.path.join(A, "video", "assembly.mp4"), 4, 60, 10, 540)
+        _ph["v"] = read_video(os.path.join(A, "video", "assembly.mp4"), 6.6, 15.2, 10, 540)  # between the clip's own captions
     im = to_img(f).convert("RGBA")
     if t < 5.2:
         src = _ph["a"]; z = 1.0 + 0.06 * t / 5.2
@@ -384,14 +384,14 @@ def s04_platform(t):
         im.paste(mm, ((W - mm.width) // 2, 40 + (760 - mm.height) // 2))
         caption(im, lt, [(0.3, 5.0, "Each module is a flexible electrode array beneath a piezoresistive film, read by a dedicated Teensy-based board.")], 0)
     else:
-        lt = t - 10.4; fr = _ph["v"]; k = min(len(fr) - 1, int(lt * 10 * 3))   # 3x speed
+        lt = t - 10.4; fr = _ph["v"]; k = min(len(fr) - 1, int(lt * 10 * 2.7))   # 2.7x speed
         clip = Image.fromarray(fr[k]); bgc = clip.resize((W, int(W * clip.height / clip.width))).filter(ImageFilter.GaussianBlur(30))
         bgc = Image.fromarray((np.asarray(bgc).astype(np.float32) * 0.35).astype(np.uint8))
         im.paste(bgc, (0, (H - bgc.height) // 2))
         cl = clip.resize((int(clip.width * (H - 40) / clip.height), H - 40))
         im.paste(cl, ((W - cl.width) // 2, 20))
-        badge(im, "Assembly · 3× speed", (60, 40))
-        caption(im, lt, [(0.2, 5.4, "Assembly: sensor connection, array alignment and application of the piezoresistive film.")], 0)
+        badge(im, "Assembly · 2.7× speed", (60, 40))
+        caption(im, lt, [(0.2, 5.4, "Assembly: each sensor module is connected to its readout board through its two flexible tails.")], 0)
     return im
 
 
@@ -617,7 +617,7 @@ CAPTION_TABLE = {
                          (8.6, 11.3, "Labels indicate automatic paw assignments (FL, FR, HL, HR).")],
     "s04_platform": [(0.3, 5.0, "Four 64 × 64 sensor modules form a 512 × 128 mm runway of 16,384 taxels at 2-mm pitch."),
                      (5.5, 10.2, "Each module is a flexible electrode array beneath a piezoresistive film, read by a dedicated Teensy-based board."),
-                     (10.6, 15.8, "Assembly: sensor connection, array alignment and application of the piezoresistive film.")],
+                     (10.6, 15.8, "Assembly: each sensor module is connected to its readout board through its two flexible tails.")],
     "s05_sampling": [(0.3, 4.6, "Rather than scanning every taxel, each board measures 200 of its 4,096 taxels per frame."),
                      (4.8, 10.8, "Active contacts are tracked, a coarse-to-fine scan monitors the module, and loaded regions are resolved at full density."),
                      (11.3, 16.6, "Recorded acquisition frames: paw contacts are resolved completely, while unloaded regions are sampled sparsely."),

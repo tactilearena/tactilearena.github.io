@@ -19,7 +19,7 @@ Four 64 × 64 sensor modules form a 512 × 128 mm runway of 16,384 taxels at 2-m
 Each module is a flexible electrode array beneath a piezoresistive film, read by a dedicated Teensy-based board.
 
 00:00:37.600 --> 00:00:42.800
-Assembly: sensor connection, array alignment, and application of the piezoresistive film and waterproof cloth.
+Assembly: each sensor module is connected to its readout board through its two flexible tails.
 
 00:00:43.300 --> 00:00:47.600
 Rather than scanning every taxel, each board measures 200 of its 4,096 taxels per frame.

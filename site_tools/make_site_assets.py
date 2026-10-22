@@ -39,6 +39,7 @@ def save_png(im, path, width=None):
 def photos():
     z = zipfile.ZipFile(os.path.join(SOURCES, "figure_deck.pptx"))
     get = lambda n: Image.open(io.BytesIO(z.read("ppt/media/" + n)))
+    save_jpg(get("image50.jpeg"), f"{A}/photos/runway_rat_raw.jpg", 1600)   # rat on the runway (used by the overview video)
     save_png(get("image55.png"), f"{A}/photos/module.png", 1400)            # one 64x64 sensor + readout board
     save_png(get("image56.png"), f"{A}/photos/modules_2x2.png", 1400)       # four modules tiled 2x2
     # The 64x64 readout board, cropped from the module photo (same image as the manuscript's overview figure).

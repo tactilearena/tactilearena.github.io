@@ -8,7 +8,7 @@ Timed to overview.mp4; the on-screen captions carry the same text.
 - **00:24** Labels indicate automatic paw assignments (FL, FR, HL, HR).
 - **00:27** Four 64 × 64 sensor modules form a 512 × 128 mm runway of 16,384 taxels at 2-mm pitch.
 - **00:32** Each module is a flexible electrode array beneath a piezoresistive film, read by a dedicated Teensy-based board.
-- **00:37** Assembly: sensor connection, array alignment, and application of the piezoresistive film and waterproof cloth.
+- **00:37** Assembly: each sensor module is connected to its readout board through its two flexible tails.
 - **00:43** Rather than scanning every taxel, each board measures 200 of its 4,096 taxels per frame.
 - **00:47** Active contacts are tracked, a coarse-to-fine scan monitors the module, and loaded regions are resolved at full density.
 - **00:54** Recorded acquisition frames: paw contacts are resolved completely, while unloaded regions are sampled sparsely.

@@ -97,7 +97,7 @@ addpath('<repo>/pipeline')
 
 ## Recording
 
-`acquisition/record_runway.py` runs on the acquisition computer (macOS) with the four readout boards connected over USB serial. It sends each board its settings, then releases the board and camera threads from one shared start time, and saves `runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat` plus one `camera_<K>_<time>.mp4` per camera. The paper's recordings used 90 s, M = 200, threshold 700, digital potentiometer 100, and two cameras at 1920 × 1080 (30 fps target; about 25-27 fps achieved, so use the saved per-frame timestamps). Edit the serial ports and camera indices at the bottom of the script. Each board streams about 880 frames per second; see `acquisition/firmware/README.md` for the sampling scheme and packet format. `live_view_runway.py` shows the live pressure map.
+`acquisition/record_runway.py` runs on the acquisition computer (macOS) with the four readout boards connected over USB serial. It sends each board its settings, then releases the board and camera threads from one shared start time, and saves `runway_tactile_data_<time>_M<M>_T<threshold>_D<digipot>.mat` plus one `camera_<K>_<time>.mp4` per camera. The paper's recordings used 90 s, M = 200, threshold 700, digital potentiometer 100, and two cameras at 1920 × 1080 (30 fps target; about 25-27 fps achieved, so use the saved per-frame timestamps). Edit the serial ports and camera indices at the bottom of the script. Each board streams frames at approximately 1 kHz (median interval about 1 ms); see `acquisition/firmware/README.md` for the sampling scheme and packet format. `live_view_runway.py` shows the live pressure map.
 
 ## Running the pipeline
 

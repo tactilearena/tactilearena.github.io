@@ -19,10 +19,10 @@ recording order (`all` for board 1), and `force_tare_g` and `baseline_sum` are t
 
 Accuracy was evaluated by leaving out one press at a time. The RMSE of estimated against reference load, over held-out samples between 0 and 450 g, was 23.4, 30.6, 25.9 and 27.2 g for boards 1-4.
 
-## Caveats
+## Notes on use
 
 - **Relative error.** The absolute error is roughly constant across the range, so the relative error is lowest for loads of about 50-300 g.
 - **Use each board's own curve.** Sensitivity differs between boards by up to about 1.5× at low load.
-- **Board 2 is the least precise.**
+- **Board 2** has the largest held-out error (30.6 g).
 - **Not validated for transfer.** The curves were not tested on other sessions, other contact geometries (finger vs paw) or other positions on a board.
-- **These curves belong to our four boards.** A different sensor needs its own calibration against a reference force plate, following the procedure above.
+- **Board-specific.** The curves apply to the four boards used in the study; other sensors require their own calibration against a reference force plate, following the procedure above.

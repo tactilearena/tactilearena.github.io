@@ -391,7 +391,7 @@ def s04_platform(t):
         cl = clip.resize((int(clip.width * (H - 40) / clip.height), H - 40))
         im.paste(cl, ((W - cl.width) // 2, 20))
         badge(im, "Assembly · 3× speed", (60, 40))
-        caption(im, lt, [(0.2, 5.4, "Assembly: sensor connection, array alignment, and application of the piezoresistive film and waterproof cloth.")], 0)
+        caption(im, lt, [(0.2, 5.4, "Assembly: sensor connection, array alignment and application of the piezoresistive film.")], 0)
     return im
 
 
@@ -617,7 +617,7 @@ CAPTION_TABLE = {
                          (8.6, 11.3, "Labels indicate automatic paw assignments (FL, FR, HL, HR).")],
     "s04_platform": [(0.3, 5.0, "Four 64 × 64 sensor modules form a 512 × 128 mm runway of 16,384 taxels at 2-mm pitch."),
                      (5.5, 10.2, "Each module is a flexible electrode array beneath a piezoresistive film, read by a dedicated Teensy-based board."),
-                     (10.6, 15.8, "Assembly: sensor connection, array alignment, and application of the piezoresistive film and waterproof cloth.")],
+                     (10.6, 15.8, "Assembly: sensor connection, array alignment and application of the piezoresistive film.")],
     "s05_sampling": [(0.3, 4.6, "Rather than scanning every taxel, each board measures 200 of its 4,096 taxels per frame."),
                      (4.8, 10.8, "Active contacts are tracked, a coarse-to-fine scan monitors the module, and loaded regions are resolved at full density."),
                      (11.3, 16.6, "Recorded acquisition frames: paw contacts are resolved completely, while unloaded regions are sampled sparsely."),

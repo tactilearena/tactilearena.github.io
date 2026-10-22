@@ -176,9 +176,9 @@ compare each animal with its own presurgical baseline.
    paw according to their position relative to the smoothed whole-animal centre of pressure and walking direction.
    Camera-derived votes contribute a weighted term, and Viterbi decoding enforces consistent left/right sequences.
 
-Within manually selected walking windows from 81 recordings, the pipeline correctly identified **2,303 of 2,469**
-manually annotated contacts (93.3%; 95.7% of matched contacts). Walking-window selection and camera-to-sensor
-registration are performed manually.
+Within manually curated walking windows from 81 recordings, the pipeline correctly identified **2,303 of 2,469**
+manually annotated contacts (93.3%; 95.7% of matched contacts). Walking windows are proposed automatically from the
+COP speed and curated manually, and camera-to-sensor registration uses manually identified platform corners.
 
 <figure class="ta-fig" markdown>
 ![Tail-base network architecture, training curves, localization accuracy, paw-assignment confusion matrix and examples.](assets/figures/figS2_decoder.jpg){ loading=lazy }

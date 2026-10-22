@@ -68,7 +68,7 @@ Full-resolution files are available from the [GitHub release](https://github.com
 
 ### Assembly of the tactile runway
 
-Connection of the sensor modules to their readout boards, alignment of the four arrays, application of the piezoresistive film and waterproof cloth, and connection to the host computer.
+Connection of the sensor modules to their readout boards, alignment of the four arrays, application of the piezoresistive film and connection to the host computer.
 
 [Download (full resolution)](https://github.com/tactilearena/tactilearena.github.io/releases/download/supplementary-videos-v1/SupplementaryVideo1_assembly.mp4){ .ta-more }
 </div>

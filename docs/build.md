@@ -74,7 +74,7 @@ The Teensy 4.1 and the two digital potentiometers on each readout board are sold
 6. **Verification.** Connect the four boards to the host computer, run `live_view_runway.py` and confirm that the
    indicator LED of every board is lit and that applied pressure appears at the corresponding location.
 
-Steps 2&ndash;6 are shown in Supplementary Video 1 (93&nbsp;s).
+Steps 2&ndash;4 and 6 are shown in Supplementary Video 1 (93&nbsp;s).
 
 </div>
 <figure class="ta-media" markdown style="max-width:22rem">

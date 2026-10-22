@@ -12,7 +12,7 @@ the manuscript.</p>
 
 <figure class="ta-fig" markdown>
 ![Paw contacts projected onto video frames; normalized plantar pressure maps and three-dimensional reconstructions for each paw, including a postoperative left hindpaw; a footprint trail with the body-centroid trajectory; contact intervals for all four paws.](assets/figures/fig3_contacts.jpg){ loading=lazy }
-<figcaption><strong>Fig. 2.</strong> a, Detected paw contacts projected onto synchronized overhead video frames. b, Plantar pressure maps for each paw, including a postoperative left hindpaw contact indicating additional support on the heel. c, Footprint trail at maximum contact area. d, Stance intervals for all four paws.</figcaption>
+<figcaption><strong>Fig. 2.</strong> a, Detected paw contacts projected onto synchronized overhead video frames. b, Plantar pressure maps for each paw, including a representative postoperative left hindpaw contact whose elongated shape is consistent with increased heel contact. c, Footprint trail at maximum contact area. d, Stance intervals for all four paws.</figcaption>
 </figure>
 
 Projection of detected contacts onto the synchronized video locates each paw relative to the animal throughout a

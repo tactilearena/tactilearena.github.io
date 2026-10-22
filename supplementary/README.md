@@ -15,7 +15,7 @@ audio. The scripts that produce them are in `site_tools/` (see its README).
 
 ## Legends
 
-**Supplementary Video 1 | Assembly of the tactile runway.** Each 64 × 64 sensor module is connected to its readout board through its two flexible tails; the four modules are aligned edge to edge, covered with a piezoresistive film and a waterproof cloth, and connected to the host computer. On-screen captions describe each step.
+**Supplementary Video 1 | Assembly of the tactile runway.** Each 64 × 64 sensor module is connected to its readout board through its two flexible tails; the four modules are aligned edge to edge, covered with a piezoresistive film, and connected to the host computer. On-screen captions describe each step.
 
 **Supplementary Video 2 | Synchronized overhead video and paw-resolved plantar pressure during walking before sciatic nerve pinch.** Overhead video of a rat walking on the runway before surgery (rat 6, 11 February 2026), with each paw contact labelled by the analysis pipeline (FL, FR, HL, HR). The lower panels show the plantar pressure distribution of each paw during stance as surfaces of raw taxel values. Playback at 0.25× real time.
 

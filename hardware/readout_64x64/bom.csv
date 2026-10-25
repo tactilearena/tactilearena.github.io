@@ -14,6 +14,6 @@ D1,1,LED,Indicator LED,,C2297,0805,SMT,
 R1 R2,2,10k,Resistor,,C17414,0805,SMT,
 R4 R5 R8 R9,4,1k,Resistor,,C17513,0805,SMT,
 R11,1,470,Resistor,,C17710,0805,SMT,
-SW2,1,SW_MEC_5E,Tactile switch,PTS647SN50SMTR2LFS (footprint),C2689502,PTS647SN50SMTR2LFS,SMT,LCSC field points to PTS647SM38SMTR2LFS (same family; check the pad layout)
+SW2,1,SW_MEC_5E,Tactile switch (spare user button on Teensy pin 24; not used by the firmware),SHOU HAN TS4538TP (4.5 x 4.5 x 3.8 mm),C398052,PTS647SN50SMTR2LFS,SMT,Fits the PTS647 footprint
 R3 R7,2,R,Not fitted,,,0805,DNP,
 TP1-TP9,9,TestPoint,Test pads,,,TestPoint_Pad_1.0x1.0mm,DNP,Bare pads; nothing to fit

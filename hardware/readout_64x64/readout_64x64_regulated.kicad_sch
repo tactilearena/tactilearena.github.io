@@ -29458,7 +29458,16 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part #" "C2689502"
+		(property "LCSC Part #" "C398052"
+			(at 358.14 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "TS4538TP"
 			(at 358.14 152.4 0)
 			(effects
 				(font

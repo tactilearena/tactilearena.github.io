@@ -273,17 +273,18 @@ All 85 runway recordings from the study, with raw pressure packets, overhead vid
 
 ## Citation { #cite }
 
-The manuscript is in preparation. Until publication, please cite this website and repository:
+Please cite the preprint ([bioRxiv, 2026](https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1)):
 
 <div class="ta-cite" markdown>
 
 ```bibtex
-@misc{tactilearena2026,
-  title  = {Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals},
-  author = {Lu, Weiwen and Slepyan, Ariel and Perkins, Pierce and Ascani Orsini, Alessandro and Quinn, Kiara and Thakor, Nitish V.},
-  year   = {2026},
-  note   = {Manuscript in preparation},
-  url    = {https://tactilearena.github.io}
+@article{lu2026tactilearena,
+  title   = {Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals},
+  author  = {Lu, Weiwen and Slepyan, Ariel and Perkins, Pierce and Ascani Orsini, Alessandro and Quinn, Kiara and Thakor, Nitish V.},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.64898/2026.10.22.760735},
+  url     = {https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1}
 }
 ```
 

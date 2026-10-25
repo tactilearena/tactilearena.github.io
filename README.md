@@ -2,9 +2,9 @@
 
 **Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals**
 Weiwen Lu\*, Ariel Slepyan\*, Pierce Perkins, Alessandro Ascani Orsini, Kiara Quinn, Nitish V. Thakor (\*equal contribution).
-Johns Hopkins University and MIT. Manuscript in preparation.
+Johns Hopkins University and MIT. Preprint: [bioRxiv](https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1) (2026).
 
-**Website: <https://tactilearena.github.io>** · [How it works](https://tactilearena.github.io/how-it-works/) · [Build guide](https://tactilearena.github.io/build/) · [Data](https://tactilearena.github.io/data/)
+**Website: <https://tactilearena.github.io>** · [Preprint](https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1) · [How it works](https://tactilearena.github.io/how-it-works/) · [Build guide](https://tactilearena.github.io/build/) · [Data](https://tactilearena.github.io/data/)
 
 TactileArena transforms the floor into a sensor. A modular surface of 16,384 pressure-sensitive taxels (2-mm pitch, 512 × 128 mm, nominal 1 kHz) records where, when and with what force a freely moving animal contacts the ground, synchronized with overhead video and without instrumentation of the animal. Each readout board measures 200 of its module's 4,096 taxels per frame and concentrates these measurements on active contacts (adaptive compressive sampling), enabling this combination of sensing area, spatial density and acquisition speed.
 
@@ -191,6 +191,6 @@ Code: MIT License; see [LICENSE](LICENSE). Hardware design files in `hardware/`:
 
 Scripts used to compute the gait metrics and statistical analyses reported in the manuscript are available from the corresponding authors upon request.
 
-If you use this code or data, please cite the paper (manuscript in preparation; see [CITATION.cff](CITATION.cff) and the [website](https://tactilearena.github.io/paper/)).
+If you use this code or data, please cite the preprint: Lu, W., Slepyan, A. et al. Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals. bioRxiv (2026), [doi:10.64898/2026.10.22.760735](https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1). See also [CITATION.cff](CITATION.cff).
 
 This repository started as [victorlu2220/Gait-Project-Pipeline](https://github.com/victorlu2220/Gait-Project-Pipeline); its history is preserved here.

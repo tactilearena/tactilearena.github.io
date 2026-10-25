@@ -1,5 +1,7 @@
 # Supplementary videos
 
+Supplementary Videos 1–5 of Lu, Slepyan et al., *Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals*, bioRxiv (2026), [doi:10.64898/2026.10.22.760735](https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1).
+
 Full-quality files are attached to the
 [supplementary-videos-v1 release](https://github.com/tactilearena/tactilearena.github.io/releases/tag/supplementary-videos-v1);
 lighter copies play on the [website](https://tactilearena.github.io/paper/#videos). All are MP4 (H.264), without

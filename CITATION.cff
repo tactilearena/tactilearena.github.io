@@ -19,3 +19,23 @@ repository-code: "https://github.com/tactilearena/tactilearena.github.io"
 url: "https://tactilearena.github.io"
 license: MIT
 date-released: "2026-10-16"
+preferred-citation:
+  type: article
+  title: "Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals"
+  authors:
+    - family-names: "Lu"
+      given-names: "Weiwen"
+    - family-names: "Slepyan"
+      given-names: "Ariel"
+    - family-names: "Perkins"
+      given-names: "Pierce"
+    - family-names: "Ascani Orsini"
+      given-names: "Alessandro"
+    - family-names: "Quinn"
+      given-names: "Kiara"
+    - family-names: "Thakor"
+      given-names: "Nitish V."
+  journal: "bioRxiv"
+  year: 2026
+  doi: "10.64898/2026.10.22.760735"
+  url: "https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1"

@@ -16,7 +16,7 @@ Pierce Perkins<sup>1</sup>, Alessandro Ascani Orsini<sup>4</sup>, Kiara Quinn<su
 <sup>4</sup>Department of Electrical Engineering, Johns Hopkins University ·
 <sup>&ast;</sup>These authors contributed equally.</p>
 
-**Status:** manuscript in preparation.
+**Preprint:** [bioRxiv](https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1), posted 25 October 2026; doi:10.64898/2026.10.22.760735.
 
 **Contact:** Weiwen Lu ([wlu33@jh.edu](mailto:wlu33@jh.edu)), Ariel Slepyan
 ([aslepyan@mit.edu](mailto:aslepyan@mit.edu)), Nitish V. Thakor ([nitish@jhu.edu](mailto:nitish@jhu.edu)).
@@ -45,12 +45,13 @@ neuroscience, injury, and motor recovery research.
 <div class="ta-cite" markdown>
 
 ```bibtex
-@misc{tactilearena2026,
-  title  = {Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals},
-  author = {Lu, Weiwen and Slepyan, Ariel and Perkins, Pierce and Ascani Orsini, Alessandro and Quinn, Kiara and Thakor, Nitish V.},
-  year   = {2026},
-  note   = {Manuscript in preparation},
-  url    = {https://tactilearena.github.io}
+@article{lu2026tactilearena,
+  title   = {Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals},
+  author  = {Lu, Weiwen and Slepyan, Ariel and Perkins, Pierce and Ascani Orsini, Alessandro and Quinn, Kiara and Thakor, Nitish V.},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.64898/2026.10.22.760735},
+  url     = {https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1}
 }
 ```
 

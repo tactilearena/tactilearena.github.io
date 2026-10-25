@@ -7,10 +7,11 @@ four of each (16,384 taxels, 512 × 128 mm). Licensed under the
 | Folder | Contents |
 |---|---|
 | [`sensor_64x64/`](sensor_64x64) | KiCad layout (`MD_sensor_64x64.kicad_pcb`; layout only, no components) and the Gerbers used for fabrication (`gerbers/MD_sensor_64x64_gerbers.zip`) |
-| [`readout_64x64/`](readout_64x64) | KiCad schematic and layout (`readout_64x64_regulated.*`), the Gerbers used for fabrication (`gerbers/readout_64x64_regulated_gerbers.zip`) and the bill of materials ([`bom.csv`](readout_64x64/bom.csv)) |
+| [`readout_64x64/`](readout_64x64) | KiCad schematic and layout (`readout_64x64_regulated.*`), Gerbers and drill files (`gerbers/readout_64x64_regulated_gerbers.zip`), JLCPCB assembly files ([`jlcpcb/`](readout_64x64/jlcpcb): BOM and placement) and the bill of materials ([`bom.csv`](readout_64x64/bom.csv)) |
 
-The Gerber zips are the files the boards were made from. Their copper layers and board outlines match the KiCad
-layouts in this folder (checked layer by layer).
+The sensor Gerber zip is the file the sensors were made from; its copper layers and board outline match the KiCad
+layout (checked layer by layer). The readout-board Gerbers and assembly files are exported from the KiCad layout
+in this folder with the Fabrication Toolkit plugin (KiCad 10).
 
 ## Sensor module (`sensor_64x64`)
 
@@ -31,10 +32,11 @@ layouts in this folder (checked layer by layer).
   streams to the computer over USB.
 - **PCB:** 4 layers, 1.6 mm, 91.9 × 56.3 mm, all parts on the top side. The smallest vias are 0.35 mm pad /
   0.15 mm drill; these should be confirmed against the capabilities of the fabrication service.
-- **Parts:** [`bom.csv`](readout_64x64/bom.csv), per board. The Teensy 4.1 and the two digital potentiometers
-  (MCP41HV51) are marked do-not-populate in the schematic only because they were not in the board-house assembly
-  order (JLCPCB did not stock the potentiometer at the time). Both are required: buy them separately and solder
-  them by hand.
+- **Parts:** [`bom.csv`](readout_64x64/bom.csv), per board. All parts except the Teensy 4.1 can be placed by the
+  board house; [`jlcpcb/`](readout_64x64/jlcpcb) contains the JLCPCB BOM and placement files. The Teensy 4.1 is
+  marked do-not-populate and is soldered by hand. In October 2026 the op-amps (IC11, IC14), the FPC connectors
+  (J1, J2) and the tactile switch (SW2) were not in JLCPCB's assembly library; they can be ordered through
+  JLCPCB's parts pre-order or global sourcing, or soldered by hand.
 - **Soldering:** the multiplexers (TQFP-48), shift registers (TSSOP-16) and the two 70-pin connectors are 0.5–0.65 mm
   pitch; a solder-paste stencil with a hot plate or reflow oven is recommended. The Teensy is mounted on 2 × 24 pin
   headers.

@@ -26906,7 +26906,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "ba82a150-3f77-4467-87aa-14adc532fe22")
 		(property "Reference" "VR2"
 			(at 300.482 225.298 0)
@@ -27020,6 +27020,15 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C637062"
+			(at 314.96 205.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 				(hide yes)
 			)
 		)
@@ -30244,7 +30253,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "fbf2800e-821e-4bbd-82eb-33969d7e9690")
 		(property "Reference" "VR1"
 			(at 224.282 225.298 0)
@@ -30358,6 +30367,15 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C637062"
+			(at 238.76 205.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 				(hide yes)
 			)
 		)

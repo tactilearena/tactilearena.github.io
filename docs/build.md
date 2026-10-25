@@ -56,7 +56,8 @@ the CERN Open Hardware Licence v2 (permissive).
 | Readout board | [KiCad schematic, layout and Gerber files](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware/readout_64x64); [bill of materials](https://github.com/tactilearena/tactilearena.github.io/blob/main/hardware/readout_64x64/bom.csv) | 4-layer PCB, 1.6&nbsp;mm, 91.9&nbsp;&times;&nbsp;56.3&nbsp;mm |
 
 Fabrication and soldering notes are given in the [hardware README](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware#readme).
-The Teensy 4.1 and the two digital potentiometers on each readout board are soldered by hand.
+All readout-board parts except the Teensy 4.1 can be placed by the board house; the JLCPCB BOM and placement files
+are in `hardware/readout_64x64/jlcpcb/`. The Teensy 4.1 is soldered by hand.
 
 ## Assembly { #assembly }
 

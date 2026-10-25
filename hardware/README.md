@@ -34,8 +34,8 @@ in this folder with the Fabrication Toolkit plugin (KiCad 10).
   0.15 mm drill; these should be confirmed against the capabilities of the fabrication service.
 - **Parts:** [`bom.csv`](readout_64x64/bom.csv), per board. All parts except the Teensy 4.1 can be placed by the
   board house; [`jlcpcb/`](readout_64x64/jlcpcb) contains the JLCPCB BOM and placement files. The Teensy 4.1 is
-  marked do-not-populate and is soldered by hand. Parts that are out of stock when ordering can be pre-ordered
-  through JLCPCB or soldered by hand.
+  marked do-not-populate and is soldered by hand. Parts that are out of stock at JLCPCB when ordering can be sourced
+  through its parts pre-order or global sourcing services, or soldered by hand.
 - **Soldering:** the multiplexers (TQFP-48), shift registers (TSSOP-16) and the two 70-pin connectors are 0.5–0.65 mm
   pitch; a solder-paste stencil with a hot plate or reflow oven is recommended. The Teensy is mounted on 2 × 24 pin
   headers.

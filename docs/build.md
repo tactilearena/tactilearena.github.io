@@ -31,7 +31,7 @@ bare PCBs from any fabrication service and parts at retail prices (October 2026)
 
 | | Per runway |
 |---|---|
-| Readout electronics (parts for 4 boards) | $324 |
+| Readout electronics (parts for 4 boards) | $323 |
 | 4 &times; Teensy 4.1 | $126 |
 | Readout PCBs and stencil (one order of 5) | ~$13 |
 | Flex sensor PCBs (one order of 5) | ~$75 (estimate; $30&ndash;200 depending on fab) |
@@ -42,7 +42,7 @@ The analog multiplexers and analog-to-digital converters (two of each per board)
 total. Digital potentiometers are priced at US&#36;2.00 each (DigiKey, October 2026); other distributors list them at
 up to approximately US&#36;7, which adds approximately US&#36;40. The flexible sensor PCB should be quoted with the
 chosen fabrication service. Shipping, taxes, tools, enclosure, cameras and the host computer are not included;
-optional board-house assembly adds approximately US&#36;115.
+optional board-house assembly adds approximately US&#36;155.
 
 ## Design files { #design-files }
 
@@ -57,7 +57,8 @@ the CERN Open Hardware Licence v2 (permissive).
 
 Fabrication and soldering notes are given in the [hardware README](https://github.com/tactilearena/tactilearena.github.io/tree/main/hardware#readme).
 All readout-board parts except the Teensy 4.1 can be placed by the board house; the JLCPCB BOM and placement files
-are in `hardware/readout_64x64/jlcpcb/`. The Teensy 4.1 is soldered by hand.
+are in `hardware/readout_64x64/jlcpcb/`. The Teensy 4.1 is soldered by hand. Parts that are out of stock at
+JLCPCB when ordering can be sourced through its parts pre-order or global sourcing services, or soldered by hand.
 
 ## Assembly { #assembly }
 
